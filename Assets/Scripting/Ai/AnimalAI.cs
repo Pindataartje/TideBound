@@ -173,7 +173,7 @@ public class AnimalAI : MonoBehaviour
         // If this GameObject is tagged as "Enemy", notify the QuestManager.
         if (CompareTag("Enemy"))
         {
-            QuestManager questManager = FindObjectOfType<QuestManager>();
+            QuestManager questManager = Object.FindAnyObjectByType<QuestManager>();
             if (questManager != null)
             {
                 questManager.EnemyKilled(gameObject);
@@ -183,3 +183,4 @@ public class AnimalAI : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
