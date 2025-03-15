@@ -74,7 +74,7 @@ public class BoatController : MonoBehaviour
         if (throttle > 0)
         {
             // Forward motion
-            if (rb.velocity.magnitude < maxSpeed)
+            if (rb.linearVelocity.magnitude < maxSpeed)
             {
                 rb.AddForce(transform.forward * enginePower * Time.fixedDeltaTime, ForceMode.Acceleration);
             }
@@ -82,18 +82,18 @@ public class BoatController : MonoBehaviour
         else if (throttle < 0)
         {
             // Reverse motion
-            if (rb.velocity.magnitude < reverseSpeed)
+            if (rb.linearVelocity.magnitude < reverseSpeed)
             {
                 rb.AddForce(transform.forward * enginePower * Time.fixedDeltaTime, ForceMode.Acceleration);
             }
         }
 
-        speed = rb.velocity.magnitude;
+        speed = rb.linearVelocity.magnitude;
     }
 
     private void HandleTurning()
     {
-        if (rb.velocity.magnitude > 0.1f) // Allow turning only if the boat is moving
+        if (rb.linearVelocity.magnitude > 0.1f) // Allow turning only if the boat is moving
         {
             float turn = turnInput * turnSpeed;
             rb.AddTorque(Vector3.up * turn * Time.fixedDeltaTime, ForceMode.VelocityChange);
@@ -102,7 +102,7 @@ public class BoatController : MonoBehaviour
 
     private void ApplyDrag()
     {
-        rb.velocity *= drag;
+        rb.linearVelocity *= drag;
         rb.angularVelocity *= drag;
     }
 

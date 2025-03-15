@@ -63,8 +63,8 @@ public class Korte_Movement : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
-        Vector3 velocity = rb.velocity;
-        rb.velocity = new Vector3(move.x * walkSpeed, velocity.y, move.z * walkSpeed);
+        Vector3 velocity = rb.linearVelocity;
+        rb.linearVelocity = new Vector3(move.x * walkSpeed, velocity.y, move.z * walkSpeed);
     }
 
     void Jump()

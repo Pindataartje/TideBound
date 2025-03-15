@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
 
     public void Fire(float speed, Vector3 direction)
     {
-        _rb.velocity = direction * speed;
+        _rb.linearVelocity = direction * speed;
     }
 
 }

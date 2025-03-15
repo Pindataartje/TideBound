@@ -72,12 +72,12 @@ public class Floater : MonoBehaviour
             // Compute buoyancy force, spring force, and damping.
             float buoyancyForce = displacementMultiplier * displacementAmount * Mathf.Abs(Physics.gravity.y);
             float spring = springForce * submersionDepth;
-            float damping = dampingForce * rb.velocity.y;
+            float damping = dampingForce * rb.linearVelocity.y;
 
             rb.AddForceAtPosition(new Vector3(0f, buoyancyForce + spring - damping, 0f), transform.position, ForceMode.Acceleration);
 
             // Apply linear drag and angular drag.
-            rb.AddForce(displacementMultiplier * -rb.velocity * waterDrag * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            rb.AddForce(displacementMultiplier * -rb.linearVelocity * waterDrag * Time.fixedDeltaTime, ForceMode.VelocityChange);
             rb.AddTorque(displacementMultiplier * -rb.angularVelocity * waterAngularDrag * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
         // If submersionDepth is less than or equal to submersionTolerance, the object is considered not submerged enough,

@@ -1,5 +1,4 @@
 using UnityEngine;
-using Cinemachine;
 using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
@@ -24,13 +23,12 @@ public class Movement : MonoBehaviour
     public float stepBobbingAmount = 0.1f;
     public bool IsGrounded { get { return isGrounded; } }
 
-
     [Header("Crouch Settings")]
     public Transform crouchCameraTarget;
     public float crouchSpeedMultiplier = 0.5f; // Slow movement while crouching
-    public float defaultPlayerScale = 1.5f; // Default player scale
-    public float crouchPlayerScale = 0.8f;  // Scale when crouching
-    public float scaleSpeed = 8f; // How fast scaling transitions
+    public float defaultPlayerScale = 1.5f;      // Default player scale
+    public float crouchPlayerScale = 0.8f;       // Scale when crouching
+    public float scaleSpeed = 8f;                // How fast scaling transitions
 
     [Header("Player Stats")]
     public float maxHealth = 100f;
@@ -53,7 +51,8 @@ public class Movement : MonoBehaviour
     public float steepSlopeMultiplier = 2f;
 
     [Header("References")]
-    public CinemachineVirtualCamera virtualCamera;
+    // Instead of a CinemachineVirtualCamera, we use a regular Transform reference for the camera.
+    public Transform camReference;
     public CapsuleCollider capsuleCollider;
     public LayerMask groundLayer;
 
@@ -91,9 +90,10 @@ public class Movement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (virtualCamera != null)
+        // Set up the camera reference from the provided transform.
+        if (camReference != null)
         {
-            camTransform = virtualCamera.transform;
+            camTransform = camReference;
             camStandLocalPos = camTransform.localPosition;
         }
 
@@ -218,7 +218,7 @@ public class Movement : MonoBehaviour
         {
             jumpDirection = Vector3.zero;
             Vector3 moveVector = AdjustVelocityForSlope(moveDir * currentSpeed);
-            rb.velocity = new Vector3(moveVector.x, rb.velocity.y, moveVector.z);
+            rb.linearVelocity = new Vector3(moveVector.x, rb.linearVelocity.y, moveVector.z);
         }
         else
         {
@@ -231,7 +231,7 @@ public class Movement : MonoBehaviour
                 }
             }
             Vector3 airMove = moveDir * (currentSpeed * airControlMultiplier);
-            rb.velocity = new Vector3(rb.velocity.x + airMove.x * Time.deltaTime, rb.velocity.y, rb.velocity.z + airMove.z * Time.deltaTime);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x + airMove.x * Time.deltaTime, rb.linearVelocity.y, rb.linearVelocity.z + airMove.z * Time.deltaTime);
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded && currentStamina >= jumpStaminaCost)
@@ -239,7 +239,7 @@ public class Movement : MonoBehaviour
             jumpDirection = moveDir;
             if (jumpDirection == Vector3.zero)
                 jumpDirection = transform.forward;
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
             currentStamina -= jumpStaminaCost;
         }
 
@@ -263,7 +263,7 @@ public class Movement : MonoBehaviour
         float slopeAngle = Vector3.Angle(Vector3.up, slopeNormal);
         Vector3 slideDirection = Vector3.ProjectOnPlane(Vector3.down, slopeNormal).normalized;
         float slideMultiplier = Mathf.Lerp(1f, steepSlopeMultiplier, Mathf.InverseLerp(maxSlopeAngle, 90f, slopeAngle));
-        rb.velocity += slideDirection * slopeAcceleration * slideMultiplier * Time.deltaTime;
+        rb.linearVelocity += slideDirection * slopeAcceleration * slideMultiplier * Time.deltaTime;
     }
 
     void HandleStepBobbing()

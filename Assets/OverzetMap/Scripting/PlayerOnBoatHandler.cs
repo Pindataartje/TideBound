@@ -17,9 +17,9 @@ public class PlayerOnBoatHandler : MonoBehaviour
         if (isOnBoat && boatRigidbody != null)
         {
             // Match boat's velocity
-            Vector3 boatVelocity = boatRigidbody.velocity;
+            Vector3 boatVelocity = boatRigidbody.linearVelocity;
             Vector3 adjustedVelocity = new Vector3(boatVelocity.x, 0, boatVelocity.z); // Ignore vertical velocity
-            playerRigidbody.velocity += adjustedVelocity * Time.fixedDeltaTime;
+            playerRigidbody.linearVelocity += adjustedVelocity * Time.fixedDeltaTime;
         }
     }
 
