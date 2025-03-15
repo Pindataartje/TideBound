@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Bush
+  - Stone
+  - Spear
+  - Berry
+  - Buildables
+  - FishingRod
+  - Log
+  - Stick
+  - Rock
+  - Fish
+  - Water
+  - Material
+  - Fish1
+  - Enemy
+  - Item
+  - Furniture
   layers:
   - Default
   - TransparentFX

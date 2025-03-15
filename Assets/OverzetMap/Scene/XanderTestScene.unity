@@ -5267,41 +5267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af2d410bf489d842a543a60d605af5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrains:
-  - {fileID: 109998594}
-  splatmapResolution: 512
-  colorMapResolution: 512
-  layerSettings:
-  - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: 091511b8c4f042c4082a4d5af73e92c7, type: 2}
-    modifierStack:
-    - {fileID: 0}
-    - {fileID: 0}
-  - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: bd1fcb10d2c5b5d4ba6e01a34e4735be, type: 2}
-    modifierStack:
-    - {fileID: 0}
-  - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: 62f82665abc6fbf4e8f7fa058cbd8d6c, type: 2}
-    modifierStack: []
-  - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: 0cbb01b61ed524a48a119d81aa262fed, type: 2}
-    modifierStack:
-    - {fileID: 0}
-  - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: 795e383430200a14bb52726e97a0e7f4, type: 2}
-    modifierStack:
-    - {fileID: 0}
-  - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: 130d104513b29bd44ae9c5b3915f4134, type: 2}
-    modifierStack:
-    - {fileID: 0}
-  autoRepaint: 0
-  terrainListeners: []
-  bounds:
-    m_Center: {x: 2563.7183, y: 300, z: -1306.7224}
-    m_Extent: {x: 500, y: 300, z: 500}
-  filterShader: {fileID: 4800000, guid: 0f44df78e3d64d9cb2616cac3d84cb77, type: 3}
 --- !u!154 &109998593
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -33044,6 +33009,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PutLowPoly
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7ba2f30fe0f92f4898b6f9ffa852bdd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -40777,6 +40746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: speedboat
       objectReference: {fileID: 0}
+    - target: {fileID: 2874143890538640588, guid: aac8efe5b0a9a7e448892d8976aec477, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3218052897339764342, guid: aac8efe5b0a9a7e448892d8976aec477, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2479.7922
@@ -43074,7 +43047,7 @@ MonoBehaviour:
   UpdateMethod: 2
   BlendUpdateMethod: 1
   LensModeOverride:
-    Enabled: 0
+    Enabled: 1
     DefaultMode: 2
   DefaultBlend:
     Style: 1
@@ -43085,7 +43058,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  CustomBlends: {fileID: 11400000, guid: 9e3dea7908678db43b94a179f570908c, type: 2}
+  CustomBlends: {fileID: 11400000, guid: 521a1af06e6e45c42adbcc388a7cb51e, type: 2}
 --- !u!114 &950680131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63879,7 +63852,7 @@ GameObject:
   - component: {fileID: 1535428799}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63951,11 +63924,11 @@ MonoBehaviour:
   - {fileID: 1113567422}
   - {fileID: 869088125}
   steepSlopeMultiplier: 12.04
-  virtualCamera: {fileID: 0}
+  camReference: {fileID: 1825191214}
   capsuleCollider: {fileID: 1535428806}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 1
   horizontalRotationScripts:
   - {fileID: 1535428801}
   verticalRotationScripts:
@@ -69670,7 +69643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1678302867
 Transform:
   m_ObjectHideFlags: 0
@@ -74733,6 +74706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ship low
       objectReference: {fileID: 0}
+    - target: {fileID: 2127735487805283560, guid: ed723afc8e9ff634481b75f451a8ab1b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -74928,6 +74905,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69958ed34b811354d869fc6256049a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensitivity: 3
+  minAngle: -88
+  maxAngle: 88
 --- !u!114 &1825191216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74940,6 +74920,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a167ea09489744392f38b9f1596128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  mouseSensitivity: 2
+  maxVerticalAngle: 89
 --- !u!1652712579 &1825191217
 MultiplayerRolesData:
   m_ObjectHideFlags: 2
@@ -88368,6 +88351,10 @@ PrefabInstance:
     - target: {fileID: 3555022111009293499, guid: 681dfa388c829e94d9db4c8e5fb41578, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555022111009293499, guid: 681dfa388c829e94d9db4c8e5fb41578, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618738279594873427, guid: 681dfa388c829e94d9db4c8e5fb41578, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
