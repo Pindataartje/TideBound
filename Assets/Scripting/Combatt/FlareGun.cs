@@ -5,6 +5,7 @@ public class FlareGun : MonoBehaviour
     public GameObject flarePrefab;  // The flare object to be shot
     public Transform shootPoint;    // The point from where the flare will be shot
     public float shootForce = 10f;  // The force with which the flare will be shot
+    public float flareLifeTime = 21f;  // Time before the flare is destroyed (21 seconds)
 
     void Update()
     {
@@ -30,5 +31,9 @@ public class FlareGun : MonoBehaviour
         {
             flareRb.AddForce(shootDirection * shootForce, ForceMode.VelocityChange);
         }
+
+        // Destroy the flare after a set time (21 seconds)
+        
+        Destroy(flare, flareLifeTime);
     }
 }

@@ -42,7 +42,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4119128360975676466}
   serializedVersion: 8
-  lengthInSec: 60
+  lengthInSec: 20
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4888,11 +4888,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1.1381703e+10
+      value: 9.194e-41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 3.6015e-41
       objectReference: {fileID: 0}
     - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
