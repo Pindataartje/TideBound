@@ -18,6 +18,9 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private SelectedBuildType currentBuildType;
     [SerializeField] private LayerMask connectedLayer;
 
+    [Header("Particle Settings")]
+    [SerializeField] private GameObject buildParticlePrefab;
+
     [Header("Ghost Settings")]
     [SerializeField] private Material ghostMaterialvalid;
     [SerializeField] private Material ghostMaterialInvalid;
@@ -432,12 +435,31 @@ if (Input.GetKeyDown(KeyCode.Alpha3))
     {
         if (ghostbuildObject != null && (isGhostInValidPosistion || currentBuildType == SelectedBuildType.FreeFrom))
         {
+            // Instantiate the building object at the ghost position and rotation
             GameObject newBuild = Instantiate(GetCurrentBuild(), ghostbuildObject.transform.position, ghostbuildObject.transform.rotation);
 
+            // Instantiate the particle system at the same position where the build was placed
+            InstantiateBuildParticle(ghostbuildObject.transform.position);
+
+            // Destroy the ghost object
             Destroy(ghostbuildObject);
             ghostbuildObject = null;
         }
     }
+
+    private void InstantiateBuildParticle(Vector3 position)
+    {
+        if (buildParticlePrefab != null)
+        {
+            // Instantiate the particle effect at the location where the build was placed
+            Instantiate(buildParticlePrefab, position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning("Build particle prefab is not assigned!");
+        }
+    }
+
 
     private void HighlightDeletingBuilding()
     {
