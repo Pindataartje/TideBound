@@ -38,6 +38,17 @@ public class Movement : MonoBehaviour
     public Slider healthSlider;
     public Slider staminaSlider;
 
+    [Header("Hunger/Thirst Settings")]
+    public float maxHunger = 100f;
+    public float currentHunger = 100f;
+    public float maxThirst = 100f;
+    public float currentThirst = 100f;
+    public Slider hungerSlider;
+    public Slider thirstSlider;
+    public float hungerDecreaseRate = 1f;   // per second
+    public float thirstDecreaseRate = 1.5f;   // per second
+    public float healthDecreaseRate = 2f;     // health lost per second when starving or dehydrated
+
     [Header("Fall Damage Settings")]
     public float fallDamageThreshold = 3f;
     public float fallDamageMultiplier = 10f; // Damage per unit of fall distance beyond threshold
@@ -107,10 +118,20 @@ public class Movement : MonoBehaviour
             staminaSlider.maxValue = maxStamina;
             staminaSlider.value = currentStamina;
         }
+        if (hungerSlider != null)
+        {
+            hungerSlider.maxValue = maxHunger;
+            hungerSlider.value = currentHunger;
+        }
+        if (thirstSlider != null)
+        {
+            thirstSlider.maxValue = maxThirst;
+            thirstSlider.value = currentThirst;
+        }
 
-        // Find the rotation scripts by type.
-        horizontalRotationScripts = FindObjectsOfType<HorizontalRotation>();
-        verticalRotationScripts = FindObjectsOfType<VerticalRotation>();
+        // Find the rotation scripts by type using the updated method.
+        horizontalRotationScripts = Object.FindObjectsByType<HorizontalRotation>(FindObjectsSortMode.None);
+        verticalRotationScripts = Object.FindObjectsByType<VerticalRotation>(FindObjectsSortMode.None);
     }
 
     void Update()
@@ -171,6 +192,8 @@ public class Movement : MonoBehaviour
         else if (crouchCameraTarget != null)
             camTransform.localPosition = crouchCameraTarget.localPosition;
 
+        // Update hunger/thirst and then the UI.
+        UpdateHungerThirst();
         UpdateUI();
     }
 
@@ -184,8 +207,9 @@ public class Movement : MonoBehaviour
 
     void HandleInput()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+        // Use GetAxisRaw for immediate input response.
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveZ = Input.GetAxisRaw("Vertical");
         isMoving = (moveX != 0 || moveZ != 0);
 
         // Calculate desired move direction based on input.
@@ -311,6 +335,25 @@ public class Movement : MonoBehaviour
     {
         if (healthSlider != null) healthSlider.value = currentHealth;
         if (staminaSlider != null) staminaSlider.value = currentStamina;
+        if (hungerSlider != null) hungerSlider.value = currentHunger;
+        if (thirstSlider != null) thirstSlider.value = currentThirst;
+    }
+
+    void UpdateHungerThirst()
+    {
+        // Decrease hunger and thirst over time.
+        currentHunger -= hungerDecreaseRate * Time.deltaTime;
+        currentThirst -= thirstDecreaseRate * Time.deltaTime;
+
+        currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
+        currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
+
+        // If hunger or thirst are depleted, slowly reduce health.
+        if (currentHunger <= 0f || currentThirst <= 0f)
+        {
+            currentHealth -= healthDecreaseRate * Time.deltaTime;
+            currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        }
     }
 
     // Checks the important gameobjects and updates the cursor and rotation scripts accordingly.
