@@ -275,30 +275,25 @@ if (Input.GetKeyDown(KeyCode.Alpha3))
             return;
         }
 
-        // Set position by aligning with the connector
         ghostbuildObject.transform.position = connector.transform.position - (ghostConnector.position - ghostbuildObject.transform.position);
+        if (currentBuildType == SelectedBuildType.Wall)
+        { // Adjust ghost position relative to the connector
+          
 
-        // Get the connector's normal to determine if it's a wall or floor
-        Vector3 connectorNormal = connector.transform.up; // Assuming 'up' is the direction of the normal for the connector.
+            // Get the rotation from the object the connector is on (only using the Y-axis)
+            Quaternion connectorRotation = connector.transform.rotation; // or connector.transform.parent.rotation if needed
+            float newYRotation = connectorRotation.eulerAngles.y;
 
-        // If it's a wall, apply rotation based on its normal
-        if (IsWall(connectorNormal))
-        {
-            // Get the connector's rotation and apply manual rotation
-            Quaternion connectorRotation = connector.transform.rotation;
-
-            // Apply the connector's rotation + player's manual rotation
-            ghostbuildObject.transform.rotation = Quaternion.Euler(0f, connectorRotation.eulerAngles.y + currentRotationAngle, 0f);
-        }
-        else
-        {
-            // If it's the floor, just apply manual Y-axis rotation (no need to adjust based on normal)
-            ghostbuildObject.transform.rotation = Quaternion.Euler(0f, currentRotationAngle, 0f);
+            // Preserve the ghost object's X and Z rotation, but override its Y rotation
+            Vector3 ghostEuler = ghostbuildObject.transform.rotation.eulerAngles;
+            ghostbuildObject.transform.rotation = Quaternion.Euler(ghostEuler.x, newYRotation, ghostEuler.z);
         }
 
         ghostifyModel(modelParent, ghostMaterialvalid);
         isGhostInValidPosistion = true;
     }
+
+
 
     private bool IsWall(Vector3 normal)
     {

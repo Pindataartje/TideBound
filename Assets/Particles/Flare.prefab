@@ -30,7 +30,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6496955967167049768}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1494687568073266285
@@ -3819,9 +3820,9 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 0
-    ratio: 0
-    light: {fileID: 0}
+    enabled: 1
+    ratio: 1
+    light: {fileID: 3780112522161865584}
     randomDistribution: 1
     color: 1
     range: 1
@@ -4833,3 +4834,78 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1001 &6607383873305014346
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8654399931510354416}
+    m_Modifications:
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545255303460567476, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_Name
+      value: FlareLightTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.1381703e+10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: NaN
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dad52ea74289df44cbf4791725496312, type: 3}
+--- !u!108 &3780112522161865584 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
+  m_PrefabInstance: {fileID: 6607383873305014346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6496955967167049768 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 115958515123994722, guid: dad52ea74289df44cbf4791725496312, type: 3}
+  m_PrefabInstance: {fileID: 6607383873305014346}
+  m_PrefabAsset: {fileID: 0}

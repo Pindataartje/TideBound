@@ -20,6 +20,7 @@ TagManager:
   - Enemy
   - Item
   - Furniture
+  - Npc
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - IgnoreWater
   - Building
   - BuildingSphere
-  - 
+  - RunLayer
   - 
   - 
   - 
