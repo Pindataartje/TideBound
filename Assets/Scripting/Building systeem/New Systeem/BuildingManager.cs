@@ -226,7 +226,7 @@ if (Input.GetKeyDown(KeyCode.Alpha3))
                 Collider[] overlapColliders = Physics.OverlapBox(ghostbuildObject.transform.position, new Vector3(2f, 2f, 2f), ghostbuildObject.transform.rotation);
                 foreach (Collider overlapcollider in overlapColliders)
                 {
-                    if (overlapcollider.gameObject != ghostbuildObject && (overlapcollider.transform.root.CompareTag("Buildables") || overlapcollider.transform.root.CompareTag("Furniture/Items")))
+                    if (overlapcollider.gameObject != ghostbuildObject && (overlapcollider.transform.root.CompareTag("Buildables") || overlapcollider.transform.root.CompareTag("Furniture")))
                     {
                         ghostifyModel(modelParent, ghostMaterialInvalid);
                         isGhostInValidPosistion = false;
