@@ -35,4 +35,4 @@ public class NewFloater : MonoBehaviour
             rb.AddTorque(displacementMulti * -rb.angularVelocity * waterAngularDrag * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
     }
-}
+} 

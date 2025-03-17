@@ -163,11 +163,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 1821943592}
 --- !u!1001 &7628340
 PrefabInstance:
@@ -441,11 +448,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 13497651}
+  - component: {fileID: 13497654}
+  - component: {fileID: 13497652}
+  - component: {fileID: 13497653}
   - component: {fileID: 13497649}
   - component: {fileID: 13497648}
-  - component: {fileID: 13497654}
-  - component: {fileID: 13497653}
-  - component: {fileID: 13497652}
   m_Layer: 0
   m_Name: Virtual Camera (1)
   m_TagString: Untagged
@@ -4677,11 +4684,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 1821943592}
 --- !u!1 &92476148
 GameObject:
@@ -5226,112 +5240,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109475755}
   m_CullTransparentMesh: 1
---- !u!1 &109998591
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 109998595}
-  - component: {fileID: 109998594}
-  - component: {fileID: 109998593}
-  - component: {fileID: 109998592}
-  m_Layer: 0
-  m_Name: a
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
---- !u!114 &109998592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109998591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6af2d410bf489d842a543a60d605af5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!154 &109998593
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109998591}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 868c68c6e110d9440bf33ba870d8d1c1, type: 2}
-  m_EnableTreeColliders: 1
---- !u!218 &109998594
-Terrain:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109998591}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 868c68c6e110d9440bf33ba870d8d1c1, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
-  m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
-  m_HeightmapMinimumLODSimplification: 0
-  m_HeightmapMaximumLOD: 0
-  m_ShadowCastingMode: 2
-  m_DrawHeightmap: 1
-  m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
-  m_StaticShadowCaster: 0
-  m_IgnoreQualitySettings: 0
-  m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 22ff8771d87ef27429e670136399094b, type: 2}
-  m_BakeLightProbesForTrees: 1
-  m_PreserveTreePrototypeLayers: 0
-  m_DeringLightProbesForTrees: 1
-  m_ReceiveGI: 1
-  m_ScaleInLightmap: 0.0256
-  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
-  m_GroupingID: 0
-  m_RenderingLayerMask: 257
-  m_AllowAutoConnect: 1
-  m_EnableHeightmapRayTracing: 1
-  m_EnableTreesAndDetailsRayTracing: 0
-  m_TreeMotionVectorModeOverride: 3
---- !u!4 &109998595
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109998591}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2063.7183, y: 0, z: -1806.7224}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 693392061}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &116020643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8206,9 +8114,9 @@ RectTransform:
   - {fileID: 2075508467}
   m_Father: {fileID: 25227300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1140, y: -147.37772}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 700, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &183950441
@@ -12612,11 +12520,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 752252053529275305}
 --- !u!1 &290766428
 GameObject:
@@ -16885,7 +16800,7 @@ GameObject:
   - component: {fileID: 404869321}
   - component: {fileID: 404869323}
   - component: {fileID: 404869322}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17407,7 +17322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 417397493}
   - component: {fileID: 417397494}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floater (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17441,11 +17356,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 1535428805}
 --- !u!1 &419576876
 GameObject:
@@ -22551,7 +22473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 505150827}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CrouchHeight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23613,13 +23535,13 @@ GameObject:
   - component: {fileID: 529562325}
   - component: {fileID: 529562324}
   - component: {fileID: 529562323}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: OceanCollider
   m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &529562322
 Transform:
   m_ObjectHideFlags: 0
@@ -23731,9 +23653,8 @@ GameObject:
   - component: {fileID: 536008656}
   - component: {fileID: 536008655}
   - component: {fileID: 536008654}
-  - component: {fileID: 536008653}
   - component: {fileID: 536008652}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: InvertoryCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -23787,18 +23708,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!114 &536008653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 536008650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dac9292e94438546aa9801a7d4cbfd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &536008654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24566,8 +24475,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1911354312}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -30461,11 +30370,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 752252053529275305}
 --- !u!1001 &677923146
 PrefabInstance:
@@ -30699,11 +30615,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 1821943592}
 --- !u!1 &689123744
 GameObject:
@@ -31166,7 +31089,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1238412124}
-  - {fileID: 109998595}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &694630732 stripped
@@ -32069,7 +31991,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 716593340}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DropPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32668,9 +32590,9 @@ RectTransform:
   - {fileID: 2140997880}
   m_Father: {fileID: 25227300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 780, y: -147.37772}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 700, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &724025423
@@ -33316,7 +33238,7 @@ MonoBehaviour:
   currentBuildType: 0
   connectedLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   ghostMaterialvalid: {fileID: 2100000, guid: 755cfe3ad19aabb42954e77069fc2ebd, type: 2}
   ghostMaterialInvalid: {fileID: 2100000, guid: d496e56dc621d814689be4d1f8e97a66, type: 2}
   connectorOverlapRadius: 1
@@ -40333,13 +40255,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887366760}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.006294491, y: -0, z: -0, w: 0.9999803}
+  m_LocalPosition: {x: 0, y: 0.076441765, z: 0.037597656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1280676855}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.721, y: 0, z: 0}
 --- !u!23 &887366762
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42961,7 +42883,6 @@ GameObject:
   - component: {fileID: 950680127}
   - component: {fileID: 950680133}
   - component: {fileID: 950680132}
-  - component: {fileID: 950680131}
   - component: {fileID: 950680130}
   - component: {fileID: 950680129}
   - component: {fileID: 950680128}
@@ -42981,8 +42902,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950680125}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2537.93, y: 11.819997, z: -1357.94}
+  m_LocalRotation: {x: 0.3733512, y: -0.027823864, z: 0.011205308, w: 0.927205}
+  m_LocalPosition: {x: 2488.7, y: 25.4, z: -1368.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43110,18 +43031,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 11400000, guid: 521a1af06e6e45c42adbcc388a7cb51e, type: 2}
---- !u!114 &950680131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950680125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dac9292e94438546aa9801a7d4cbfd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &950680132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44595,11 +44504,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 968405524}
 --- !u!65 &968405526
 BoxCollider:
@@ -46276,11 +46192,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 752252053529275305}
 --- !u!1001 &1010145722
 PrefabInstance:
@@ -54395,6 +54318,7 @@ GameObject:
   - component: {fileID: 1280676858}
   - component: {fileID: 1280676857}
   - component: {fileID: 1280676856}
+  - component: {fileID: 1280676859}
   m_Layer: 0
   m_Name: FishingTrawler
   m_TagString: Untagged
@@ -54479,12 +54403,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 1.02
+  randomAmplitude: 0.22
+  baseFrequency: 0.08
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 5.11
+  maxRoll: 2.64
+  rotationDamping: 5.6
   rb: {fileID: 1280676857}
+--- !u!114 &1280676859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280676854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc5ac75205263441a5d938e5cff5db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1280676857}
+  maxEnginePower: 800
+  maxSpeed: 8
+  reverseSpeed: 5
+  turnSpeed: 5
+  drag: 0.99
+  throttleChangeRate: 0.5
+  turnTorqueMultiplier: 0.12
+  turnDamping: 13.02
+  minDragVariation: 0.95
+  maxDragVariation: 1
+  dragVariationFrequency: 0.5
+  throttleSlider: {fileID: 0}
+  speedSlider: {fileID: 0}
 --- !u!1 &1281219167
 GameObject:
   m_ObjectHideFlags: 0
@@ -55876,13 +55833,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322747953}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4831543, y: -6.576442, z: 2.3023682}
+  m_LocalRotation: {x: -0.006294491, y: -0, z: -0, w: 0.9999803}
+  m_LocalPosition: {x: -0.4831543, y: -6.5, z: 2.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1280676855}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.721, y: 0, z: 0}
 --- !u!23 &1322747955
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56529,7 +56486,7 @@ RectTransform:
   m_Father: {fileID: 1484905373}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 7.1054274e-15}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -58905,11 +58862,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 752252053529275305}
 --- !u!64 &1375962719
 MeshCollider:
@@ -60867,7 +60831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1425277015}
   - component: {fileID: 1425277016}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60901,11 +60865,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 1535428805}
 --- !u!1 &1426003170
 GameObject:
@@ -62272,7 +62243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1460373173
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63627,11 +63598,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 1821943592}
 --- !u!1 &1527692195
 GameObject:
@@ -64000,13 +63978,13 @@ GameObject:
   - component: {fileID: 1535428801}
   - component: {fileID: 1535428800}
   - component: {fileID: 1535428799}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1535428799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65102,7 +65080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1571930286}
   - component: {fileID: 1571930287}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floater (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65136,11 +65114,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 1535428805}
 --- !u!1 &1573609433
 GameObject:
@@ -69788,7 +69773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1678302867
 Transform:
   m_ObjectHideFlags: 0
@@ -72662,7 +72647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1779948035}
   - component: {fileID: 1779948036}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floater (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72696,11 +72681,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 1535428805}
 --- !u!1 &1781475595
 GameObject:
@@ -73258,11 +73250,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetY: 6
-  amplitude: 0.5
-  frequency: 1
-  forceMultiplier: 10
-  damping: 2
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 5
   rb: {fileID: 1799233189}
 --- !u!54 &1799233189
 Rigidbody:
@@ -73668,10 +73667,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1807574114}
-  - component: {fileID: 1807574115}
   - component: {fileID: 1807574118}
-  - component: {fileID: 1807574117}
-  - component: {fileID: 1807574116}
+  - component: {fileID: 1807574115}
   m_Layer: 0
   m_Name: TrawlerCam
   m_TagString: Untagged
@@ -73688,7 +73685,7 @@ Transform:
   m_GameObject: {fileID: 1807574111}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3733512, y: -0.027823864, z: 0.011205308, w: 0.927205}
-  m_LocalPosition: {x: 2502.6365, y: 25.394989, z: -1368.0782}
+  m_LocalPosition: {x: 2488.7, y: 25.4, z: -1368.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73706,60 +73703,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b433fc2d4c26d0458256729de58c88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boat: {fileID: 1813479819}
+  boat: {fileID: 1280676855}
   offset: {x: 0, y: 5, z: -10}
   rotationSpeed: 3
   zoomSpeed: 5
   minRadius: 5
   maxRadius: 20
---- !u!114 &1807574116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807574111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b617507da6d07e749b7efdb34e1173e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackerSettings:
-    BindingMode: 1
-    PositionDamping: {x: 1, y: 1, z: 1}
-    AngularDampingMode: 0
-    RotationDamping: {x: 0, y: 0, z: 0}
-    QuaternionDamping: 0
-  FollowOffset: {x: 0, y: 0, z: -10}
---- !u!114 &1807574117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807574111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Composition:
-    ScreenPosition: {x: 0, y: 0}
-    DeadZone:
-      Enabled: 1
-      Size: {x: 0, y: 0}
-    HardLimits:
-      Enabled: 1
-      Size: {x: 0.8, y: 0.8}
-      Offset: {x: 0, y: 0}
-  CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
-  Lookahead:
-    Enabled: 0
-    Time: 0
-    Smoothing: 0
-    IgnoreY: 0
 --- !u!114 &1807574118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74049,6 +73998,11 @@ MonoBehaviour:
   turnSpeed: 3.16
   drag: 0.84
   throttleChangeRate: 0.62
+  turnTorqueMultiplier: 0.5
+  turnDamping: 2
+  minDragVariation: 0.95
+  maxDragVariation: 1
+  dragVariationFrequency: 0.5
   throttleSlider: {fileID: 724025424}
   speedSlider: {fileID: 183950442}
 --- !u!65 &1813479823
@@ -75004,7 +74958,7 @@ GameObject:
   - component: {fileID: 1825191220}
   - component: {fileID: 1825191216}
   - component: {fileID: 1825191215}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Virtual Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75142,7 +75096,7 @@ RectTransform:
   m_Father: {fileID: 985823126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -77988,8 +77942,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1277092807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.251, y: 0}
-  m_AnchorMax: {x: 0.251, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -79214,6 +79168,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 54b42db3eae9c9b408024b03fbfbec6f, type: 3}
       propertyPath: m_Name
       value: HUDVizor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 54b42db3eae9c9b408024b03fbfbec6f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 54b42db3eae9c9b408024b03fbfbec6f, type: 3}
       propertyPath: m_IsActive

@@ -9,9 +9,26 @@ public class BoatController : MonoBehaviour
     public float maxEnginePower = 2000f;
     public float maxSpeed = 20f;
     public float reverseSpeed = 5f;
+    [Tooltip("Base turning speed in degrees per second.")]
     public float turnSpeed = 5f;
+    [Tooltip("Base drag multiplier for horizontal velocity.")]
     public float drag = 0.99f;
+    [Tooltip("How quickly throttle changes (per second).")]
     public float throttleChangeRate = 0.5f; // How quickly throttle changes
+
+    [Header("Turning Settings")]
+    [Tooltip("Multiplier for turning torque. Lower values mean less responsive turning.")]
+    public float turnTorqueMultiplier = 0.5f;
+    [Tooltip("How quickly the boat’s turning corrects (damping). Higher values mean smoother, slower rotation.")]
+    public float turnDamping = 2f;
+
+    [Header("Random Drag Variation")]
+    [Tooltip("Minimum drag multiplier value (e.g. 0.95).")]
+    public float minDragVariation = 0.95f;
+    [Tooltip("Maximum drag multiplier value (e.g. 1.0).")]
+    public float maxDragVariation = 1.0f;
+    [Tooltip("Frequency of drag variation changes.")]
+    public float dragVariationFrequency = 0.5f;
 
     [Header("UI Elements")]
     public Slider throttleSlider;
@@ -24,31 +41,36 @@ public class BoatController : MonoBehaviour
     private void Start()
     {
         // Initialize sliders
-        throttleSlider.minValue = -1f;
-        throttleSlider.maxValue = 1f;
-
-        speedSlider.minValue = 0f;
-        speedSlider.maxValue = maxSpeed;
+        if (throttleSlider != null)
+        {
+            throttleSlider.minValue = -1f;
+            throttleSlider.maxValue = 1f;
+        }
+        if (speedSlider != null)
+        {
+            speedSlider.minValue = 0f;
+            speedSlider.maxValue = maxSpeed;
+        }
     }
 
     private void FixedUpdate()
     {
-        // Update throttle based on input
+        // Update throttle based on input.
         HandleThrottle();
 
-        // Get turn input
+        // Get turn input.
         turnInput = Input.GetAxis("Horizontal"); // A/D or Left/Right arrow keys
 
-        // Move the boat
+        // Move the boat horizontally.
         HandleMovement();
 
-        // Turn the boat
+        // Smoothly handle turning.
         HandleTurning();
 
-        // Apply drag
+        // Apply drag with a slight random variation.
         ApplyDrag();
 
-        // Update UI
+        // Update UI.
         UpdateSliders();
     }
 
@@ -62,7 +84,6 @@ public class BoatController : MonoBehaviour
         {
             throttle -= throttleChangeRate * Time.fixedDeltaTime;
         }
-
         // Clamp throttle to range [-1, 1]
         throttle = Mathf.Clamp(throttle, -1f, 1f);
     }
@@ -71,44 +92,69 @@ public class BoatController : MonoBehaviour
     {
         float enginePower = throttle * maxEnginePower;
 
+        // Get current horizontal velocity (only X and Z) and preserve Y.
+        Vector3 currentHorizontalVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
         if (throttle > 0)
         {
             // Forward motion
-            if (rb.linearVelocity.magnitude < maxSpeed)
+            if (currentHorizontalVel.magnitude < maxSpeed)
             {
-                rb.AddForce(transform.forward * enginePower * Time.fixedDeltaTime, ForceMode.Acceleration);
+                Vector3 horizontalForce = transform.forward * enginePower * Time.fixedDeltaTime;
+                horizontalForce.y = 0f;
+                rb.AddForce(horizontalForce, ForceMode.Acceleration);
             }
         }
         else if (throttle < 0)
         {
             // Reverse motion
-            if (rb.linearVelocity.magnitude < reverseSpeed)
+            if (currentHorizontalVel.magnitude < reverseSpeed)
             {
-                rb.AddForce(transform.forward * enginePower * Time.fixedDeltaTime, ForceMode.Acceleration);
+                Vector3 horizontalForce = transform.forward * enginePower * Time.fixedDeltaTime;
+                horizontalForce.y = 0f;
+                rb.AddForce(horizontalForce, ForceMode.Acceleration);
             }
         }
 
-        speed = rb.linearVelocity.magnitude;
+        speed = currentHorizontalVel.magnitude;
     }
 
     private void HandleTurning()
     {
-        if (rb.linearVelocity.magnitude > 0.1f) // Allow turning only if the boat is moving
+        // Only allow turning if the boat is moving horizontally.
+        Vector3 currentHorizontalVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        if (currentHorizontalVel.magnitude > 0.1f)
         {
-            float turn = turnInput * turnSpeed;
-            rb.AddTorque(Vector3.up * turn * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            // Scale turning with forward speed.
+            float speedFactor = Mathf.Clamp01(currentHorizontalVel.magnitude / maxSpeed);
+            // Desired angular velocity around Y axis.
+            float desiredAngularY = turnInput * turnSpeed * turnTorqueMultiplier * speedFactor;
+            float currentAngularY = rb.angularVelocity.y;
+            float torqueY = turnDamping * (desiredAngularY - currentAngularY);
+            rb.AddTorque(Vector3.up * torqueY * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
     }
 
     private void ApplyDrag()
     {
-        rb.linearVelocity *= drag;
-        rb.angularVelocity *= drag;
+        // Compute a random drag multiplier based on Perlin noise.
+        float noise = Mathf.PerlinNoise(Time.time * dragVariationFrequency, 0f);
+        float randomDrag = Mathf.Lerp(minDragVariation, maxDragVariation, noise);
+
+        // Apply drag only to the horizontal velocity.
+        Vector3 horizontalVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        horizontalVel *= randomDrag;
+        rb.linearVelocity = new Vector3(horizontalVel.x, rb.linearVelocity.y, horizontalVel.z);
+
+        // Apply drag to angular velocity as well.
+        rb.angularVelocity *= randomDrag;
     }
 
     private void UpdateSliders()
     {
-        throttleSlider.value = throttle;
-        speedSlider.value = speed;
+        if (throttleSlider != null)
+            throttleSlider.value = throttle;
+        if (speedSlider != null)
+            speedSlider.value = speed;
     }
 }
