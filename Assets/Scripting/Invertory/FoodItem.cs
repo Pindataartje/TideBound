@@ -3,7 +3,7 @@ using UnityEngine;
 [ScriptTag("Item")]
 public class FoodItem : MonoBehaviour
 {
-    public float healAmount = 20f;
+    public float foodAmount = 20f;
 
     void Start()
     {
@@ -21,8 +21,8 @@ public class FoodItem : MonoBehaviour
             Movement movement = FindObjectOfType<Movement>();
             if (movement != null)
             {
-                movement.currentHealth += healAmount;
-                Debug.Log("Food consumed! Health increased by " + healAmount);
+                movement.currentHunger += foodAmount;
+                Debug.Log("Food consumed! Health increased by " + foodAmount);
             }
             else
             {

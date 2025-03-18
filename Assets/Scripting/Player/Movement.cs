@@ -25,10 +25,10 @@ public class Movement : MonoBehaviour
 
     [Header("Crouch Settings")]
     public Transform crouchCameraTarget;
-    public float crouchSpeedMultiplier = 0.5f; // Slow movement while crouching
-    public float defaultPlayerScale = 1.5f;      // Default player scale
-    public float crouchPlayerScale = 0.8f;       // Scale when crouching
-    public float scaleSpeed = 8f;                // How fast scaling transitions
+    public float crouchSpeedMultiplier = 0.5f;
+    public float defaultPlayerScale = 1.5f;
+    public float crouchPlayerScale = 0.8f;
+    public float scaleSpeed = 8f;
 
     [Header("Player Stats")]
     public float maxHealth = 100f;
@@ -45,31 +45,38 @@ public class Movement : MonoBehaviour
     public float currentThirst = 100f;
     public Slider hungerSlider;
     public Slider thirstSlider;
-    public float hungerDecreaseRate = 1f;   // per second
-    public float thirstDecreaseRate = 1.5f;   // per second
-    public float healthDecreaseRate = 2f;     // health lost per second when starving or dehydrated
+    public float hungerDecreaseRate = 1f;
+    public float thirstDecreaseRate = 1.5f;
+    public float healthDecreaseRate = 2f;
 
     [Header("Fall Damage Settings")]
     public float fallDamageThreshold = 3f;
-    public float fallDamageMultiplier = 10f; // Damage per unit of fall distance beyond threshold
+    public float fallDamageMultiplier = 10f;
 
     [Header("Cursor & UI Settings")]
-    // Drag any GameObjects here that should unlock the cursor (and disable rotation) when active.
     public GameObject[] importantGameObjects;
 
     [Header("Slope Sliding Settings")]
-    // This multiplier scales the sliding force on steeper slopes.
     public float steepSlopeMultiplier = 2f;
 
     [Header("References")]
-    // Instead of a CinemachineVirtualCamera, we use a regular Transform reference for the camera.
     public Transform camReference;
     public CapsuleCollider capsuleCollider;
     public LayerMask groundLayer;
-
-    // Rotation scripts will be located by type.
     public HorizontalRotation[] horizontalRotationScripts;
     public VerticalRotation[] verticalRotationScripts;
+
+    [Header("Boat Control Settings")]
+    public GameObject boatUI;
+    public Transform boatExitPoint;
+
+    // --- Boat Control Variables ---
+    private bool isControllingBoat = false;
+    private BoatController currentBoatController = null;
+    private Renderer playerRenderer;
+
+    // --- Ship Parenting Variables ---
+    private Transform currentShipParent = null;
 
     private Rigidbody rb;
     private Transform camTransform;
@@ -82,11 +89,11 @@ public class Movement : MonoBehaviour
     private bool isMoving = false;
     private Vector3 slopeNormal;
 
-    // Variables for fall damage
+    // Fall damage variables
     private bool wasGrounded = true;
     private float fallStartHeight;
 
-    // Variable to store jump direction
+    // Jump direction storage
     private Vector3 jumpDirection = Vector3.zero;
 
     // Duration during which the cursor is forced to be locked/hidden.
@@ -97,16 +104,16 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        // Force lock and hide the cursor at start.
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Set up the camera reference from the provided transform.
         if (camReference != null)
         {
             camTransform = camReference;
             camStandLocalPos = camTransform.localPosition;
         }
+
+        playerRenderer = GetComponentInChildren<Renderer>();
 
         if (healthSlider != null)
         {
@@ -129,14 +136,12 @@ public class Movement : MonoBehaviour
             thirstSlider.value = currentThirst;
         }
 
-        // Find the rotation scripts by type using the updated method.
         horizontalRotationScripts = Object.FindObjectsByType<HorizontalRotation>(FindObjectsSortMode.None);
         verticalRotationScripts = Object.FindObjectsByType<VerticalRotation>(FindObjectsSortMode.None);
     }
 
     void Update()
     {
-        // For the first few seconds, force the cursor to be locked/hidden.
         if (Time.timeSinceLevelLoad < forceLockDuration)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -145,14 +150,13 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            // Handle cursor state and rotation script enabling/disabling based on UI.
             HandleCursorLockState();
         }
 
-        // --- Ground & Fall Damage Check ---
+        // Ground and fall damage checks.
         Vector3 rayOrigin = new Vector3(transform.position.x, capsuleCollider.bounds.min.y + 0.05f, transform.position.z);
         RaycastHit hit;
-        float rayLength = 0.2f; // A short distance from the base.
+        float rayLength = 0.2f;
         if (Physics.Raycast(rayOrigin, Vector3.down, out hit, rayLength, groundLayer))
         {
             isGrounded = true;
@@ -166,7 +170,6 @@ public class Movement : MonoBehaviour
             isSliding = false;
         }
 
-        // --- Fall Damage ---
         if (wasGrounded && !isGrounded)
         {
             fallStartHeight = transform.position.y;
@@ -178,21 +181,23 @@ public class Movement : MonoBehaviour
             {
                 float damage = (fallDistance - fallDamageThreshold) * fallDamageMultiplier;
                 currentHealth -= damage;
-                Debug.Log("Fall damage taken: " + damage);
                 if (currentHealth < 0) currentHealth = 0;
             }
         }
         wasGrounded = isGrounded;
 
-        // --- Input & Movement ---
-        HandleInput();
+        HandleBoatControl();
 
-        if (!isCrouching)
-            HandleStepBobbing();
-        else if (crouchCameraTarget != null)
-            camTransform.localPosition = crouchCameraTarget.localPosition;
+        if (!isControllingBoat)
+        {
+            HandleInput();
 
-        // Update hunger/thirst and then the UI.
+            if (!isCrouching)
+                HandleStepBobbing();
+            else if (crouchCameraTarget != null)
+                camTransform.localPosition = crouchCameraTarget.localPosition;
+        }
+
         UpdateHungerThirst();
         UpdateUI();
     }
@@ -207,12 +212,10 @@ public class Movement : MonoBehaviour
 
     void HandleInput()
     {
-        // Use GetAxisRaw for immediate input response.
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
         isMoving = (moveX != 0 || moveZ != 0);
 
-        // Calculate desired move direction based on input.
         Vector3 moveDir = (transform.right * moveX + transform.forward * moveZ).normalized;
 
         float currentSpeed = isCrouching ? crouchSpeed : walkSpeed;
@@ -255,7 +258,9 @@ public class Movement : MonoBehaviour
                 }
             }
             Vector3 airMove = moveDir * (currentSpeed * airControlMultiplier);
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x + airMove.x * Time.deltaTime, rb.linearVelocity.y, rb.linearVelocity.z + airMove.z * Time.deltaTime);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x + airMove.x * Time.deltaTime,
+                                            rb.linearVelocity.y,
+                                            rb.linearVelocity.z + airMove.z * Time.deltaTime);
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded && currentStamina >= jumpStaminaCost)
@@ -341,14 +346,12 @@ public class Movement : MonoBehaviour
 
     void UpdateHungerThirst()
     {
-        // Decrease hunger and thirst over time.
         currentHunger -= hungerDecreaseRate * Time.deltaTime;
         currentThirst -= thirstDecreaseRate * Time.deltaTime;
 
         currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
         currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
 
-        // If hunger or thirst are depleted, slowly reduce health.
         if (currentHunger <= 0f || currentThirst <= 0f)
         {
             currentHealth -= healthDecreaseRate * Time.deltaTime;
@@ -356,7 +359,93 @@ public class Movement : MonoBehaviour
         }
     }
 
-    // Checks the important gameobjects and updates the cursor and rotation scripts accordingly.
+    // --- Boat Control System ---
+    // Press E to board or exit a boat.
+    void HandleBoatControl()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!isControllingBoat)
+            {
+                Ray ray = new Ray(camReference.position, camReference.forward);
+                RaycastHit hit;
+                float rayDistance = 5f;
+                if (Physics.Raycast(ray, out hit, rayDistance))
+                {
+                    if (hit.collider.CompareTag("Boat"))
+                    {
+                        BoatController boatController = hit.collider.GetComponent<BoatController>();
+                        if (boatController != null)
+                        {
+                            boatController.enabled = true;
+
+                            if (boatUI != null)
+                            {
+                                boatUI.SetActive(true);
+                            }
+
+                            rb.isKinematic = true;
+                            if (playerRenderer != null)
+                                playerRenderer.enabled = false;
+                            if (camReference != null)
+                                camReference.gameObject.SetActive(false);
+
+                            currentBoatController = boatController;
+                            isControllingBoat = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (currentBoatController != null)
+                {
+                    currentBoatController.enabled = false;
+
+                    if (boatUI != null)
+                    {
+                        boatUI.SetActive(false);
+                    }
+
+                    if (boatExitPoint != null)
+                    {
+                        transform.position = boatExitPoint.position;
+                    }
+
+                    rb.isKinematic = false;
+                    if (playerRenderer != null)
+                        playerRenderer.enabled = true;
+                    if (camReference != null)
+                        camReference.gameObject.SetActive(true);
+                }
+                isControllingBoat = false;
+                currentBoatController = null;
+            }
+        }
+    }
+
+    // --- Ship Parenting System Using Trigger Colliders ---
+    // When the player enters a trigger collider on an object tagged "Boat", the player is parented to that ship.
+    // When exiting, the parent is removed and rotation is reset.
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Boat"))
+        {
+            transform.SetParent(other.transform);
+            currentShipParent = other.transform;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Boat") && currentShipParent == other.transform)
+        {
+            transform.SetParent(null);
+            transform.rotation = Quaternion.identity;
+            currentShipParent = null;
+        }
+    }
+
     void HandleCursorLockState()
     {
         bool anyUIActive = false;
@@ -386,7 +475,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    // Enables or disables all rotation scripts found in the scene.
     void EnableRotationScripts(bool enable)
     {
         if (horizontalRotationScripts != null)

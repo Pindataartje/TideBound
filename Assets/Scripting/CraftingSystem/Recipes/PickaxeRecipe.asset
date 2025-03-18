@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1b0c40bc92fc044b994526fcbfc361f, type: 3}
-  m_Name: SpearRecipe
+  m_Name: PickaxeRecipe
   m_EditorClassIdentifier: 
-  recipeName: Spear
+  recipeName: Pickaxe
   requirements:
   - resourceTag: Stick
     amount: 2
-  - resourceTag: Obsidian
+  - resourceTag: Metal
     amount: 3
-  outputPrefab: {fileID: 1778700861694824876, guid: e6852e0ab5797934baa3d032730406ce, type: 3}
+  outputPrefab: {fileID: 8990048144252894194, guid: f3405701ece5b374ea3c0389a6db2d05, type: 3}

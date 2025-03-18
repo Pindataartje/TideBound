@@ -21,6 +21,16 @@ TagManager:
   - Item
   - Furniture
   - Npc
+  - Boat
+  - Ship
+  - Obsidian
+  - Flint
+  - Coal
+  - Metal
+  - Hide
+  - Pickaxe
+  - Axe
+  - CannedFood
   layers:
   - Default
   - TransparentFX
@@ -33,7 +43,7 @@ TagManager:
   - Building
   - BuildingSphere
   - RunLayer
-  - 
+  - IgnoreBoat
   - 
   - 
   - 
