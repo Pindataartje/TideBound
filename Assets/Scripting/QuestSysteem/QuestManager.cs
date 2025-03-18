@@ -9,6 +9,7 @@ public class QuestManager : MonoBehaviour
     public int maxActiveQuests = 3; // Limit of active quests
     private QuestGiver currentQuestGiver;  // Reference to the current QuestGiver
     private Quest currentQuest;
+    public AudioClip questCompleted;
 
     // --- New UI References for Quest Completion ---
     [Header("Quest Completed UI")]
@@ -98,6 +99,7 @@ public class QuestManager : MonoBehaviour
     {
         if (questCompletedPanel != null && questCompletedText != null)
         {
+            AudioSource.PlayClipAtPoint(questCompleted, gameObject.transform.position, 2.5f);
             questCompletedText.text = "Quest Completed: " + quest.questName;
             questCompletedPanel.SetActive(true);
             // Start coroutine to hide the panel after a few seconds.

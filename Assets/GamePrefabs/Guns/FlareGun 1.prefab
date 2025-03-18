@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flarePrefab: {fileID: 9113503237607747680, guid: 6a9f277455078724f9d2da063b0d1623, type: 3}
   shootPoint: {fileID: 2142863438761760295}
-  shootForce: 10
+  shootForce: 20
+  flareLifeTime: 21
+  shootSound: {fileID: 8300000, guid: 17f6a9004bd09654091e3b94b4ae6aff, type: 3}
 --- !u!1001 &1888771365711671756
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class FlareGun : MonoBehaviour
     public Transform shootPoint;    // The point from where the flare will be shot
     public float shootForce = 10f;  // The force with which the flare will be shot
     public float flareLifeTime = 21f;  // Time before the flare is destroyed (21 seconds)
+    public AudioClip shootSound;
 
     void Update()
     {
@@ -18,6 +19,7 @@ public class FlareGun : MonoBehaviour
 
     void ShootFlare()
     {
+        AudioSource.PlayClipAtPoint(shootSound, shootPoint.position, 0.25f);
         // Instantiate the flare at the shoot point
         GameObject flare = Instantiate(flarePrefab, shootPoint.position, shootPoint.rotation);
 
@@ -31,6 +33,7 @@ public class FlareGun : MonoBehaviour
         {
             flareRb.AddForce(shootDirection * shootForce, ForceMode.VelocityChange);
         }
+       
 
         // Destroy the flare after a set time (21 seconds)
         
