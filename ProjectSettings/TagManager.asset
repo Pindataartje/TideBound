@@ -33,6 +33,7 @@ TagManager:
   - CannedFood
   - Wood
   - Bear
+  - BearBill
   layers:
   - Default
   - TransparentFX
