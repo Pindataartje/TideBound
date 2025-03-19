@@ -18,6 +18,10 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private SelectedBuildType currentBuildType;
     [SerializeField] private LayerMask connectedLayer;
 
+
+    [Header("Sounds")]
+    public AudioClip buildSound;
+
     [Header("Particle Settings")]
     [SerializeField] private GameObject buildParticlePrefab;
 
@@ -439,6 +443,7 @@ if (Input.GetKeyDown(KeyCode.Alpha3))
             // Destroy the ghost object
             Destroy(ghostbuildObject);
             ghostbuildObject = null;
+            AudioSource.PlayClipAtPoint(buildSound, transform.position, 100000000f);
         }
     }
 
