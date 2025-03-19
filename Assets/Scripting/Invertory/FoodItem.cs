@@ -3,33 +3,49 @@ using UnityEngine;
 [ScriptTag("Item")]
 public class FoodItem : MonoBehaviour
 {
-    public float foodAmount = 20f;
+    // Effects of consuming this item.
+    // Positive values add to the stat, negative values remove from it.
+    public float hungerChange = 20f;
+    public float thirstChange = 0f;
+    public float healthChange = 0f;
+    public float staminaChange = 0f;
 
     void Start()
     {
-        // Ensure the script is inactive by default.
-        // This can also be set manually in the Inspector.
+        // Optionally disable the script by default (if you want to activate it manually).
         enabled = false;
     }
 
     void Update()
     {
-        // Check for left mouse button input.
+        // Check for left mouse button input to consume the item.
         if (Input.GetMouseButtonDown(0))
         {
-            // Look for the Movement script (assumed to be on the player)
+            // Find the player's Movement script in the scene.
             Movement movement = FindObjectOfType<Movement>();
             if (movement != null)
             {
-                movement.currentHunger += foodAmount;
-                Debug.Log("Food consumed! Health increased by " + foodAmount);
+                // Apply the changes.
+                movement.currentHunger += hungerChange;
+                movement.currentThirst += thirstChange;
+                movement.currentHealth += healthChange;
+                movement.currentStamina += staminaChange;
+
+                // Optionally, if you want clamping logic here you can add it, but
+                // your Movement script might already clamp these values.
+
+                Debug.Log("Item consumed! " +
+                    "Hunger change: " + hungerChange + ", " +
+                    "Thirst change: " + thirstChange + ", " +
+                    "Health change: " + healthChange + ", " +
+                    "Stamina change: " + staminaChange);
             }
             else
             {
                 Debug.LogWarning("Movement script not found!");
             }
 
-            // Destroy this food item after consumption.
+            // Destroy the item after consumption.
             Destroy(gameObject);
         }
     }
