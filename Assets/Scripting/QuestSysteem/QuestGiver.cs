@@ -9,14 +9,16 @@ public class QuestGiver : MonoBehaviour
     public GameObject questUIPanel;   // The UI panel that contains quest name, description, and accept button
     public TMP_Text questNameText;    // TMP text field for displaying the quest name
     public TMP_Text questDescriptionText;  // TMP text field for displaying the quest description
+    public AudioClip acceptQuest;
 
     private Quest currentQuest;      // The current quest the player will accept
+    private int nextQuestIndex = 0;  // Tracks the next quest to be given
 
     private void Start()
     {
         if (questManager == null)
         {
-            questManager = FindAnyObjectByType<QuestManager>(); // More efficient in newer Unity versions
+            questManager = FindAnyObjectByType<QuestManager>();
 
             if (questManager == null)
             {
@@ -27,12 +29,22 @@ public class QuestGiver : MonoBehaviour
         // Ensure the quest UI is hidden at the start
         questUIPanel.SetActive(false);
     }
-     
 
-
+    // Player interacts with NPC to receive a quest
+    public void Interact()
+    {
+        if (nextQuestIndex < availableQuests.Length)
+        {
+            GiveQuest(nextQuestIndex);
+        }
+        else
+        {
+            Debug.Log("No more quests available from this QuestGiver.");
+        }
+    }
 
     // Give a quest to the player and update the UI
-    public void GiveQuest(int questIndex)
+    private void GiveQuest(int questIndex)
     {
         if (questIndex >= 0 && questIndex < availableQuests.Length)
         {
@@ -57,16 +69,16 @@ public class QuestGiver : MonoBehaviour
     // Function to open the UI and stop time
     private void OpenQuestUI()
     {
-        questUIPanel.SetActive(true);  // Show the quest UI
-        Time.timeScale = 0;  // Pause the game by setting time scale to 0
+        questUIPanel.SetActive(true);
+        Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Function to close the UI and resume time
     private void CloseQuestUI()
     {
-        questUIPanel.SetActive(false);  // Hide the quest UI
-        Time.timeScale = 1;  // Resume the game by setting time scale to 1
+        questUIPanel.SetActive(false);
+        Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -84,6 +96,25 @@ public class QuestGiver : MonoBehaviour
             // Hide the quest UI and resume time after accepting the quest
             CloseQuestUI();
             Debug.Log("Quest accepted: " + currentQuest.questName);
+            AudioSource.PlayClipAtPoint(acceptQuest, gameObject.transform.position);
+        }
+    }
+
+    // Called when a quest is completed, sets up the next quest but doesn't give it immediately
+    public void OnQuestCompleted(Quest completedQuest)
+    {
+        // Find the index of the completed quest
+        int questIndex = System.Array.IndexOf(availableQuests, completedQuest);
+
+        // Check if there's another quest available after this one
+        if (questIndex >= 0 && questIndex < availableQuests.Length - 1)
+        {
+            nextQuestIndex = questIndex + 1;
+            Debug.Log("Next quest is ready. Interact with NPC to receive it.");
+        }
+        else
+        {
+            Debug.Log("No more quests available from this QuestGiver.");
         }
     }
 }

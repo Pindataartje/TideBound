@@ -1702,6 +1702,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d186616fae24a1942a9af8e913e7bca1, type: 3}
+--- !u!1 &1023387660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6735035447012116783, guid: 3b5fd7dbeabd722498dc0b8759d56169, type: 3}
+  m_PrefabInstance: {fileID: 4225418426330942277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1023387668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023387660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429447d4d7e6b0f4f9e25eb08f146b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagToAssign: Bear
+  customTag: 
 --- !u!1 &1035524606
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,143 +2300,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8bdcd6462d848e4abff401d81d4c831, type: 3}
---- !u!1 &1242354748
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1242354753}
-  - component: {fileID: 1242354752}
-  - component: {fileID: 1242354751}
-  - component: {fileID: 1242354750}
-  - component: {fileID: 1242354754}
-  m_Layer: 0
-  m_Name: Berend
-  m_TagString: Npc
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!136 &1242354750
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242354748}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1242354751
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242354748}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1242354752
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242354748}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1242354753
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242354748}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.8, y: 1.76, z: -2.76}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1242354754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242354748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5a82b0d93e3b74b92e501a6adb6139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questManager: {fileID: 463963826}
-  availableQuests:
-  - questName: BIll the bear
-    questDescription: Kill bill the bear!!
-    questType: 0
-    targetAmount: 1
-    currentAmount: 0
-    targetItemTag: 
-    targetEnemyTag: Enemy
-    isAccepted: 0
-    isCompleted: 0
-  questUIPanel: {fileID: 648118360}
-  questNameText: {fileID: 1503452283}
-  questDescriptionText: {fileID: 1103723489}
 --- !u!1 &1285196541
 GameObject:
   m_ObjectHideFlags: 0
@@ -4421,8 +4303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429447d4d7e6b0f4f9e25eb08f146b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagToAssign: wood
-  customTag: Wood
+  tagToAssign: Stick
+  customTag: 
 --- !u!1 &1966005991 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9024885672831922790, guid: b90fe1603b677564da431dcfd8f47460, type: 3}
@@ -5558,7 +5440,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6735035447012116783, guid: 3b5fd7dbeabd722498dc0b8759d56169, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1023387668}
   m_SourcePrefab: {fileID: 100100000, guid: 3b5fd7dbeabd722498dc0b8759d56169, type: 3}
 --- !u!1001 &4367513882049287432
 PrefabInstance:
@@ -5800,6 +5685,120 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44042e8dcaf1b2542869af88fb14045a, type: 3}
+--- !u!1001 &6557402173280050780
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.3283
+      objectReference: {fileID: 0}
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8146033
+      objectReference: {fileID: 0}
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.870191
+      objectReference: {fileID: 0}
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 247031639875135129, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 587281437841587235, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: m_Name
+      value: Berend
+      objectReference: {fileID: 0}
+    - target: {fileID: 709723225058267513, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ef6a28296a9c484f8d0d96c159abcac, type: 2}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: acceptQuest
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a5c99ba4f95c68498a97ed6c7d7a1c9, type: 3}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: questManager
+      value: 
+      objectReference: {fileID: 463963826}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: questUIPanel
+      value: 
+      objectReference: {fileID: 648118360}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: questNameText
+      value: 
+      objectReference: {fileID: 1503452283}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: questDescriptionText
+      value: 
+      objectReference: {fileID: 1103723489}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: availableQuests.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: availableQuests.Array.data[1].questName
+      value: Man of war
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: availableQuests.Array.data[0].isAccepted
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: availableQuests.Array.data[1].targetAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: availableQuests.Array.data[0].targetEnemyTag
+      value: Bear
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: availableQuests.Array.data[1].targetEnemyTag
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: availableQuests.Array.data[0].questDescription
+      value: Help Berend Kill the bear that has been feeding on his crops!
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999796584890008669, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
+      propertyPath: availableQuests.Array.data[1].questDescription
+      value: After seeing your fightig skill berend whats you to kill the family
+        of Bill for what he has done!!
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 68d67cb97d264014f950a7ca5f058ff0, type: 3}
 --- !u!1001 &6994987003724756208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6110,7 +6109,6 @@ SceneRoots:
   - {fileID: 648118364}
   - {fileID: 2123783363}
   - {fileID: 1849566464}
-  - {fileID: 1242354753}
   - {fileID: 1449724303}
   - {fileID: 1241553610}
   - {fileID: 1732961827}
@@ -6145,3 +6143,4 @@ SceneRoots:
   - {fileID: 4367513882049287432}
   - {fileID: 2029086116}
   - {fileID: 7884976942269376268}
+  - {fileID: 6557402173280050780}

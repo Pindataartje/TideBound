@@ -31,6 +31,8 @@ TagManager:
   - Pickaxe
   - Axe
   - CannedFood
+  - Wood
+  - Bear
   layers:
   - Default
   - TransparentFX

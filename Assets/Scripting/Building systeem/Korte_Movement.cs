@@ -107,13 +107,14 @@ public class Korte_Movement : MonoBehaviour
 
                     if (questGiver != null)
                     {
-                        // For example, you can give the first quest in the list (questIndex 0)
-                        questGiver.GiveQuest(0); // You can modify this to select a specific quest or random one.
+                        // Call Interact instead of forcing a specific quest
+                        questGiver.Interact();
                     }
                 }
             }
         }
     }
+
 
 
 }

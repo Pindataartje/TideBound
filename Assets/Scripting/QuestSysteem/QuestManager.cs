@@ -102,8 +102,13 @@ public class QuestManager : MonoBehaviour
             AudioSource.PlayClipAtPoint(questCompleted, gameObject.transform.position, 2.5f);
             questCompletedText.text = "Quest Completed: " + quest.questName;
             questCompletedPanel.SetActive(true);
-            // Start coroutine to hide the panel after a few seconds.
             StartCoroutine(HideQuestCompletedPanel());
+        }
+
+        // Notify the QuestGiver to provide the next quest (if available)
+        if (currentQuestGiver != null)
+        {
+            currentQuestGiver.OnQuestCompleted(quest);
         }
     }
 
