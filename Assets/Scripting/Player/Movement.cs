@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
     [Header("Movement Settings")]
     public float walkSpeed = 5f;
     public float crouchSpeed = 2.5f;
-    public float jumpForce = 5f;
+    public float jumpForce = 8f;  // Increased jump force for a snappier jump.
     public float airControlMultiplier = 0.3f;
     public float slopeAcceleration = 3f;
     public float maxSlopeAngle = 45f;
@@ -69,6 +69,9 @@ public class Movement : MonoBehaviour
     [Header("Boat Control Settings")]
     public GameObject boatUI;
     public Transform boatExitPoint;
+
+    [Header("Jump Settings")]
+    public float fallMultiplier = 2.5f;  // Adjust for faster falling.
 
     // --- Boat Control Variables ---
     private bool isControllingBoat = false;
@@ -153,6 +156,12 @@ public class Movement : MonoBehaviour
             HandleCursorLockState();
         }
 
+        // Call step climbing if grounded.
+        if (isGrounded)
+        {
+            HandleStepClimbingAdvanced();
+        }
+
         // Ground and fall damage checks.
         Vector3 rayOrigin = new Vector3(transform.position.x, capsuleCollider.bounds.min.y + 0.05f, transform.position.z);
         RaycastHit hit;
@@ -192,10 +201,15 @@ public class Movement : MonoBehaviour
         {
             HandleInput();
 
-            if (!isCrouching)
-                HandleStepBobbing();
-            else if (crouchCameraTarget != null)
+            if (isCrouching && crouchCameraTarget != null)
                 camTransform.localPosition = crouchCameraTarget.localPosition;
+            else
+            {
+                if (!isMoving)
+                    camTransform.localPosition = camStandLocalPos;
+                else
+                    HandleStepBobbing();
+            }
         }
 
         UpdateHungerThirst();
@@ -207,6 +221,49 @@ public class Movement : MonoBehaviour
         if (isSliding)
         {
             HandleSlopeSliding();
+        }
+
+        // Apply extra gravity when falling.
+        if (rb.linearVelocity.y < 0)
+        {
+            rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
+    // Advanced step climbing: detects small steps and nudges the player upward.
+    void HandleStepClimbingAdvanced()
+    {
+        // Only attempt if grounded.
+        if (!isGrounded) return;
+
+        // Parameters – adjust these to suit your game:
+        float maxStepHeight = 0.5f;      // Maximum height the player can step up.
+        float stepCheckDistance = 0.3f;  // How far ahead to check for an obstacle.
+        float minStepHeight = 0.1f;      // Ignore very small obstacles.
+
+        // Get capsule collider bounds for a rough step check.
+        Vector3 colliderCenter = capsuleCollider.bounds.center;
+        float capsuleRadius = capsuleCollider.radius;
+
+        // Use the collider's bounds: bottom and top points.
+        Vector3 bottom = new Vector3(colliderCenter.x, capsuleCollider.bounds.min.y, colliderCenter.z);
+        Vector3 top = new Vector3(colliderCenter.x, capsuleCollider.bounds.max.y, colliderCenter.z);
+
+        RaycastHit hit;
+        if (Physics.CapsuleCast(bottom, top, capsuleRadius, transform.forward, out hit, stepCheckDistance))
+        {
+            float stepHeight = hit.point.y - capsuleCollider.bounds.min.y;
+            if (stepHeight > minStepHeight && stepHeight <= maxStepHeight)
+            {
+                // Check for clearance above the step.
+                Vector3 elevatedBottom = bottom + Vector3.up * maxStepHeight;
+                Vector3 elevatedTop = top + Vector3.up * maxStepHeight;
+                if (!Physics.CapsuleCast(elevatedBottom, elevatedTop, capsuleRadius, transform.forward, out hit, stepCheckDistance))
+                {
+                    // Move the player upward by the detected step height.
+                    transform.position += Vector3.up * stepHeight;
+                }
+            }
         }
     }
 
@@ -263,12 +320,13 @@ public class Movement : MonoBehaviour
                                             rb.linearVelocity.z + airMove.z * Time.deltaTime);
         }
 
+        // Improved jumping using impulse force.
         if (Input.GetButtonDown("Jump") && isGrounded && currentStamina >= jumpStaminaCost)
         {
             jumpDirection = moveDir;
             if (jumpDirection == Vector3.zero)
                 jumpDirection = transform.forward;
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             currentStamina -= jumpStaminaCost;
         }
 
@@ -319,6 +377,8 @@ public class Movement : MonoBehaviour
         {
             isCrouching = false;
             StartCoroutine(ScalePlayer(defaultPlayerScale));
+            if (camTransform != null)
+                camTransform.localPosition = camStandLocalPos;
         }
     }
 

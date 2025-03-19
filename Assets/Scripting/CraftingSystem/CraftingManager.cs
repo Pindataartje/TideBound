@@ -4,6 +4,9 @@ public class CraftingManager : MonoBehaviour
 {
     public Transform bag; // Reference to your inventory bag (which holds the ItemSlots).
 
+    // Audio source to play when an item is crafted.
+    public AudioSource craftAudioSource;
+
     // Call this method from your Craft button (via the OnClick event) and pass in a CraftingRecipe asset.
     public void CraftItem(CraftingRecipe recipe)
     {
@@ -48,8 +51,13 @@ public class CraftingManager : MonoBehaviour
         {
             Debug.Log($"Crafted {recipe.recipeName} but inventory is full for {outputTag}. Dropping item.");
             // If no valid slot is available, you can drop the item in the world.
-            // (Set your own drop position if needed.)
             craftedItem.transform.position = Vector3.zero;
+        }
+
+        // Play the craft sound, if an AudioSource is assigned.
+        if (craftAudioSource != null)
+        {
+            craftAudioSource.Play();
         }
     }
 

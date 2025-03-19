@@ -16,4 +16,4 @@ MonoBehaviour:
   requirements:
   - resourceTag: Stick
     amount: 3
-  outputPrefab: {fileID: 5601473747570188025, guid: 4127fa38cc343a849b5e2ef11e6dc659, type: 3}
+  outputPrefab: {fileID: 1760704251043677448, guid: 831f8ac961219af4cbd3da42d665f608, type: 3}
