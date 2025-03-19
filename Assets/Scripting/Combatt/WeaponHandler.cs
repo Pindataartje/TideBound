@@ -11,6 +11,10 @@ public class WeaponHandler : MonoBehaviour
     private Collider weaponCollider;
     private HashSet<Collider> hitEnemies;  // Set to track enemies that have been hit
 
+
+    [Header ("sounds")]
+    public AudioClip woodChop;
+
     private void Start()
     {
         // Get the collider attached to the weapon
