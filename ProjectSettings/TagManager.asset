@@ -34,6 +34,9 @@ TagManager:
   - Wood
   - Bear
   - BearBill
+  - CookedMeat
+  - Meat
+  - SpoiledMeat
   layers:
   - Default
   - TransparentFX
@@ -47,7 +50,7 @@ TagManager:
   - BuildingSphere
   - RunLayer
   - IgnoreBoat
-  - 
+  - TreeSpawning
   - 
   - 
   - 

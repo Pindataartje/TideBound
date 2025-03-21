@@ -5,63 +5,70 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SpawnGroup
 {
+    [Header("Group Settings")]
     public string groupName;
     public GameObject prefab;           // The prefab to spawn.
     public int maxCount = 10;           // Maximum spawned objects allowed.
-    public float spawnInterval = 300f;  // How many seconds to wait between spawns (default 5 minutes).
-    public int targetTextureIndex = 0;  // Texture index in the terrain's splat map that must be present.
-    public float textureThreshold = 0.5f; // Minimum alpha value for that texture.
+    public float spawnInterval = 300f;  // Time in seconds between spawns.
+
+    [Header("Distance & Placement Settings")]
     public float minDistanceFromPlayer = 10f; // Minimum distance from the player.
     public float minSeparation = 5f;    // Minimum separation from other spawned objects.
+    [Tooltip("0 = uniformly random within zone, 1 = always at center of zone")]
+    public float centerBias = 0.5f;     // Bias toward the center of the spawn zone.
+
+    [Header("Spawn Zone Overrides")]
+    [Tooltip("Optional: Assign specific spawn zone GameObjects for this group. " +
+             "If empty, the global spawn zones will be used.")]
+    public GameObject[] allowedSpawnZones;
 
     [HideInInspector]
-    public float spawnTimer = 0f;       // Timer tracking time passed.
+    public float spawnTimer = 0f;       // Internal timer for spawn intervals.
 }
 
 public class TerrainSpawner : MonoBehaviour
 {
-    [Header("Spawn Area Settings")]
-    // Define the rectangular area in world space where objects can be spawned.
-    public Vector3 spawnAreaMin;  // e.g., bottom-left corner.
-    public Vector3 spawnAreaMax;  // e.g., top-right corner.
+    [Header("Global Spawn Zones")]
+    [Tooltip("Assign the spawn zone GameObjects that define valid spawn areas. " +
+             "These are used if a spawn group doesn't have its own allowed zones.")]
+    public GameObject[] spawnZones;  // Global spawn zones (GameObjects with one or more colliders).
 
     [Header("Terrain Settings")]
-    public Terrain terrain;       // Reference to your Terrain.
+    [Tooltip("Assign the terrains that cover your world. These are used for height sampling.")]
+    public Terrain[] terrains;     // Array of terrains (for sampling height).
 
     [Header("Spawning Groups")]
-    public SpawnGroup[] spawnGroups; // Array of groups, each with its own settings.
+    public SpawnGroup[] spawnGroups; // Different groups of spawns with their own settings.
 
     [Header("Other Settings")]
-    public LayerMask obstacleMask;   // Layers to consider as obstacles (buildings, etc.).
-    public Transform player;         // Reference to the player's transform.
-    public float checkInterval = 30f;  // How often (in seconds) to check for spawning.
+    [Tooltip("Layers that count as obstacles (e.g., buildings).")]
+    public LayerMask obstacleMask;   // Layers to consider obstacles.
+    public Transform player;         // Player reference.
+    [Tooltip("How often (in seconds) to check for spawn opportunities.")]
+    public float checkInterval = 30f;  // Frequency of spawn checks.
 
     void Start()
     {
-        // Start the spawn-checking coroutine.
+        Debug.Log("Starting spawn routine.");
         StartCoroutine(SpawnRoutine());
     }
 
+    // In play mode, this coroutine checks each spawn group periodically.
     IEnumerator SpawnRoutine()
     {
         while (true)
         {
             foreach (SpawnGroup group in spawnGroups)
             {
-                // Count how many objects from this group have already been spawned.
-                // Here we assume all spawned objects are children of this spawner.
-                int currentCount = 0;
-                foreach (Transform child in transform)
-                {
-                    // Optionally, you can filter by name/tag if needed.
-                    currentCount++;
-                }
-
+                // Count spawned objects (here, all children of this spawner).
+                int currentCount = transform.childCount;
                 if (currentCount < group.maxCount)
                 {
                     group.spawnTimer += checkInterval;
+                    Debug.Log("Group: " + group.groupName + " timer: " + group.spawnTimer);
                     if (group.spawnTimer >= group.spawnInterval)
                     {
+                        Debug.Log("Attempting spawn for group: " + group.groupName);
                         TrySpawn(group);
                         group.spawnTimer = 0f;
                     }
@@ -71,64 +78,167 @@ public class TerrainSpawner : MonoBehaviour
         }
     }
 
-    void TrySpawn(SpawnGroup group)
+    // Editor testing: attempts to spawn the maximum number of objects for each spawn group.
+    [ContextMenu("Spawn Test")]
+    public void SpawnTest()
     {
-        // We'll try up to a fixed number of attempts.
+        Debug.Log("Spawn Test triggered.");
+        foreach (SpawnGroup group in spawnGroups)
+        {
+            int spawnedCount = 0;
+            for (int i = 0; i < group.maxCount; i++)
+            {
+                bool success = TrySpawn(group);
+                if (success)
+                    spawnedCount++;
+                else
+                {
+                    Debug.Log("Failed to spawn for group: " + group.groupName + " on iteration " + i);
+                    break;
+                }
+            }
+            Debug.Log("Spawn Test finished for group: " + group.groupName + ". Spawned " + spawnedCount + " objects.");
+        }
+    }
+
+    // Attempts to spawn one object for the given spawn group.
+    // Returns true if an object was spawned.
+    bool TrySpawn(SpawnGroup group)
+    {
         int attempts = 10;
         bool spawned = false;
         while (attempts > 0 && !spawned)
         {
             attempts--;
-            // Pick a random position within the spawn area.
-            float x = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
-            float z = Random.Range(spawnAreaMin.z, spawnAreaMax.z);
-            Vector3 pos = new Vector3(x, 0f, z);
-            // Sample the terrain's height.
-            float height = terrain.SampleHeight(pos) + terrain.transform.position.y;
-            pos.y = height;
 
-            // Check terrain texture at pos.
-            if (!IsValidTexture(pos, group.targetTextureIndex, group.textureThreshold))
+            // --- Determine which spawn zones to use ---
+            GameObject[] zonesToUse = (group.allowedSpawnZones != null && group.allowedSpawnZones.Length > 0)
+                                      ? group.allowedSpawnZones
+                                      : spawnZones;
+
+            if (zonesToUse == null || zonesToUse.Length == 0)
+            {
+                Debug.LogWarning("No spawn zones available for group: " + group.groupName);
+                return false;
+            }
+
+            // Pick a random spawn zone from the chosen set.
+            GameObject zoneObj = zonesToUse[Random.Range(0, zonesToUse.Length)];
+            // Get all colliders on that object (including children).
+            Collider[] zoneColliders = zoneObj.GetComponentsInChildren<Collider>();
+            if (zoneColliders.Length == 0)
+            {
+                Debug.LogWarning("Spawn zone " + zoneObj.name + " has no colliders.");
                 continue;
+            }
+            // Pick a random collider from the group.
+            Collider zone = zoneColliders[Random.Range(0, zoneColliders.Length)];
 
-            // Ensure not too close to the player.
+            // --- Get a random point inside the chosen collider (with center bias) ---
+            Vector3 pos = GetRandomPointInCollider(zone, group.centerBias);
+
+            // --- Adjust the position's Y value by sampling the appropriate terrain ---
+            pos.y = GetTerrainHeight(pos);
+
+            // --- Check conditions ---
+            // (1) Distance from the player.
             if (player != null && Vector3.Distance(pos, player.position) < group.minDistanceFromPlayer)
+            {
+                Debug.Log("Position too close to player: " + pos);
                 continue;
-
-            // Ensure separation from other spawned objects.
+            }
+            // (2) Separation from other spawned objects.
             if (!IsFarFromSpawned(pos, group.minSeparation))
+            {
+                Debug.Log("Position too close to another spawned object: " + pos);
                 continue;
-
-            // Check for obstacles using an overlap sphere.
-            Collider[] colliders = Physics.OverlapSphere(pos, group.minSeparation, obstacleMask);
-            if (colliders.Length > 0)
+            }
+            // (3) Check for obstacles. Ignore colliders that belong to assigned terrains.
+            Collider[] overlapping = Physics.OverlapSphere(pos, group.minSeparation, obstacleMask);
+            bool foundObstacle = false;
+            foreach (Collider col in overlapping)
+            {
+                bool isTerrain = false;
+                foreach (Terrain t in terrains)
+                {
+                    if (col.gameObject == t.gameObject)
+                    {
+                        isTerrain = true;
+                        break;
+                    }
+                }
+                if (!isTerrain)
+                {
+                    foundObstacle = true;
+                    break;
+                }
+            }
+            if (foundObstacle)
+            {
+                Debug.Log("Obstacle detected at position: " + pos);
                 continue;
+            }
 
-            // If all checks pass, spawn the prefab.
-            GameObject spawnedObj = Instantiate(group.prefab, pos, Quaternion.identity, transform);
-            // Optionally align the spawned object so its pivot is exactly at the terrain's surface.
-            // For example, if the pivot is at the base, no further adjustment may be needed.
+            // --- Spawn the prefab ---
+            if (group.prefab == null)
+            {
+                Debug.Log("No prefab assigned for group: " + group.groupName);
+                return false;
+            }
+            Instantiate(group.prefab, pos, Quaternion.identity, transform);
+            Debug.Log("Spawned " + group.prefab.name + " at position: " + pos + " for group: " + group.groupName);
             spawned = true;
         }
+
+        if (!spawned)
+        {
+            Debug.Log("Failed to spawn any object for group: " + group.groupName + " after 10 attempts.");
+        }
+        return spawned;
     }
 
-    bool IsValidTexture(Vector3 pos, int targetIndex, float threshold)
+    // Returns a random point within the collider's bounds,
+    // and biases it toward the collider's center based on centerBias (0 = no bias, 1 = always center).
+    Vector3 GetRandomPointInCollider(Collider col, float centerBias)
     {
-        TerrainData tData = terrain.terrainData;
-        Vector3 terrainPos = terrain.transform.position;
-        // Convert world position to normalized terrain coordinates.
-        float normX = (pos.x - terrainPos.x) / tData.size.x;
-        float normZ = (pos.z - terrainPos.z) / tData.size.z;
-
-        // Calculate the corresponding index in the alphamap.
-        int mapX = Mathf.RoundToInt(normX * tData.alphamapWidth);
-        int mapZ = Mathf.RoundToInt(normZ * tData.alphamapHeight);
-
-        float[,,] splatmapData = tData.GetAlphamaps(mapX, mapZ, 1, 1);
-        float value = splatmapData[0, 0, targetIndex];
-        return (value >= threshold);
+        for (int i = 0; i < 10; i++)
+        {
+            Vector3 randomPoint = new Vector3(
+                Random.Range(col.bounds.min.x, col.bounds.max.x),
+                Random.Range(col.bounds.min.y, col.bounds.max.y),
+                Random.Range(col.bounds.min.z, col.bounds.max.z)
+            );
+            // Check if the point is inside the collider.
+            Vector3 closest = col.ClosestPoint(randomPoint);
+            if ((randomPoint - closest).sqrMagnitude < 0.001f)
+            {
+                // Bias the point toward the collider's center.
+                Vector3 center = col.bounds.center;
+                randomPoint = Vector3.Lerp(randomPoint, center, centerBias);
+                return randomPoint;
+            }
+        }
+        return col.bounds.center;
     }
 
+    // Returns the terrain height at the given (x,z) position.
+    // If multiple terrains exist, it finds the one containing the point.
+    float GetTerrainHeight(Vector3 pos)
+    {
+        foreach (Terrain t in terrains)
+        {
+            Vector3 terrainPos = t.transform.position;
+            Vector3 terrainSize = t.terrainData.size;
+            if (pos.x >= terrainPos.x && pos.x <= terrainPos.x + terrainSize.x &&
+                pos.z >= terrainPos.z && pos.z <= terrainPos.z + terrainSize.z)
+            {
+                return t.SampleHeight(pos) + t.transform.position.y;
+            }
+        }
+        return pos.y;
+    }
+
+    // Checks that the spawn point is far enough from other spawned objects.
     bool IsFarFromSpawned(Vector3 pos, float minSeparation)
     {
         foreach (Transform child in transform)
