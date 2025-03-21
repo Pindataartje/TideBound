@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DiffusionProfileReferences:
-  - {fileID: 11400000, guid: e03156354357b1448b3df7ed435004d8, type: 2}
+  - {fileID: 11400000, guid: 50457515cfeed2b45bab4efa667cd625, type: 2}
   m_MaterialReferences: []
 --- !u!21 &2100000
 Material:
@@ -163,7 +163,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Diffusion_Profile: 2.5570934
+    - Diffusion_Profile: 3.112146
     - EFFECT_BILLBOARD: 0
     - EFFECT_EXTRA_TEX: 1
     - _AORemapMax: 1
@@ -171,7 +171,7 @@ Material:
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
-    - _AlphaClipThreshold: 0.1
+    - _AlphaClipThreshold: 0.969
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 1
     - _AlphaCutoffPostpass: 0.5
@@ -211,7 +211,7 @@ Material:
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _ExcludeFromTUAndAA: 0
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
@@ -248,7 +248,7 @@ Material:
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
-    - _RenderQueueType: 4
+    - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 0
@@ -289,13 +289,13 @@ Material:
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
     - _WINDQUALITY: 4
-    - _WindQuality: 1
+    - _WindQuality: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 3
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - Diffusion_Profile_Asset: {r: 0.0000007979379, g: 1418.7269, b: -9.56465e+27, a: -5.81921e+14}
+    - Diffusion_Profile_Asset: {r: 4.9532034e-26, g: -0.00000039289304, b: -2.6827216e+35, a: 3.7207378e-16}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
