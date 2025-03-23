@@ -19,8 +19,11 @@ public class DayNightCycle : MonoBehaviour
     private PhysicallyBasedSky skySettings;
     private Exposure exposure;
     private Fog fog;
-    private ColorParameter groundTint;
-    private ColorParameter horizonTint;
+    // Other volume parameters like groundTint, horizonTint, etc., can be added as needed.
+
+    [Header("Optional Settings")]
+    [Tooltip("Toggle on/off updating the global volume settings (e.g., exposure, fog, color adjustments).")]
+    public bool updateVolumeSettings = true;
 
     private float fogRandomOffset = 0f;
     private bool hasAppliedRandomOffset = false;
@@ -43,7 +46,10 @@ public class DayNightCycle : MonoBehaviour
     {
         UpdateTimeOfDay();
         UpdateLighting();
-        UpdateAtmosphere();
+        if (updateVolumeSettings)
+        {
+            UpdateAtmosphere();
+        }
     }
 
     private void UpdateTimeOfDay()
@@ -51,18 +57,36 @@ public class DayNightCycle : MonoBehaviour
         timeOfDay += (Time.deltaTime / (dayLengthInMinutes * 60f)) * timeMultiplier;
         if (timeOfDay > 1f)
         {
-            timeOfDay -= 1f; // Instead of resetting instantly, continue the cycle smoothly
-            hasAppliedRandomOffset = false; // Reset flag for new cycle
+            timeOfDay -= 1f; // Continue cycle smoothly.
+            hasAppliedRandomOffset = false; // Reset for new cycle.
         }
     }
 
     private void UpdateLighting()
     {
-        float sunAngle = Mathf.Lerp(-90f, 270f, timeOfDay); // Smooth continuous rotation
-        float moonAngle = sunAngle + 180f; // Moon opposite of the Sun
+        // Compute sun and moon angles.
+        float sunAngle = Mathf.Lerp(-90f, 270f, timeOfDay);
+        float moonAngle = sunAngle + 180f;
 
+        // Set rotations.
         sunLight.transform.rotation = Quaternion.Euler(sunAngle, 170f, 0f);
         moonLight.transform.rotation = Quaternion.Euler(moonAngle, 170f, 0f);
+
+        // Toggle shadow casting based on the sun's position.
+        if (sunAngle >= 0f && sunAngle <= 180f)
+        {
+            if (sunLight.shadows != LightShadows.Soft)
+                sunLight.shadows = LightShadows.Soft; // Enable sun shadows.
+            if (moonLight.shadows != LightShadows.None)
+                moonLight.shadows = LightShadows.None; // Disable moon shadows.
+        }
+        else
+        {
+            if (sunLight.shadows != LightShadows.None)
+                sunLight.shadows = LightShadows.None;
+            if (moonLight.shadows != LightShadows.Soft)
+                moonLight.shadows = LightShadows.Soft;
+        }
     }
 
     private void UpdateAtmosphere()
@@ -74,7 +98,7 @@ public class DayNightCycle : MonoBehaviour
 
         if (fog != null)
         {
-            if (!hasAppliedRandomOffset) // Apply random variation only once per cycle
+            if (!hasAppliedRandomOffset)
             {
                 fogRandomOffset = Random.Range(-10f, 10f);
                 hasAppliedRandomOffset = true;
