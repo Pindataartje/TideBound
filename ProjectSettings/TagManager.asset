@@ -37,6 +37,7 @@ TagManager:
   - CookedMeat
   - Meat
   - SpoiledMeat
+  - Openable
   layers:
   - Default
   - TransparentFX
