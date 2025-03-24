@@ -4887,16 +4887,24 @@ PrefabInstance:
       value: FlareLightTest
       objectReference: {fileID: 0}
     - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_Intensity
+      value: 3978.8735
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 9.194e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 3.6015e-41
+      value: 2.7165846e-20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 8.26625e-40
       objectReference: {fileID: 0}
     - target: {fileID: 8054561418991350586, guid: dad52ea74289df44cbf4791725496312, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 2.4509e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
