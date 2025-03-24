@@ -374,17 +374,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 2
   rb: {fileID: 2816357749780439622}
-  depthBeforeSubmersion: 3
-  displacementAmount: 1.26
-  floaters: 4
-  springForce: 2.72
-  dampingForce: 0.81
-  waterDrag: 14
-  waterAngularDrag: 14
-  water: {fileID: 1251246730}
-  updateWaterFrequency: 2
-  submersionTolerance: 0.2
 --- !u!1 &78534219
 GameObject:
   m_ObjectHideFlags: 0
@@ -4530,17 +4532,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 2
   rb: {fileID: 2816357749780439622}
-  depthBeforeSubmersion: 3
-  displacementAmount: 1.26
-  floaters: 4
-  springForce: 2.72
-  dampingForce: 0.81
-  waterDrag: 14
-  waterAngularDrag: 14
-  water: {fileID: 1251246730}
-  updateWaterFrequency: 2
-  submersionTolerance: 0.2
 --- !u!1 &734715961
 GameObject:
   m_ObjectHideFlags: 0
@@ -14689,6 +14693,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807491763}
   m_CullTransparentMesh: 1
+--- !u!1 &841519727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 841519728}
+  m_Layer: 11
+  m_Name: Lights
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &841519728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841519727}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 631855527076075462}
+  - {fileID: 1523831736840217350}
+  - {fileID: 4986732212355551834}
+  - {fileID: 2712889887938113224}
+  m_Father: {fileID: 2808678844140293867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &862300423
 GameObject:
   m_ObjectHideFlags: 0
@@ -16260,12 +16299,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
-  m_StreamingVersion: 20170927
-  m_LegacyPriority: 10
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
@@ -17572,17 +17611,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 2
   rb: {fileID: 2816357749780439622}
-  depthBeforeSubmersion: 3
-  displacementAmount: 1.26
-  floaters: 4
-  springForce: 2.72
-  dampingForce: 0.81
-  waterDrag: 14
-  waterAngularDrag: 14
-  water: {fileID: 1251246730}
-  updateWaterFrequency: 2
-  submersionTolerance: 0.2
 --- !u!1 &1387353960
 GameObject:
   m_ObjectHideFlags: 0
@@ -21933,13 +21974,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7646183426843507055}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.5961873, z: 0.8028455, w: 0}
-  m_LocalPosition: {x: -1.098999, y: 4.743817, z: 2.2183685}
-  m_LocalScale: {x: 0.031230947, y: 0.064770326, z: 0.015075688}
+  m_LocalRotation: {x: -0, y: 0.59618723, z: 0.8028454, w: 0}
+  m_LocalPosition: {x: -1.0989997, y: 4.743817, z: 2.2183695}
+  m_LocalScale: {x: 0.031230953, y: 0.06477035, z: 0.015075691}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7095096352362137413}
-  m_Father: {fileID: 2808678844140293867}
+  m_Father: {fileID: 841519728}
   m_LocalEulerAnglesHint: {x: -91.621, y: 180, z: 0}
 --- !u!33 &878446671995064960
 MeshFilter:
@@ -22013,6 +22054,11 @@ MonoBehaviour:
   turnSpeed: 1
   drag: 0.84
   throttleChangeRate: 0.62
+  turnTorqueMultiplier: 0.5
+  turnDamping: 2
+  minDragVariation: 0.95
+  maxDragVariation: 1
+  dragVariationFrequency: 0.5
   throttleSlider: {fileID: 0}
   speedSlider: {fileID: 0}
 --- !u!4 &1523831736840217350
@@ -22023,13 +22069,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657553029484051260}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.5961873, z: 0.8028455, w: 0}
-  m_LocalPosition: {x: 1.0930023, y: 4.743817, z: 2.2183685}
-  m_LocalScale: {x: 0.031230947, y: 0.064770326, z: 0.015075688}
+  m_LocalRotation: {x: -0, y: 0.59618723, z: 0.8028454, w: 0}
+  m_LocalPosition: {x: 1.0930028, y: 4.743817, z: 2.218369}
+  m_LocalScale: {x: 0.031230953, y: 0.06477035, z: 0.015075691}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3083654903191975029}
-  m_Father: {fileID: 2808678844140293867}
+  m_Father: {fileID: 841519728}
   m_LocalEulerAnglesHint: {x: -91.621, y: 180, z: 0}
 --- !u!114 &1527705885670985856
 MonoBehaviour:
@@ -22214,13 +22260,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3391041888602803420}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000017695129, y: -0.99971145, z: -0.024024932, w: 0}
-  m_LocalPosition: {x: 1.1200523, y: 5.2117195, z: -8.494466}
+  m_LocalRotation: {x: -0.000000017695127, y: -0.99971145, z: -0.02402493, w: 0}
+  m_LocalPosition: {x: 1.120053, y: 5.2117195, z: -8.49447}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 180087838052118360}
-  m_Father: {fileID: 2808678844140293867}
+  m_Father: {fileID: 841519728}
   m_LocalEulerAnglesHint: {x: -2.753, y: -180, z: 0}
 --- !u!4 &2808678844140293867
 Transform:
@@ -22236,10 +22282,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6804773565675952473}
-  - {fileID: 631855527076075462}
-  - {fileID: 1523831736840217350}
-  - {fileID: 4986732212355551834}
-  - {fileID: 2712889887938113224}
+  - {fileID: 841519728}
   - {fileID: 1279098319}
   - {fileID: 1966582256}
   m_Father: {fileID: 0}
@@ -22589,13 +22632,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8750690346012221971}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000017695129, y: -0.99971145, z: -0.024024932, w: 0}
-  m_LocalPosition: {x: -1.1200516, y: 5.2117157, z: -8.494446}
+  m_LocalRotation: {x: -0.000000017695127, y: -0.99971145, z: -0.02402493, w: 0}
+  m_LocalPosition: {x: -1.1200514, y: 5.2117157, z: -8.49445}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 172720440546178039}
-  m_Father: {fileID: 2808678844140293867}
+  m_Father: {fileID: 841519728}
   m_LocalEulerAnglesHint: {x: -2.753, y: -180, z: 0}
 --- !u!4 &5279352351955197933
 Transform:
@@ -22995,17 +23038,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32731566904984b8caca5ccad96273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterLevel: 6
+  baseAmplitude: 0.3
+  randomAmplitude: 0.1
+  baseFrequency: 0.3
+  randomFrequency: 0.5
+  verticalForceMultiplier: 10
+  verticalDamping: 2
+  extraGravityForce: 9.81
+  adjustRotation: 1
+  maxPitch: 2
+  maxRoll: 2
+  rotationDamping: 2
   rb: {fileID: 2816357749780439622}
-  depthBeforeSubmersion: 3
-  displacementAmount: 1.26
-  floaters: 4
-  springForce: 2.72
-  dampingForce: 0.81
-  waterDrag: 14
-  waterAngularDrag: 14
-  water: {fileID: 1251246730}
-  updateWaterFrequency: 2
-  submersionTolerance: 0.2
 --- !u!1 &7646183426843507055
 GameObject:
   m_ObjectHideFlags: 0
