@@ -1,9 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Audio;
-using System.Collections;
+using UnityEngine.SceneManagement; // for scene loading
 
 public class SettingsManager : MonoBehaviour
 {
@@ -22,12 +23,13 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Toggle fullscreenToggle;
 
     [Header("FPS Display")]
-    [Tooltip("Optional TextMeshPro object for showing FPS.")]
     [SerializeField] private TextMeshProUGUI fpsText;
+    [Tooltip("Toggle for showing FPS.")]
+    [SerializeField] private Toggle fpsToggle;
     [Tooltip("How often (in seconds) to update the FPS text.")]
     [SerializeField] private float fpsUpdateInterval = 0.5f;
 
-    // Internal variables
+    // Internal variables.
     private List<Resolution> validResolutions = new List<Resolution>();
     private int currentResolutionIndex = 0;
 
@@ -42,7 +44,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Awake()
     {
-        // Collect valid 16:9 resolutions (or adapt as needed).
+        // Filter valid 16:9 resolutions.
         Resolution[] allResolutions = Screen.resolutions;
         foreach (var res in allResolutions)
         {
@@ -52,25 +54,25 @@ public class SettingsManager : MonoBehaviour
                 validResolutions.Add(res);
             }
         }
-        // If no 16:9 resolutions found, fallback to all or handle differently.
 
-        // Hook up resolution arrow buttons
+        // Hook up resolution arrow buttons.
         if (resolutionLeftButton != null)
             resolutionLeftButton.onClick.AddListener(DecreaseResolutionIndex);
         if (resolutionRightButton != null)
             resolutionRightButton.onClick.AddListener(IncreaseResolutionIndex);
 
-        // Hook up fullscreen toggle
+        // Hook up fullscreen toggle.
         if (fullscreenToggle != null)
             fullscreenToggle.onValueChanged.AddListener(OnFullscreenToggle);
 
-        // We no longer hook up volume sliders here; 
-        // instead we use public methods that can be assigned in the Inspector.
+        // Hook up FPS toggle.
+        if (fpsToggle != null)
+            fpsToggle.onValueChanged.AddListener(SetShowFPS);
 
         LoadSettings();
         ApplyAllSettings();
 
-        // Start the FPS update coroutine if an fpsText is assigned
+        // Start updating FPS if assigned.
         if (fpsText != null)
         {
             fpsCoroutine = StartCoroutine(UpdateFPS());
@@ -78,10 +80,8 @@ public class SettingsManager : MonoBehaviour
     }
 
     #region Volume Methods
-    // These are public so you can assign them in the Slider's OnValueChanged event in the Inspector.
     public void SetMusicVolume(float value)
     {
-        // Logarithmic volume conversion if using AudioMixer dB scale
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f);
         PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, value);
     }
@@ -125,9 +125,7 @@ public class SettingsManager : MonoBehaviour
         Resolution chosen = validResolutions[currentResolutionIndex];
         Screen.SetResolution(chosen.width, chosen.height, Screen.fullScreen);
         if (resolutionText != null)
-        {
             resolutionText.text = $"{chosen.width} x {chosen.height}";
-        }
         PlayerPrefs.SetInt(RESOLUTION_INDEX_KEY, currentResolutionIndex);
     }
     #endregion
@@ -141,7 +139,6 @@ public class SettingsManager : MonoBehaviour
     #endregion
 
     #region FPS Display Methods
-    // Call this from a button or toggle to set whether the FPS text is active
     public void SetShowFPS(bool show)
     {
         if (fpsText != null)
@@ -151,7 +148,6 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    // Update the FPS text every 'fpsUpdateInterval' seconds.
     private IEnumerator UpdateFPS()
     {
         while (true)
@@ -164,46 +160,47 @@ public class SettingsManager : MonoBehaviour
             yield return new WaitForSeconds(fpsUpdateInterval);
         }
     }
+
     #endregion
 
     #region Load/Apply/Save
     private void LoadSettings()
     {
-        // Load volumes
         float musicVol = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, 1f);
         float sfxVol = PlayerPrefs.GetFloat(SFX_VOLUME_KEY, 1f);
         float ambienceVol = PlayerPrefs.GetFloat(AMBIENCE_VOLUME_KEY, 1f);
 
-        // Load resolution index
         currentResolutionIndex = PlayerPrefs.GetInt(RESOLUTION_INDEX_KEY, 0);
         if (currentResolutionIndex < 0 || currentResolutionIndex >= validResolutions.Count)
             currentResolutionIndex = 0;
 
-        // Load fullscreen
-        bool isFullscreen = PlayerPrefs.GetInt(FULLSCREEN_KEY, 1) == 1; // default = true
-
-        // Load show FPS
+        bool isFullscreen = PlayerPrefs.GetInt(FULLSCREEN_KEY, 1) == 1;
         bool showFPS = PlayerPrefs.GetInt(SHOW_FPS_KEY, 0) == 1;
 
-        // Apply these to UI
         if (musicSlider != null) musicSlider.value = musicVol;
         if (sfxSlider != null) sfxSlider.value = sfxVol;
         if (ambienceSlider != null) ambienceSlider.value = ambienceVol;
         if (fullscreenToggle != null) fullscreenToggle.isOn = isFullscreen;
+        if (fpsToggle != null) fpsToggle.isOn = showFPS;
         if (fpsText != null) fpsText.gameObject.SetActive(showFPS);
     }
 
     private void ApplyAllSettings()
     {
-        // Manually trigger the volume methods if the sliders exist
         if (musicSlider != null) SetMusicVolume(musicSlider.value);
         if (sfxSlider != null) SetSFXVolume(sfxSlider.value);
         if (ambienceSlider != null) SetAmbienceVolume(ambienceSlider.value);
 
-        // Apply resolution & fullscreen
         ApplyResolution();
         if (fullscreenToggle != null)
             Screen.fullScreen = fullscreenToggle.isOn;
+    }
+    #endregion
+
+    #region Scene Loading
+    public void LoadSceneByIndex(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
     }
     #endregion
 }

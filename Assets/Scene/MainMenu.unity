@@ -386,6 +386,7 @@ MonoBehaviour:
   maxPitch: 2
   maxRoll: 2
   rotationDamping: 2
+  disableRotationConstraints: 0
   rb: {fileID: 2816357749780439622}
 --- !u!1 &78534219
 GameObject:
@@ -2115,6 +2116,7 @@ MonoBehaviour:
   resolutionRightButton: {fileID: 1284076506}
   fullscreenToggle: {fileID: 667186571}
   fpsText: {fileID: 869298410}
+  fpsToggle: {fileID: 0}
   fpsUpdateInterval: 0.5
 --- !u!1 &349634271
 GameObject:
@@ -4544,6 +4546,7 @@ MonoBehaviour:
   maxPitch: 2
   maxRoll: 2
   rotationDamping: 2
+  disableRotationConstraints: 0
   rb: {fileID: 2816357749780439622}
 --- !u!1 &734715961
 GameObject:
@@ -16198,10 +16201,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1238327179}
-  - component: {fileID: 1238327177}
   - component: {fileID: 1238327182}
-  - component: {fileID: 1238327181}
   - component: {fileID: 1238327180}
+  - component: {fileID: 1238327181}
+  - component: {fileID: 1238327177}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -17623,6 +17626,7 @@ MonoBehaviour:
   maxPitch: 2
   maxRoll: 2
   rotationDamping: 2
+  disableRotationConstraints: 0
   rb: {fileID: 2816357749780439622}
 --- !u!1 &1387353960
 GameObject:
@@ -18966,7 +18970,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1753692927}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 348581372}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: LoadSceneByIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1753692927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23050,6 +23066,7 @@ MonoBehaviour:
   maxPitch: 2
   maxRoll: 2
   rotationDamping: 2
+  disableRotationConstraints: 0
   rb: {fileID: 2816357749780439622}
 --- !u!1 &7646183426843507055
 GameObject:

@@ -1,60 +1,99 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class Bird : MonoBehaviour
+public class BirdSpawner : MonoBehaviour
 {
-    [Tooltip("Movement speed of the bird.")]
-    public float speed = 2f;
-    [Tooltip("How quickly the bird rotates to face its movement direction.")]
-    public float rotationSpeed = 2f;
-    [Tooltip("Time (in seconds) between random direction changes.")]
-    public float randomDirectionChangeInterval = 3f;
-
-    // Reference to the spawn area to keep the bird inside.
-    [HideInInspector]
+    [Header("Spawn Area Settings")]
+    [Tooltip("The BoxCollider that defines the spawn area (sky area) for birds.")]
     public BoxCollider spawnArea;
 
-    private Vector3 velocity;
-    private float directionChangeTimer = 0f;
+    [Header("Bird Settings")]
+    [Tooltip("The bird prefab (UI image or 3D quad) to spawn. It must have the Bird component attached.")]
+    public GameObject birdPrefab;
+    [Tooltip("The world-space Canvas that will contain the bird images.")]
+    public Canvas birdCanvas;
+    [Tooltip("Maximum number of birds to maintain.")]
+    public int maxBirds = 10;
+    [Tooltip("Time interval (in seconds) between spawn attempts.")]
+    public float spawnInterval = 5f;
+    [Tooltip("Maximum allowed spawn distance from the player.")]
+    public float maxSpawnDistanceFromPlayer = 500f;
+
+    [Header("Player Reference")]
+    public Transform player;
+
+    // Keep track of spawned birds.
+    private List<GameObject> spawnedBirds = new List<GameObject>();
 
     void Start()
     {
-        // Start with an upward velocity plus some random horizontal offset.
-        SetRandomVelocity();
+        // Spawn initial birds.
+        for (int i = 0; i < maxBirds; i++)
+        {
+            SpawnBird();
+        }
+        // Maintain the bird count over time.
+        InvokeRepeating(nameof(MaintainBirds), spawnInterval, spawnInterval);
     }
 
-    void Update()
+    void MaintainBirds()
     {
-        // Move the bird.
-        transform.position += velocity * Time.deltaTime;
-
-        // Smoothly rotate to face the movement direction.
-        if (velocity != Vector3.zero)
+        // Remove any destroyed (null) birds.
+        spawnedBirds.RemoveAll(b => b == null);
+        while (spawnedBirds.Count < maxBirds)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(velocity, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-
-        // If the bird leaves the spawn area, steer it back.
-        if (spawnArea != null && !spawnArea.bounds.Contains(transform.position))
-        {
-            Vector3 toCenter = (spawnArea.bounds.center - transform.position).normalized;
-            velocity = toCenter * speed;
-        }
-
-        // Change direction randomly after a set interval.
-        directionChangeTimer += Time.deltaTime;
-        if (directionChangeTimer >= randomDirectionChangeInterval)
-        {
-            SetRandomVelocity();
-            directionChangeTimer = 0f;
+            SpawnBird();
         }
     }
 
-    void SetRandomVelocity()
+    void SpawnBird()
     {
-        // Base direction is upward, plus a random horizontal component.
-        Vector3 randomHorizontal = new Vector3(Random.Range(-0.5f, 0.5f), 0f, Random.Range(-0.5f, 0.5f));
-        // Combine upward and horizontal. Normalizing ensures consistent speed.
-        velocity = (Vector3.up + randomHorizontal).normalized * speed;
+        Vector3 spawnPos = GetValidSpawnPosition();
+        if (spawnPos == Vector3.zero)
+            return;
+        // Instantiate the bird as a child of the canvas so it's visible.
+        GameObject bird = Instantiate(birdPrefab, spawnPos, Quaternion.identity, birdCanvas.transform);
+        // Set up the bird movement area so it stays inside the spawn area.
+        Bird birdScript = bird.GetComponent<Bird>();
+        if (birdScript != null)
+        {
+            birdScript.SetRandomSpeed();
+            birdScript.movementArea = spawnArea;
+        }
+        spawnedBirds.Add(bird);
+    }
+
+    // Finds a valid spawn position inside the spawn area and within max distance from the player.
+    Vector3 GetValidSpawnPosition()
+    {
+        Vector3 spawnPos = Vector3.zero;
+        int attempts = 10;
+        while (attempts > 0)
+        {
+            spawnPos = GetRandomPointInBox(spawnArea);
+            if (player != null)
+            {
+                if (Vector3.Distance(spawnPos, player.position) <= maxSpawnDistanceFromPlayer)
+                {
+                    return spawnPos;
+                }
+            }
+            else
+            {
+                return spawnPos;
+            }
+            attempts--;
+        }
+        return spawnPos;
+    }
+
+    // Returns a random point within the BoxCollider's world bounds.
+    Vector3 GetRandomPointInBox(BoxCollider box)
+    {
+        Bounds bounds = box.bounds;
+        float x = Random.Range(bounds.min.x, bounds.max.x);
+        float y = Random.Range(bounds.min.y, bounds.max.y);
+        float z = Random.Range(bounds.min.z, bounds.max.z);
+        return new Vector3(x, y, z);
     }
 }
