@@ -31,6 +31,9 @@ public class AnimalAI : MonoBehaviour
     private float attackCooldown = 1f; // Time in seconds between attacks
     private float lastAttackTime = 0f;
 
+
+    public GameObject Meat;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -178,6 +181,8 @@ public class AnimalAI : MonoBehaviour
             {
                 questManager.EnemyKilled(gameObject);
             }
+            // Fixing Instantiate: Added Quaternion.identity for rotation.
+            Instantiate(Meat, gameObject.transform.position, Quaternion.identity);
         }
 
         Destroy(gameObject);
