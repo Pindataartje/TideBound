@@ -18,4 +18,4 @@ MonoBehaviour:
     amount: 2
   - resourceTag: Metal
     amount: 3
-  outputPrefab: {fileID: 8990048144252894194, guid: f3405701ece5b374ea3c0389a6db2d05, type: 3}
+  outputPrefab: {fileID: 8978784677242115174, guid: f3405701ece5b374ea3c0389a6db2d05, type: 3}
