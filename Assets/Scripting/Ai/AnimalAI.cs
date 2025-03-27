@@ -86,7 +86,7 @@ public class AnimalAI : MonoBehaviour
             StartCoroutine(Wander());
         }
 
-        print(health);
+       
     }
 
     void MoveTowardsOrAway(float distanceToPlayer)
@@ -136,7 +136,7 @@ public class AnimalAI : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log(gameObject.name + " is attacking!");
+        print("Atacking");
     }
 
     IEnumerator Wander()

@@ -85,7 +85,7 @@ public class GunHandler : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.TakeDamage(damage); // Call TakeDamage with the specified damage
-                    Debug.Log($"Hit enemy! Dealt {damage} damage.");
+                    
                 }
             }
 
