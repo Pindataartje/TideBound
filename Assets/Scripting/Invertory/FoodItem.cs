@@ -21,8 +21,8 @@ public class FoodItem : MonoBehaviour
         // Check for left mouse button input to consume the item.
         if (Input.GetMouseButtonDown(0))
         {
-            // Find the player's Movement script in the scene.
-            Movement movement = FindObjectOfType<Movement>();
+            // Find the player's Movement script in the scene using the new API.
+            Movement movement = Object.FindAnyObjectByType<Movement>();
             if (movement != null)
             {
                 // Apply the changes.

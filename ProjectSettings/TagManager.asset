@@ -39,6 +39,7 @@ TagManager:
   - SpoiledMeat
   - Openable
   - Scrap
+  - Ground
   layers:
   - Default
   - TransparentFX
