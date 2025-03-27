@@ -11,7 +11,7 @@ public class AnimalAI : MonoBehaviour
     public bool stayAtHideSpot;
     public string hideTag = "Bush";
     public float detectionRange = 10f;
-    public float chaseThreshold = 15f; // Distance at which AI stops chasing
+    public float chaseThreshold = 15f;
     public float attackRange = 2f;
     public float wanderRadius = 5f;
     public float wanderTimer = 5f;
@@ -28,9 +28,8 @@ public class AnimalAI : MonoBehaviour
     private bool isChasing = false;
 
     // Attack cooldown.
-    private float attackCooldown = 1f; // Time in seconds between attacks
+    private float attackCooldown = 1f;
     private float lastAttackTime = 0f;
-
 
     public GameObject Meat;
 
@@ -86,11 +85,14 @@ public class AnimalAI : MonoBehaviour
         {
             StartCoroutine(Wander());
         }
+
         print(health);
     }
 
     void MoveTowardsOrAway(float distanceToPlayer)
     {
+        bool isApproaching = behavior == BehaviorType.Approach; // Fix boxing issue
+
         if (distanceToPlayer <= attackRange)
         {
             if (Time.time - lastAttackTime >= attackCooldown)
@@ -101,7 +103,7 @@ public class AnimalAI : MonoBehaviour
         }
         else
         {
-            Vector3 direction = (behavior == BehaviorType.Approach) ? player.position : transform.position * 2 - player.position;
+            Vector3 direction = isApproaching ? player.position : transform.position * 2 - player.position;
             agent.SetDestination(direction);
         }
     }
@@ -173,7 +175,6 @@ public class AnimalAI : MonoBehaviour
 
     private void Die()
     {
-        // If this GameObject is tagged as "Enemy", notify the QuestManager.
         if (CompareTag("Enemy"))
         {
             QuestManager questManager = Object.FindAnyObjectByType<QuestManager>();
@@ -181,11 +182,8 @@ public class AnimalAI : MonoBehaviour
             {
                 questManager.EnemyKilled(gameObject);
             }
-            // Fixing Instantiate: Added Quaternion.identity for rotation.
             Instantiate(Meat, gameObject.transform.position, Quaternion.identity);
         }
-
         Destroy(gameObject);
     }
 }
-

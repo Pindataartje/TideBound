@@ -45,12 +45,19 @@ public class Quest
         if (!isAccepted || questType != QuestType.Kill)
             return;
 
-        // Use the custom tag if the enemy has a TagAssigner; otherwise, fall back to its built-in tag.
-        string enemyType = killedEnemy.TryGetComponent<TagAssigner>(out TagAssigner tagAssigner)
-                            ? tagAssigner.customTag
-                            : killedEnemy.tag;
-
-        if (enemyType == targetEnemyTag)
+        // Use CompareTag instead of directly accessing the tag property
+        if (killedEnemy.TryGetComponent<TagAssigner>(out TagAssigner tagAssigner))
+        {
+            if (tagAssigner.customTag == targetEnemyTag)
+            {
+                currentAmount++;
+                if (currentAmount >= targetAmount)
+                {
+                    isCompleted = true;
+                }
+            }
+        }
+        else if (killedEnemy.CompareTag(targetEnemyTag))
         {
             currentAmount++;
             if (currentAmount >= targetAmount)
@@ -75,8 +82,4 @@ public class Quest
             }
         }
     }
-
-    
 }
-
-

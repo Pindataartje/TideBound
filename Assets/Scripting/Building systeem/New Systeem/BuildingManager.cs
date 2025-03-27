@@ -484,7 +484,7 @@ if (Input.GetKeyDown(KeyCode.Alpha3))
 
                     for (int i = 0; i < renderers.Length; i++)
                     {
-                        mats[i] = renderers[i].material;
+                        mats[i] = renderers[i].sharedMaterial;
                     }
 
                     originalMaterials[currentBuilding] = mats;
