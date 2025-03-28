@@ -48,9 +48,14 @@ public class TerrainSpawner : MonoBehaviour
     [Tooltip("How often (in seconds) to check for spawn opportunities.")]
     public float checkInterval = 30f;
 
+    // Preallocated buffer for Physics.OverlapSphereNonAlloc (adjust size as needed)
+    private Collider[] overlapBuffer = new Collider[20];
+
+    // Reusable list to avoid allocations in GetComponentsInChildren.
+    private static List<Collider> tempZoneColliders = new List<Collider>();
+
     void Start()
     {
-        Debug.Log("Starting spawn routine.");
         StartCoroutine(SpawnRoutine());
     }
 
@@ -65,12 +70,10 @@ public class TerrainSpawner : MonoBehaviour
                 if (currentCount < group.maxCount)
                 {
                     group.spawnTimer += checkInterval;
-                    Debug.Log("Group: " + group.groupName + " timer: " + group.spawnTimer + " (" + currentCount + " spawned)");
                     if (group.spawnTimer >= group.spawnInterval)
                     {
                         if (CountGroupSpawns(group) < group.maxCount)
                         {
-                            Debug.Log("Attempting spawn for group: " + group.groupName);
                             TrySpawn(group);
                         }
                         group.spawnTimer = 0f;
@@ -85,7 +88,6 @@ public class TerrainSpawner : MonoBehaviour
     [ContextMenu("Spawn Test")]
     public void SpawnTest()
     {
-        Debug.Log("Spawn Test triggered.");
         foreach (SpawnGroup group in spawnGroups)
         {
             SpawnGroupTest(group);
@@ -96,15 +98,12 @@ public class TerrainSpawner : MonoBehaviour
     public void SpawnGroupTest(SpawnGroup group)
     {
         int safetyCounter = 0;
-        // Loop until we reach maxCount or a safety limit (to avoid infinite loops)
         while (CountGroupSpawns(group) < group.maxCount && safetyCounter < group.maxCount * 10)
         {
             TrySpawn(group);
             safetyCounter++;
         }
-        Debug.Log("Spawn Test finished for group: " + group.groupName + ". Spawned " + CountGroupSpawns(group) + " objects.");
     }
-
 
     // Counts spawned objects by checking if their name starts with the group identifier.
     int CountGroupSpawns(SpawnGroup group)
@@ -115,18 +114,21 @@ public class TerrainSpawner : MonoBehaviour
         {
             foreach (GameObject zone in group.allowedSpawnZones)
             {
-                foreach (Transform child in zone.transform)
+                Transform zoneTransform = zone.transform;
+                int childCount = zoneTransform.childCount;
+                for (int i = 0; i < childCount; i++)
                 {
-                    if (child.name.StartsWith(identifier))
+                    if (zoneTransform.GetChild(i).name.StartsWith(identifier))
                         count++;
                 }
             }
         }
         else
         {
-            foreach (Transform child in transform)
+            int childCount = transform.childCount;
+            for (int i = 0; i < childCount; i++)
             {
-                if (child.name.StartsWith(identifier))
+                if (transform.GetChild(i).name.StartsWith(identifier))
                     count++;
             }
         }
@@ -136,52 +138,46 @@ public class TerrainSpawner : MonoBehaviour
     // Attempts to spawn one object for the given group.
     bool TrySpawn(SpawnGroup group)
     {
-        // Use more attempts in Editor mode.
         int attempts = Application.isEditor ? 100 : 10;
         bool spawned = false;
         while (attempts > 0 && !spawned)
         {
             attempts--;
 
-            // Determine which spawn zones to use.
             GameObject[] zonesToUse = (group.allowedSpawnZones != null && group.allowedSpawnZones.Length > 0)
                                       ? group.allowedSpawnZones
                                       : spawnZones;
             if (zonesToUse == null || zonesToUse.Length == 0)
             {
-                Debug.LogWarning("No spawn zones available for group: " + group.groupName);
                 return false;
             }
 
-            // Pick a random spawn zone.
             GameObject zoneObj = zonesToUse[Random.Range(0, zonesToUse.Length)];
-            Collider[] zoneColliders = zoneObj.GetComponentsInChildren<Collider>();
-            if (zoneColliders.Length == 0)
+            tempZoneColliders.Clear();
+            zoneObj.GetComponentsInChildren<Collider>(tempZoneColliders);
+            if (tempZoneColliders.Count == 0)
             {
-                Debug.LogWarning("Spawn zone " + zoneObj.name + " has no colliders.");
                 continue;
             }
-            Collider zone = zoneColliders[Random.Range(0, zoneColliders.Length)];
+            // Pick a random collider from the list.
+            Collider zone = tempZoneColliders[Random.Range(0, tempZoneColliders.Count)];
 
-            // Get a random point inside the collider (with center bias).
             Vector3 pos = GetRandomPointInCollider(zone, group.centerBias);
             pos.y = GetTerrainHeight(pos);
 
-            // Check conditions.
             if (player != null && Vector3.Distance(pos, player.position) < group.minDistanceFromPlayer)
             {
-                Debug.Log("Position too close to player: " + pos);
                 continue;
             }
             if (!IsFarFromSpawned(pos, group.minSeparation))
             {
-                Debug.Log("Position too close to another spawned object: " + pos);
                 continue;
             }
-            Collider[] overlapping = Physics.OverlapSphere(pos, group.minSeparation, obstacleMask);
+            int overlapCount = Physics.OverlapSphereNonAlloc(pos, group.minSeparation, overlapBuffer, obstacleMask);
             bool foundObstacle = false;
-            foreach (Collider col in overlapping)
+            for (int i = 0; i < overlapCount; i++)
             {
+                Collider col = overlapBuffer[i];
                 bool isTerrain = false;
                 foreach (Terrain t in terrains)
                 {
@@ -199,37 +195,29 @@ public class TerrainSpawner : MonoBehaviour
             }
             if (foundObstacle)
             {
-                Debug.Log("Obstacle detected at position: " + pos);
                 continue;
             }
 
-            // Spawn a random prefab from the group's array.
             if (group.prefabs == null || group.prefabs.Length == 0)
             {
-                Debug.Log("No prefab assigned for group: " + group.groupName);
                 return false;
             }
             GameObject chosenPrefab = group.prefabs[Random.Range(0, group.prefabs.Length)];
-            // Apply random rotation on Y and slight random tilt on X and Z.
+            // Cache the prefab name.
+            string prefabName = chosenPrefab.name;
             float randomY = Random.Range(0f, 360f);
             float randomX = Random.Range(-2f, 2f);
             float randomZ = Random.Range(-2f, 2f);
             Quaternion randomRotation = Quaternion.Euler(randomX, randomY, randomZ);
 
-            // Determine parent: if group has allowed zones, use the chosen zone; otherwise, use the spawner.
             Transform parentTransform = (group.allowedSpawnZones != null && group.allowedSpawnZones.Length > 0)
                                           ? zoneObj.transform
                                           : transform;
             GameObject spawnedObj = Instantiate(chosenPrefab, pos, randomRotation, parentTransform);
-            spawnedObj.name = group.groupName + "_Spawned_" + chosenPrefab.name;
-            Debug.Log("Spawned " + chosenPrefab.name + " at position: " + pos + " for group: " + group.groupName);
+            spawnedObj.name = group.groupName + "_Spawned_" + prefabName;
             spawned = true;
         }
 
-        if (!spawned)
-        {
-            Debug.Log("Failed to spawn any object for group: " + group.groupName + " after maximum attempts.");
-        }
         return spawned;
     }
 
@@ -246,9 +234,7 @@ public class TerrainSpawner : MonoBehaviour
             Vector3 closest = col.ClosestPoint(randomPoint);
             if ((randomPoint - closest).sqrMagnitude < 0.001f)
             {
-                Vector3 center = col.bounds.center;
-                randomPoint = Vector3.Lerp(randomPoint, center, centerBias);
-                return randomPoint;
+                return Vector3.Lerp(randomPoint, col.bounds.center, centerBias);
             }
         }
         return col.bounds.center;
@@ -273,9 +259,10 @@ public class TerrainSpawner : MonoBehaviour
     // Checks that the spawn point is far enough from other spawned objects.
     bool IsFarFromSpawned(Vector3 pos, float minSeparation)
     {
-        foreach (Transform child in transform)
+        int childCount = transform.childCount;
+        for (int i = 0; i < childCount; i++)
         {
-            if (Vector3.Distance(pos, child.position) < minSeparation)
+            if (Vector3.Distance(pos, transform.GetChild(i).position) < minSeparation)
                 return false;
         }
         return true;
@@ -294,7 +281,7 @@ public class TerrainSpawner : MonoBehaviour
         }
         else
         {
-            ClearChildrenInParent(this.gameObject, identifier);
+            ClearChildrenInParent(gameObject, identifier);
         }
     }
 
@@ -302,22 +289,24 @@ public class TerrainSpawner : MonoBehaviour
     private void ClearChildrenInParent(GameObject parent, string identifier)
     {
         List<Transform> toClear = new List<Transform>();
-        foreach (Transform child in parent.transform)
+        Transform parentTransform = parent.transform;
+        int childCount = parentTransform.childCount;
+        for (int i = 0; i < childCount; i++)
         {
+            Transform child = parentTransform.GetChild(i);
             if (child.name.StartsWith(identifier))
                 toClear.Add(child);
         }
-        foreach (Transform child in toClear)
+        for (int i = 0; i < toClear.Count; i++)
         {
 #if UNITY_EDITOR
             if (!Application.isPlaying)
-                DestroyImmediate(child.gameObject);
+                DestroyImmediate(toClear[i].gameObject);
             else
-                Destroy(child.gameObject);
+                Destroy(toClear[i].gameObject);
 #else
-            Destroy(child.gameObject);
+            Destroy(toClear[i].gameObject);
 #endif
         }
-        Debug.Log("Cleared " + toClear.Count + " objects from group: " + identifier + " under " + parent.name);
     }
 }

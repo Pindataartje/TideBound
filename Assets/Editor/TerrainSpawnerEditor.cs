@@ -11,10 +11,8 @@ public class TerrainSpawnerEditor : Editor
 
         TerrainSpawner spawner = (TerrainSpawner)target;
 
-        // Global spawn test button.
         if (GUILayout.Button("Spawn Max (Edit Mode) for All Groups"))
         {
-            Debug.Log("Global Spawn Max button clicked in Editor.");
             spawner.SpawnTest();
             EditorSceneManager.MarkSceneDirty(spawner.gameObject.scene);
         }
