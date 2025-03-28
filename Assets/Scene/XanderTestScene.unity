@@ -60477,10 +60477,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsGlobal: 1
-  priority: 0
+  priority: 0.46
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: c02fb93d5d9fa7640a9be368b63c85df, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 600daaa968af3234f8c72a8f64f68234, type: 2}
 --- !u!1 &1096026022
 GameObject:
   m_ObjectHideFlags: 0
