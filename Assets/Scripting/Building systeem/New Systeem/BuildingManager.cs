@@ -275,7 +275,7 @@ if (Input.GetKeyDown(KeyCode.Alpha3))
 
         if (ghostConnector == null)
         {
-            Debug.LogError($"No valid snap connector found on {ghostbuildObject.name}");
+            
             return;
         }
 
