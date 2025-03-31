@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d8dba6cd4c985724699ff37e33eb81db
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 205007
+  packageName: KWS Water System (HDRP Rendering)
+  packageVersion: 1.5.9c
+  assetPath: Assets/KriptoFX/WaterSystem/WaterResources/Resources/SavedData/River/SplineProfile.River.BE8VT.asset
+  uploadId: 740395

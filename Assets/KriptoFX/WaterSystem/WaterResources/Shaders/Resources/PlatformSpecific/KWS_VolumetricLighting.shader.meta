@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 83a0f6018d7379243b944f00da29c9cc
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 205007
+  packageName: KWS Water System (HDRP Rendering)
+  packageVersion: 1.5.9c
+  assetPath: Assets/KriptoFX/WaterSystem/WaterResources/Shaders/Resources/PlatformSpecific/KWS_VolumetricLighting.shader
+  uploadId: 740395
