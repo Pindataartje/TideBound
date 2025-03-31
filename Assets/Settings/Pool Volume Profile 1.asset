@@ -281,7 +281,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0}
   spaceEmissionTexture:
     m_OverrideState: 1
-    m_Value: {fileID: 0}
+    m_Value: {fileID: 8900000, guid: 91af4d076659ed549a681f58b0c35360, type: 3}
   spaceEmissionMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -636,7 +636,7 @@ MonoBehaviour:
     m_Value: 0.00001
   farFocusStart:
     m_OverrideState: 1
-    m_Value: 589.1
+    m_Value: 800
   farFocusEnd:
     m_OverrideState: 1
     m_Value: 900.9
