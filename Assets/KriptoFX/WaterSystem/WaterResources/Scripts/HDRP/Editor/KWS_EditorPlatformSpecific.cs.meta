@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1a3089783dfec884db31c227feda6beb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 205007
+  packageName: KWS Water System (HDRP Rendering)
+  packageVersion: 1.5.9c
+  assetPath: Assets/KriptoFX/WaterSystem/WaterResources/Scripts/HDRP/Editor/KWS_EditorPlatformSpecific.cs
+  uploadId: 740395

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 9c0afc43e7a610b409ed7fa67069001e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {instanceID: 0}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 205007
+  packageName: KWS Water System (HDRP Rendering)
+  packageVersion: 1.5.9c
+  assetPath: Assets/KriptoFX/WaterSystem/WaterResources/Resources/ComputeBuffers/ComputeFoamDataOffset0.kwsComputeBuffer
+  uploadId: 740395
