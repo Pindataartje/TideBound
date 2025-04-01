@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec75ce71e21e40849beed5184a1b355f, type: 3}
+  m_Name: WaterRiver1.2Profile.XanderTestScene.3U4NS
+  m_EditorClassIdentifier: 
+  Splines:
+  - InitialSplinePosition: {x: 2511.32, y: 88.56, z: -1831.93}
+    ID: 0
+    SplinePoints:
+    - ID: 0
+      WorldPosition: {x: 2543.594, y: 87.80566, z: -1831.8804}
+      Width: 10
+    - ID: 1
+      WorldPosition: {x: 2553.857, y: 86.99059, z: -1830.5726}
+      Width: 10
+    - ID: 2
+      WorldPosition: {x: 2563.9802, y: 86.08236, z: -1830.2905}
+      Width: 10
+    - ID: 3
+      WorldPosition: {x: 2568.9104, y: 82.61849, z: -1829.7454}
+      Width: 0.25
+    - ID: 4
+      WorldPosition: {x: 2573.284, y: 80.66173, z: -1829.3215}
+      Width: 0.25
+    - ID: 5
+      WorldPosition: {x: 2576.0547, y: 79.270935, z: -1828.1766}
+      Width: 0.25
+    - ID: 6
+      WorldPosition: {x: 2581.4556, y: 77.99336, z: -1828.7054}
+      Width: 4.804533
+    - ID: 7
+      WorldPosition: {x: 2585.4307, y: 75.65483, z: -1829.6891}
+      Width: 0.25
+    - ID: 8
+      WorldPosition: {x: 2593.4668, y: 68.893486, z: -1829.7598}
+      Width: 10
+    - ID: 9
+      WorldPosition: {x: 2603.127, y: 62.448338, z: -1828.4009}
+      Width: 10
+    - ID: 10
+      WorldPosition: {x: 2615.273, y: 52.69468, z: -1830.6993}
+      Width: 10
+    - ID: 11
+      WorldPosition: {x: 2626.734, y: 46.320778, z: -1833.815}
+      Width: 10
+    - ID: 12
+      WorldPosition: {x: 2641.5247, y: 39.21135, z: -1842.511}
+      Width: 10
+    - ID: 13
+      WorldPosition: {x: 2647.8064, y: 39.21135, z: -1850.2998}
+      Width: 10
+    - ID: 14
+      WorldPosition: {x: 2661.7273, y: 39.21135, z: -1857.9199}
+      Width: 10
+    - ID: 15
+      WorldPosition: {x: 2669.7559, y: 39.21135, z: -1858.1381}
+      Width: 10
+    - ID: 16
+      WorldPosition: {x: 2685.2349, y: 39.21135, z: -1868.5391}
+      Width: 10
+    - ID: 17
+      WorldPosition: {x: 2700.424, y: 39.21135, z: -1877.6458}
+      Width: 10
+    - ID: 18
+      WorldPosition: {x: 2721.6187, y: 39.46429, z: -1892.2488}
+      Width: 10
+    - ID: 19
+      WorldPosition: {x: 2732.3235, y: 40.1893, z: -1910.5859}
+      Width: 10
+    - ID: 20
+      WorldPosition: {x: 2746.213, y: 39.21135, z: -1924.527}
+      Width: 10
+    - ID: 21
+      WorldPosition: {x: 2756.6086, y: 35.296913, z: -1939.2021}
+      Width: 10
+    - ID: 22
+      WorldPosition: {x: 2774.59, y: 29.60682, z: -1949.0166}
+      Width: 10
+    - ID: 23
+      WorldPosition: {x: 2799.1672, y: 10.620075, z: -1989.1868}
+      Width: 10
+    - ID: 24
+      WorldPosition: {x: 2808.579, y: 1.912105, z: -2014.62}
+      Width: 28.468504
+    VertexCountBetweenPoints: 16
+    Depth: 42
