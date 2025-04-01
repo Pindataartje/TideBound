@@ -19,7 +19,7 @@ public class BoatController : MonoBehaviour
     [Header("Turning Settings")]
     [Tooltip("Multiplier for turning torque. Lower values mean less responsive turning.")]
     public float turnTorqueMultiplier = 0.5f;
-    [Tooltip("How quickly the boat’s turning corrects (damping). Higher values mean smoother, slower rotation.")]
+    [Tooltip("How quickly the boatâ€™s turning corrects (damping). Higher values mean smoother, slower rotation.")]
     public float turnDamping = 2f;
 
     [Header("Random Drag Variation")]
