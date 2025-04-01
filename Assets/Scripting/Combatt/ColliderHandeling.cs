@@ -9,16 +9,27 @@ public class ColliderHandeling : MonoBehaviour
     public string itemTag;
     public InventoryItemAdder inventoryItemAdder;
 
-
-
-    [Header("sounds")]
+    [Header("Sounds")]
     public AudioClip woodChop;
 
+    private Collider objectCollider;
 
     private void Start()
     {
         // Get the WeaponHandler from the parent or another GameObject
         weaponHandler = GetComponentInParent<WeaponHandler>();
+
+        // Get the collider on the same GameObject as this script
+        objectCollider = GetComponent<Collider>();
+
+        if (objectCollider != null)
+        {
+            objectCollider.isTrigger = true; // Ensure it's set as a trigger
+        }
+        else
+        {
+            Debug.LogWarning("No Collider found on " + gameObject.name + ". ColliderHandling requires a Collider.");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,8 +43,7 @@ public class ColliderHandeling : MonoBehaviour
             AnimalAI animalAI = other.GetComponent<AnimalAI>();
             if (animalAI != null)
             {
-                animalAI.TakeDamage(10f);  // Example damage val+
-                                           // ue
+                animalAI.TakeDamage(10f);  // Example damage value
                 Debug.Log("Damage applied to " + animalAI.gameObject.name);
 
                 // Add the enemy to the hit list to prevent re-hitting until the cooldown
@@ -50,11 +60,37 @@ public class ColliderHandeling : MonoBehaviour
                 Debug.Log("Material hit with assigned tag: " + tagAssigner.tagToAssign);
                 itemTag = tagAssigner.tagToAssign;
                 inventoryItemAdder.AddItemByTag(itemTag, 2);
+                AudioSource.PlayClipAtPoint(woodChop, gameObject.transform.position);
+
             }
             else
             {
                 Debug.Log("Material hit but has no TagAssigner component.");
             }
+
+
+            MaterialHealth Mathealth = other.GetComponent<MaterialHealth>();
+                if (Mathealth != null)
+            {
+                Mathealth.TookDamage(1);
+            }
         }
     }
+
+    public void EnableCollider()
+    {
+        if (objectCollider != null)
+        {
+            objectCollider.enabled = true;
+        }
+    }
+
+    public void DisableCollider()
+    {
+        if (objectCollider != null)
+        {
+            objectCollider.enabled = false;
+        }
+    }
+
 }

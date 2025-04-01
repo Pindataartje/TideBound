@@ -1,35 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [ScriptTag("Item")]
 public class WeaponHandler : MonoBehaviour
 {
-    public GameObject weapon;  // The weapon GameObject with the collider
-    public bool canAttack = true;
-    public float attackCooldown = 1f;
+    public GameObject weapon;  // The weapon GameObject
+    public float attackCooldown = 1f;  // Cooldown time in seconds
 
-    private Collider weaponCollider;
-    private HashSet<Collider> hitEnemies;  // Set to track enemies that have been hit
-
-
-    
+    private ColliderHandeling colliderHandeling;  // Reference to ColliderHandeling
+    private HashSet<Collider> hitEnemies;
+    private float lastAttackTime = -Mathf.Infinity;  // Time of the last attack
 
     private void Start()
     {
-        // Get the collider attached to the weapon
-        weaponCollider = weapon.GetComponent<Collider>();
-        if (weaponCollider != null)
+        // Find the ColliderHandeling script in children
+        colliderHandeling = GetComponentInChildren<ColliderHandeling>();
+
+        if (colliderHandeling == null)
         {
-            // Ensure the weapon's collider is set as a trigger (if it's not already set)
-            weaponCollider.isTrigger = true;
+            Debug.LogError("WeaponHandler: No ColliderHandeling component found on child objects!");
         }
 
-        hitEnemies = new HashSet<Collider>();  // Initialize the HashSet
+        hitEnemies = new HashSet<Collider>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canAttack)
+        // Check if enough time has passed since the last attack
+        if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackCooldown)
         {
             Attack();
         }
@@ -37,42 +36,41 @@ public class WeaponHandler : MonoBehaviour
 
     public void Attack()
     {
-        canAttack = false;
+        // Record the time of this attack
+        lastAttackTime = Time.time;
+
         Animator anim = weapon.GetComponent<Animator>();
         anim.SetTrigger("Attack");
 
-        // Ensure the weapon's collider is enabled when attacking
-        if (weaponCollider != null)
+        if (colliderHandeling != null)
         {
-            weaponCollider.enabled = true;
+            colliderHandeling.EnableCollider(); // Enable collider when attacking
         }
 
-        // Clear the hit enemies set for the new attack
         hitEnemies.Clear();
 
-        StartCoroutine(ResetAttackCooldown());
+        // Start the cooldown (no need for a coroutine now)
+        if (colliderHandeling != null)
+        {
+            StartCoroutine(DisableColliderAfterCooldown());
+        }
     }
 
-    IEnumerator ResetAttackCooldown()
+    private IEnumerator DisableColliderAfterCooldown()
     {
         yield return new WaitForSeconds(attackCooldown);
 
-        // Disable the weapon's collider after the attack cooldown period
-        if (weaponCollider != null)
+        if (colliderHandeling != null)
         {
-            weaponCollider.enabled = false;
+            colliderHandeling.DisableCollider(); // Disable collider after cooldown
         }
-
-        canAttack = true;
     }
 
-    // Public method to add an enemy to the hit list
     public void AddHitEnemy(Collider enemy)
     {
         hitEnemies.Add(enemy);
     }
 
-    // Public method to check if the enemy is already in the hit list
     public bool IsEnemyHit(Collider enemy)
     {
         return hitEnemies.Contains(enemy);
