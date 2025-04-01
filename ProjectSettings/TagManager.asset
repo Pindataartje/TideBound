@@ -40,6 +40,7 @@ TagManager:
   - Openable
   - Scrap
   - Ground
+  - SaltWater
   layers:
   - Default
   - TransparentFX

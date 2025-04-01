@@ -38,6 +38,18 @@ public class BoatController : MonoBehaviour
     private float speed = 0f;
     private float turnInput = 0f; // Turn input
 
+    [Header("Lights")]
+    [Tooltip("Empty GameObject that holds all the lights as children.")]
+    public GameObject lightsContainer;
+
+    private bool lightsOn = false;
+
+
+    // New method to reset gas/throttle when exiting.
+    public void ResetGas()
+    {
+        throttle = 0f;
+    }
     private void Start()
     {
         // Initialize sliders
@@ -157,4 +169,31 @@ public class BoatController : MonoBehaviour
         if (speedSlider != null)
             speedSlider.value = speed;
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ToggleLights();
+        }
+    }
+
+    private void ToggleLights()
+    {
+        if (lightsContainer == null)
+        {
+            Debug.LogWarning("Lights container is not assigned.");
+            return;
+        }
+
+        // Toggle the activation state of the lightsContainer
+        lightsOn = !lightsOn;
+        lightsContainer.SetActive(lightsOn);
+
+        // Log to confirm the toggling
+        Debug.Log("Lights toggled. Lights on: " + lightsOn);
+    }
+
+
+
+
 }

@@ -68,7 +68,6 @@ public class Movement : MonoBehaviour
 
     [Header("Boat Control Settings")]
     public GameObject boatUI;
-    public Transform boatExitPoint;
 
     [Header("Jump Settings")]
     public float fallMultiplier = 2.5f;  // Adjust for faster falling.
@@ -437,50 +436,97 @@ public class Movement : MonoBehaviour
         }
     }
 
-    // --- Boat Control System ---
+    // --- Boat Control & Drinking System ---
+    // --- Boat Control & Drinking System ---
     void HandleBoatControl()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (!isControllingBoat)
-            {
-                Ray ray = new Ray(camReference.position, camReference.forward);
-                RaycastHit hit;
-                float rayDistance = 5f;
-                if (Physics.Raycast(ray, out hit, rayDistance))
-                {
-                    if (hit.collider.CompareTag("Boat"))
-                    {
-                        BoatController boatController = hit.collider.GetComponent<BoatController>();
-                        if (boatController != null)
-                        {
-                            boatController.enabled = true;
-                            if (boatUI != null) boatUI.SetActive(true);
-                            rb.isKinematic = true;
-                            if (playerRenderer != null) playerRenderer.enabled = false;
-                            if (camReference != null) camReference.gameObject.SetActive(false);
-                            currentBoatController = boatController;
-                            isControllingBoat = true;
-                        }
-                    }
-                }
-            }
-            else
+            // If already controlling a boat, exit immediately.
+            if (isControllingBoat)
             {
                 if (currentBoatController != null)
                 {
+                    // Reset the boat's gas/throttle.
+                    currentBoatController.ResetGas();
+
+                    // Exit boat control: disable the BoatController, hide UI, etc.
                     currentBoatController.enabled = false;
                     if (boatUI != null) boatUI.SetActive(false);
-                    if (boatExitPoint != null) transform.position = boatExitPoint.position;
+
+                    // Look for the ExitPoint child inside the boat and teleport the player there.
+                    Transform exitPoint = currentBoatController.transform.Find("ExitPoint");
+                    if (exitPoint != null)
+                    {
+                        transform.position = exitPoint.position;
+                    }
+
                     rb.isKinematic = false;
                     if (playerRenderer != null) playerRenderer.enabled = true;
                     if (camReference != null) camReference.gameObject.SetActive(true);
+
+                    // Deactivate the BoatCam child.
+                    Transform boatCam = currentBoatController.transform.Find("BoatCam");
+                    if (boatCam != null)
+                    {
+                        boatCam.gameObject.SetActive(false);
+                    }
                 }
                 isControllingBoat = false;
                 currentBoatController = null;
+                return;
+            }
+
+            // When not controlling a boat, perform the raycast for drinking or boat entry.
+            Ray ray = new Ray(camReference.position, camReference.forward);
+            RaycastHit hit;
+            float rayDistance = 5f;
+            if (Physics.Raycast(ray, out hit, rayDistance))
+            {
+                // Drinking functionality if hitting Water or SaltWater.
+                if (hit.collider.CompareTag("Water") || hit.collider.CompareTag("SaltWater"))
+                {
+                    if (hit.collider.CompareTag("Water"))
+                    {
+                        currentThirst += 25f;
+                        currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
+                    }
+                    else if (hit.collider.CompareTag("SaltWater"))
+                    {
+                        currentThirst += 5f;
+                        currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
+                        currentHealth -= 2.5f;
+                        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+                    }
+                    return; // Exit after drinking
+                }
+
+                // Enter boat control if looking at a boat.
+                if (hit.collider.CompareTag("Boat"))
+                {
+                    BoatController boatController = hit.collider.GetComponent<BoatController>();
+                    if (boatController != null)
+                    {
+                        boatController.enabled = true;
+                        if (boatUI != null) boatUI.SetActive(true);
+                        rb.isKinematic = true;
+                        if (playerRenderer != null) playerRenderer.enabled = false;
+                        if (camReference != null) camReference.gameObject.SetActive(false);
+
+                        // Activate the BoatCam child.
+                        Transform boatCam = boatController.transform.Find("BoatCam");
+                        if (boatCam != null)
+                        {
+                            boatCam.gameObject.SetActive(true);
+                        }
+                        currentBoatController = boatController;
+                        isControllingBoat = true;
+                    }
+                }
             }
         }
     }
+
 
     // --- Cursor & Rotation Scripts ---
     void HandleCursorLockState()
