@@ -159,20 +159,33 @@ public class TerrainSpawner : MonoBehaviour
             {
                 continue;
             }
+
             // Pick a random collider from the list.
             Collider zone = tempZoneColliders[Random.Range(0, tempZoneColliders.Count)];
 
+            // Get a random spawn point inside the collider
             Vector3 pos = GetRandomPointInCollider(zone, group.centerBias);
+
+            // If no valid spawn position was found (e.g., outside the terrain area), skip this attempt
+            if (pos == Vector3.zero)
+            {
+                continue;
+            }
+
             pos.y = GetTerrainHeight(pos);
 
+            // Check distance from player and separation from other objects
             if (player != null && Vector3.Distance(pos, player.position) < group.minDistanceFromPlayer)
             {
                 continue;
             }
+
             if (!IsFarFromSpawned(pos, group.minSeparation))
             {
                 continue;
             }
+
+            // Check for obstacles
             int overlapCount = Physics.OverlapSphereNonAlloc(pos, group.minSeparation, overlapBuffer, obstacleMask);
             bool foundObstacle = false;
             for (int i = 0; i < overlapCount; i++)
@@ -202,8 +215,8 @@ public class TerrainSpawner : MonoBehaviour
             {
                 return false;
             }
+
             GameObject chosenPrefab = group.prefabs[Random.Range(0, group.prefabs.Length)];
-            // Cache the prefab name.
             string prefabName = chosenPrefab.name;
             float randomY = Random.Range(0f, 360f);
             float randomX = Random.Range(-2f, 2f);
@@ -221,24 +234,57 @@ public class TerrainSpawner : MonoBehaviour
         return spawned;
     }
 
+
     // Returns a random point within the collider's bounds, biased toward its center.
+    // Returns a random point within the collider's bounds, biased toward its center, and adjusted to the terrain height.
+    // Returns a random point within the collider's bounds, biased toward its center, and adjusted to the terrain height.
+    // Returns a random point within the collider's bounds, biased toward its center, and adjusted to the terrain height.
     Vector3 GetRandomPointInCollider(Collider col, float centerBias)
     {
         for (int i = 0; i < 10; i++)
         {
+            // Generate a random point within the collider's bounds
             Vector3 randomPoint = new Vector3(
                 Random.Range(col.bounds.min.x, col.bounds.max.x),
                 Random.Range(col.bounds.min.y, col.bounds.max.y),
                 Random.Range(col.bounds.min.z, col.bounds.max.z)
             );
+
+            // Get the closest point on the collider's surface
             Vector3 closest = col.ClosestPoint(randomPoint);
+
+            // Adjust the point to be biased towards the center if needed
             if ((randomPoint - closest).sqrMagnitude < 0.001f)
             {
-                return Vector3.Lerp(randomPoint, col.bounds.center, centerBias);
+                // Bias the position to the center of the collider if centerBias is > 0
+                randomPoint = Vector3.Lerp(randomPoint, col.bounds.center, centerBias);
+
+                // Get terrain height at this point
+                float terrainHeight = GetTerrainHeight(randomPoint);
+
+                // Ensure the spawn position is above the terrain, not below it
+                randomPoint.y = Mathf.Max(randomPoint.y, terrainHeight);
+
+                // If the terrain height is too low (e.g., over the ocean), do not spawn the object
+                if (randomPoint.y < terrainHeight)
+                {
+                    randomPoint.y = terrainHeight;  // Correct to the terrain height
+                }
+
+                // If the spawn position is too far above the terrain (e.g., ocean), skip this spawn
+                if (randomPoint.y < col.bounds.min.y || randomPoint.y > col.bounds.max.y)
+                {
+                    return Vector3.zero;  // Don't spawn if it's outside the valid area
+                }
+
+                return randomPoint;
             }
         }
         return col.bounds.center;
     }
+
+
+
 
     // Returns the terrain height at the given (x,z) position.
     float GetTerrainHeight(Vector3 pos)
