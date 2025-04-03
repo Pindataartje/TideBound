@@ -79,6 +79,15 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
     #region Volume Methods
     public void SetMusicVolume(float value)
     {

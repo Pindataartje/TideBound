@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   quality:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   enabled:
     m_OverrideState: 1
@@ -448,7 +448,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
   maxFogDistance:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 5000
   mipFogMaxMip:
     m_OverrideState: 0
@@ -460,10 +460,10 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1000
   baseHeight:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   maximumHeight:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 50
   meanFreePath:
     m_OverrideState: 1
@@ -475,13 +475,13 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: {r: 0.49821994, g: 0.8490566, b: 0.5278992, a: 1}
   globalLightProbeDimmer:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   depthExtent:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 64
   denoisingMode:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 2
   anisotropy:
     m_OverrideState: 0
@@ -493,7 +493,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   m_FogControlMode:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   screenResolutionPercentage:
     m_OverrideState: 0
@@ -502,10 +502,10 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 64
   m_VolumetricFogBudget:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.25
   m_ResolutionDepthRatio:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.5
   directionalLightsOnly:
     m_OverrideState: 0
@@ -630,16 +630,16 @@ MonoBehaviour:
     m_Value: 0
   nearFocusStart:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 2.48
   nearFocusEnd:
     m_OverrideState: 1
-    m_Value: 0.00001
+    m_Value: 5.34
   farFocusStart:
     m_OverrideState: 1
-    m_Value: 589.1
+    m_Value: 6.1
   farFocusEnd:
     m_OverrideState: 1
-    m_Value: 900.9
+    m_Value: 106.1
   m_NearSampleCount:
     m_OverrideState: 1
     m_Value: 4
