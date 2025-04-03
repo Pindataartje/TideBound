@@ -12,4 +12,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec75ce71e21e40849beed5184a1b355f, type: 3}
   m_Name: River1.1.XanderTestScene.3U4NS
   m_EditorClassIdentifier: 
-  Splines: []
+  Splines:
+  - InitialSplinePosition: {x: 2547.4, y: 88.44, z: -1830.7}
+    ID: 0
+    SplinePoints:
+    - ID: 0
+      WorldPosition: {x: 2546.834, y: 88.1609, z: -1830.4636}
+      Width: 10
+    - ID: 1
+      WorldPosition: {x: 2559.0415, y: 87.412704, z: -1826.7771}
+      Width: 10
+    - ID: 2
+      WorldPosition: {x: 2569.288, y: 83.12425, z: -1827.5468}
+      Width: 10
+    - ID: 3
+      WorldPosition: {x: 2581.4758, y: 78.07033, z: -1828.7198}
+      Width: 10
+    - ID: 4
+      WorldPosition: {x: 2601.1216, y: 63.61672, z: -1831.0515}
+      Width: 10
+    - ID: 5
+      WorldPosition: {x: 2616.6726, y: 51.942562, z: -1833.437}
+      Width: 10
+    - ID: 6
+      WorldPosition: {x: 2636.4338, y: 40.700146, z: -1835.8844}
+      Width: 10
+    - ID: 7
+      WorldPosition: {x: 2647.3489, y: 33.582367, z: -1844.6636}
+      Width: 10
+    - ID: 8
+      WorldPosition: {x: 2659.1553, y: 32.960438, z: -1852.6001}
+      Width: 10
+    - ID: 9
+      WorldPosition: {x: 2679.6982, y: 37.60427, z: -1860.9056}
+      Width: 10
+    - ID: 10
+      WorldPosition: {x: 2688.8352, y: 37.9779, z: -1866.0378}
+      Width: 10
+    - ID: 11
+      WorldPosition: {x: 2704.109, y: 35.988857, z: -1871.2544}
+      Width: 10
+    - ID: 12
+      WorldPosition: {x: 2721.998, y: 34.21754, z: -1862.9836}
+      Width: 10
+    - ID: 13
+      WorldPosition: {x: 2742.3992, y: 35.723114, z: -1855.9517}
+      Width: 10
+    - ID: 14
+      WorldPosition: {x: 2749.9365, y: 37.25518, z: -1846.9457}
+      Width: 10
+    - ID: 15
+      WorldPosition: {x: 2769.4536, y: 32.72387, z: -1825.2423}
+      Width: 10
+    - ID: 16
+      WorldPosition: {x: 2782.2666, y: 32.849037, z: -1822.0294}
+      Width: 10
+    - ID: 17
+      WorldPosition: {x: 2798.3865, y: 30.714865, z: -1817.6152}
+      Width: 10
+    - ID: 18
+      WorldPosition: {x: 2821.9504, y: 30.618427, z: -1814.0613}
+      Width: 10
+    - ID: 19
+      WorldPosition: {x: 2848.5347, y: 24.990496, z: -1803.181}
+      Width: 10
+    - ID: 20
+      WorldPosition: {x: 2885.7583, y: 19.388155, z: -1788.7291}
+      Width: 10
+    - ID: 21
+      WorldPosition: {x: 2920.583, y: 11.159971, z: -1766.9926}
+      Width: 10
+    - ID: 22
+      WorldPosition: {x: 2958.2954, y: 14.784562, z: -1746.4875}
+      Width: 10
+    - ID: 23
+      WorldPosition: {x: 2981.0688, y: 12.697493, z: -1719.4136}
+      Width: 10
+    - ID: 24
+      WorldPosition: {x: 2986.785, y: 6.27701, z: -1690.6179}
+      Width: 10
+    - ID: 25
+      WorldPosition: {x: 3000.6338, y: 6.9877815, z: -1670.1976}
+      Width: 10
+    - ID: 26
+      WorldPosition: {x: 3014.5334, y: 7.1378746, z: -1656.0245}
+      Width: 10
+    - ID: 27
+      WorldPosition: {x: 3026.7002, y: 6.147789, z: -1632.291}
+      Width: 10
+    - ID: 28
+      WorldPosition: {x: 3039.084, y: 5.575289, z: -1612.4164}
+      Width: 10
+    - ID: 29
+      WorldPosition: {x: 3053.7974, y: 4.5668907, z: -1593.9458}
+      Width: 10
+    - ID: 30
+      WorldPosition: {x: 3074.0542, y: 3.59, z: -1565.6512}
+      Width: 10
+    VertexCountBetweenPoints: 20
+    Depth: 10

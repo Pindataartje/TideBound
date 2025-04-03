@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec75ce71e21e40849beed5184a1b355f, type: 3}
+  m_Name: SwampRiver
+  m_EditorClassIdentifier: 
+  Splines:
+  - InitialSplinePosition: {x: 1890.4542, y: 10.645604, z: -2468.8052}
+    ID: 0
+    SplinePoints:
+    - ID: 0
+      WorldPosition: {x: 1875.7253, y: 20.77592, z: -2455.5723}
+      Width: 10
+    - ID: 1
+      WorldPosition: {x: 1875.0345, y: 20.133852, z: -2448.1924}
+      Width: 10
+    - ID: 2
+      WorldPosition: {x: 1874.5083, y: 19.699057, z: -2443.4763}
+      Width: 2.8912318
+    - ID: 3
+      WorldPosition: {x: 1873.9418, y: 18.979319, z: -2438.6665}
+      Width: 10
+    - ID: 4
+      WorldPosition: {x: 1872.5659, y: 19.176805, z: -2433.6316}
+      Width: 3.7823863
+    - ID: 5
+      WorldPosition: {x: 1870.738, y: 18.692667, z: -2428.6143}
+      Width: 0.25
+    - ID: 6
+      WorldPosition: {x: 1867.602, y: 17.929205, z: -2424.2273}
+      Width: 1.5125091
+    - ID: 7
+      WorldPosition: {x: 1865.5994, y: 17.691732, z: -2419.0295}
+      Width: 4.2573924
+    - ID: 8
+      WorldPosition: {x: 1862.164, y: 16.895634, z: -2416.1987}
+      Width: 3.0940273
+    - ID: 9
+      WorldPosition: {x: 1857.1112, y: 14.021635, z: -2413.0938}
+      Width: 3.2614598
+    - ID: 10
+      WorldPosition: {x: 1856.1084, y: 13.766285, z: -2406.275}
+      Width: 0.25
+    - ID: 11
+      WorldPosition: {x: 1854.0077, y: 13.31489, z: -2401.208}
+      Width: 1.7533376
+    - ID: 12
+      WorldPosition: {x: 1850.719, y: 12.758403, z: -2396.3752}
+      Width: 3.919202
+    - ID: 13
+      WorldPosition: {x: 1847.5593, y: 12.181938, z: -2393.5215}
+      Width: 7.337699
+    - ID: 14
+      WorldPosition: {x: 1845.5663, y: 12.093191, z: -2387.6082}
+      Width: 10
+    - ID: 15
+      WorldPosition: {x: 1842.182, y: 12.641611, z: -2383.477}
+      Width: 4.5484967
+    - ID: 16
+      WorldPosition: {x: 1841.8221, y: 14.040693, z: -2377.0308}
+      Width: 2.058117
+    - ID: 17
+      WorldPosition: {x: 1841.6082, y: 14.200354, z: -2373.1277}
+      Width: 10
+    - ID: 18
+      WorldPosition: {x: 1842.6587, y: 13.101486, z: -2368.2659}
+      Width: 5.0006714
+    - ID: 19
+      WorldPosition: {x: 1842.3877, y: 13.207842, z: -2363.0012}
+      Width: 4.4426928
+    - ID: 20
+      WorldPosition: {x: 1842.499, y: 13.46701, z: -2358.2642}
+      Width: 3.9362957
+    - ID: 21
+      WorldPosition: {x: 1842.9396, y: 12.970249, z: -2354.1882}
+      Width: 3.008058
+    - ID: 22
+      WorldPosition: {x: 1844.8695, y: 11.5563, z: -2349.992}
+      Width: 3.7627053
+    - ID: 23
+      WorldPosition: {x: 1847.2773, y: 10.968681, z: -2345.4292}
+      Width: 4.5941973
+    - ID: 24
+      WorldPosition: {x: 1848.8928, y: 10.803863, z: -2340.681}
+      Width: 4.117811
+    - ID: 25
+      WorldPosition: {x: 1853.3777, y: 9.152598, z: -2335.8562}
+      Width: 3.8992925
+    - ID: 26
+      WorldPosition: {x: 1857.388, y: 9.170305, z: -2332.356}
+      Width: 2.2048833
+    - ID: 27
+      WorldPosition: {x: 1861.9067, y: 9.046674, z: -2327.9092}
+      Width: 6.0864553
+    - ID: 28
+      WorldPosition: {x: 1865.5876, y: 8.68054, z: -2326.4604}
+      Width: 1.8088083
+    - ID: 29
+      WorldPosition: {x: 1869.259, y: 8.555984, z: -2324.338}
+      Width: 2.6825235
+    - ID: 30
+      WorldPosition: {x: 1874.378, y: 7.4657316, z: -2323.0366}
+      Width: 3.2464073
+    - ID: 31
+      WorldPosition: {x: 1881.1152, y: 6.9493227, z: -2321.664}
+      Width: 0.25
+    - ID: 32
+      WorldPosition: {x: 1885.9452, y: 6.349708, z: -2320.279}
+      Width: 3.829732
+    - ID: 33
+      WorldPosition: {x: 1890.7865, y: 5.672637, z: -2318.3293}
+      Width: 2.6375299
+    - ID: 34
+      WorldPosition: {x: 1896.8477, y: 4.7023106, z: -2316.9768}
+      Width: 3.5463624
+    - ID: 35
+      WorldPosition: {x: 1903.9752, y: 4.078562, z: -2312.5986}
+      Width: 4.0539236
+    - ID: 36
+      WorldPosition: {x: 1910.748, y: 2.6463315, z: -2306.8623}
+      Width: 3.2586632
+    VertexCountBetweenPoints: 20
+    Depth: 10
