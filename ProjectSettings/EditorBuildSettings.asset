@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scene/MainMenu.unity
     guid: c88a551094bbc2a45af193982b7e6900
   - enabled: 1
-    path: Assets/Scene/XanderNewScene.unity
-    guid: 73d726692ad4741468b5e0354c6d2743
+    path: Assets/Scene/XanderTestScene.unity
+    guid: 918153923f6c9394ba9ce03fe672b736
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0

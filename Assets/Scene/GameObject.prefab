@@ -1,0 +1,678 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3268892636602313542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7443579072666162480}
+  - component: {fileID: 6184479064914884374}
+  - component: {fileID: 6477929680940994912}
+  - component: {fileID: 6925998260806181483}
+  m_Layer: 0
+  m_Name: RiverSwamp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7443579072666162480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268892636602313542}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8680671084865282809}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6184479064914884374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268892636602313542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93eb560ae5ebcd8459ef03cd3eccbd16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Profile: {fileID: 0}
+  Settings: {fileID: 0}
+  WaterRenderingActive: 1
+  WorldSpaceBounds:
+    m_Center: {x: 1873.5253, y: 6.1371512, z: -2379.1802}
+    m_Extent: {x: 41.82165, y: 14.147642, z: 77.51058}
+  ShowColorSettings: 1
+  ShowExpertColorSettings: 0
+  ShowWaves: 1
+  ShowExpertWavesSettings: 0
+  ShowFoam: 0
+  ShowReflectionSettings: 0
+  ShowExpertReflectionSettings: 0
+  ShowRefractionSettings: 0
+  ShowExpertRefractionSettings: 0
+  ShowVolumetricLightSettings: 0
+  ShowExpertVolumetricLightSettings: 0
+  ShowFlowMap: 1
+  ShowExpertFlowmapSettings: 0
+  FlowMapInEditMode: 0
+  FlowMapBrushStrength: 0.802
+  ShowDynamicWaves: 0
+  ShowExpertDynamicWavesSettings: 0
+  ShowShorelineMap: 0
+  ShorelineInEditMode: 0
+  ShowExpertShorelineSettings: 0
+  ShowFoamSettings: 0
+  ShowCausticEffectSettings: 0
+  ShowExpertCausticEffectSettings: 0
+  CausticDepthScaleInEditMode: 0
+  ShowUnderwaterEffectSettings: 0
+  ShowExpertUnderwaterSettings: 0
+  ShowMeshSettings: 0
+  SplineMeshInEditMode: 0
+  ShowExpertMeshSettings: 0
+  WideAngleCameraRenderingMode: 0
+  ShowRendering: 0
+  ShowExpertRenderingSettings: 0
+  _waterGUID: XanderTestScene.ERWCB
+--- !u!114 &6477929680940994912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268892636602313542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f35b292598e844e873203fc708e8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShorelineWaves: []
+  Splines:
+  - InitialSplinePosition: {x: 1890.4542, y: 10.645604, z: -2468.8052}
+    ID: 0
+    SplinePoints:
+    - ID: 0
+      WorldPosition: {x: 1875.7253, y: 20.77592, z: -2455.5723}
+      Width: 10
+    - ID: 1
+      WorldPosition: {x: 1875.0345, y: 20.133852, z: -2448.1924}
+      Width: 10
+    - ID: 2
+      WorldPosition: {x: 1874.5083, y: 19.699057, z: -2443.4763}
+      Width: 2.8912318
+    - ID: 3
+      WorldPosition: {x: 1873.9418, y: 18.979319, z: -2438.6665}
+      Width: 10
+    - ID: 4
+      WorldPosition: {x: 1872.5659, y: 19.176805, z: -2433.6316}
+      Width: 3.7823863
+    - ID: 5
+      WorldPosition: {x: 1870.738, y: 18.692667, z: -2428.6143}
+      Width: 0.25
+    - ID: 6
+      WorldPosition: {x: 1867.602, y: 17.929205, z: -2424.2273}
+      Width: 1.5125091
+    - ID: 7
+      WorldPosition: {x: 1865.5994, y: 17.691732, z: -2419.0295}
+      Width: 4.2573924
+    - ID: 8
+      WorldPosition: {x: 1862.164, y: 16.895634, z: -2416.1987}
+      Width: 3.0940273
+    - ID: 9
+      WorldPosition: {x: 1857.1112, y: 14.021635, z: -2413.0938}
+      Width: 3.2614598
+    - ID: 10
+      WorldPosition: {x: 1856.1084, y: 13.766285, z: -2406.275}
+      Width: 0.25
+    - ID: 11
+      WorldPosition: {x: 1854.0077, y: 13.31489, z: -2401.208}
+      Width: 1.7533376
+    - ID: 12
+      WorldPosition: {x: 1850.719, y: 12.758403, z: -2396.3752}
+      Width: 3.919202
+    - ID: 13
+      WorldPosition: {x: 1847.5593, y: 12.181938, z: -2393.5215}
+      Width: 7.337699
+    - ID: 14
+      WorldPosition: {x: 1845.5663, y: 12.093191, z: -2387.6082}
+      Width: 10
+    - ID: 15
+      WorldPosition: {x: 1842.182, y: 12.641611, z: -2383.477}
+      Width: 4.5484967
+    - ID: 16
+      WorldPosition: {x: 1841.8221, y: 14.040693, z: -2377.0308}
+      Width: 2.058117
+    - ID: 17
+      WorldPosition: {x: 1841.6082, y: 14.200354, z: -2373.1277}
+      Width: 10
+    - ID: 18
+      WorldPosition: {x: 1842.6587, y: 13.101486, z: -2368.2659}
+      Width: 5.0006714
+    - ID: 19
+      WorldPosition: {x: 1842.3877, y: 13.207842, z: -2363.0012}
+      Width: 4.4426928
+    - ID: 20
+      WorldPosition: {x: 1842.499, y: 13.46701, z: -2358.2642}
+      Width: 3.9362957
+    - ID: 21
+      WorldPosition: {x: 1842.9396, y: 12.970249, z: -2354.1882}
+      Width: 3.008058
+    - ID: 22
+      WorldPosition: {x: 1844.8695, y: 11.5563, z: -2349.992}
+      Width: 3.7627053
+    - ID: 23
+      WorldPosition: {x: 1847.2773, y: 10.968681, z: -2345.4292}
+      Width: 4.5941973
+    - ID: 24
+      WorldPosition: {x: 1848.8928, y: 10.803863, z: -2340.681}
+      Width: 4.117811
+    - ID: 25
+      WorldPosition: {x: 1853.3777, y: 9.152598, z: -2335.8562}
+      Width: 3.8992925
+    - ID: 26
+      WorldPosition: {x: 1857.388, y: 9.170305, z: -2332.356}
+      Width: 2.2048833
+    - ID: 27
+      WorldPosition: {x: 1861.9067, y: 9.046674, z: -2327.9092}
+      Width: 6.0864553
+    - ID: 28
+      WorldPosition: {x: 1865.5876, y: 8.68054, z: -2326.4604}
+      Width: 1.8088083
+    - ID: 29
+      WorldPosition: {x: 1869.259, y: 8.555984, z: -2324.338}
+      Width: 2.6825235
+    - ID: 30
+      WorldPosition: {x: 1874.378, y: 7.4657316, z: -2323.0366}
+      Width: 3.2464073
+    - ID: 31
+      WorldPosition: {x: 1881.1152, y: 6.9493227, z: -2321.664}
+      Width: 0.25
+    - ID: 32
+      WorldPosition: {x: 1885.9452, y: 6.349708, z: -2320.279}
+      Width: 3.829732
+    - ID: 33
+      WorldPosition: {x: 1890.7865, y: 5.672637, z: -2318.3293}
+      Width: 2.6375299
+    - ID: 34
+      WorldPosition: {x: 1896.8477, y: 4.7023106, z: -2316.9768}
+      Width: 3.5463624
+    - ID: 35
+      WorldPosition: {x: 1903.9752, y: 4.078562, z: -2312.5986}
+      Width: 4.0539236
+    - ID: 36
+      WorldPosition: {x: 1910.748, y: 2.6463315, z: -2306.8623}
+      Width: 3.2586632
+    VertexCountBetweenPoints: 20
+    Depth: 10
+--- !u!114 &6925998260806181483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268892636602313542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f35b292598e844e873203fc708e8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShorelineWaves: []
+  Splines:
+  - InitialSplinePosition: {x: 1890.4542, y: 10.645604, z: -2468.8052}
+    ID: 0
+    SplinePoints:
+    - ID: 0
+      WorldPosition: {x: 1875.7253, y: 20.77592, z: -2455.5723}
+      Width: 10
+    - ID: 1
+      WorldPosition: {x: 1875.0345, y: 20.133852, z: -2448.1924}
+      Width: 10
+    - ID: 2
+      WorldPosition: {x: 1874.5083, y: 19.699057, z: -2443.4763}
+      Width: 2.8912318
+    - ID: 3
+      WorldPosition: {x: 1873.9418, y: 18.979319, z: -2438.6665}
+      Width: 10
+    - ID: 4
+      WorldPosition: {x: 1872.5659, y: 19.176805, z: -2433.6316}
+      Width: 3.7823863
+    - ID: 5
+      WorldPosition: {x: 1870.738, y: 18.692667, z: -2428.6143}
+      Width: 0.25
+    - ID: 6
+      WorldPosition: {x: 1867.602, y: 17.929205, z: -2424.2273}
+      Width: 1.5125091
+    - ID: 7
+      WorldPosition: {x: 1865.5994, y: 17.691732, z: -2419.0295}
+      Width: 4.2573924
+    - ID: 8
+      WorldPosition: {x: 1862.164, y: 16.895634, z: -2416.1987}
+      Width: 3.0940273
+    - ID: 9
+      WorldPosition: {x: 1857.1112, y: 14.021635, z: -2413.0938}
+      Width: 3.2614598
+    - ID: 10
+      WorldPosition: {x: 1856.1084, y: 13.766285, z: -2406.275}
+      Width: 0.25
+    - ID: 11
+      WorldPosition: {x: 1854.0077, y: 13.31489, z: -2401.208}
+      Width: 1.7533376
+    - ID: 12
+      WorldPosition: {x: 1850.719, y: 12.758403, z: -2396.3752}
+      Width: 3.919202
+    - ID: 13
+      WorldPosition: {x: 1847.5593, y: 12.181938, z: -2393.5215}
+      Width: 7.337699
+    - ID: 14
+      WorldPosition: {x: 1845.5663, y: 12.093191, z: -2387.6082}
+      Width: 10
+    - ID: 15
+      WorldPosition: {x: 1842.182, y: 12.641611, z: -2383.477}
+      Width: 4.5484967
+    - ID: 16
+      WorldPosition: {x: 1841.8221, y: 14.040693, z: -2377.0308}
+      Width: 2.058117
+    - ID: 17
+      WorldPosition: {x: 1841.6082, y: 14.200354, z: -2373.1277}
+      Width: 10
+    - ID: 18
+      WorldPosition: {x: 1842.6587, y: 13.101486, z: -2368.2659}
+      Width: 5.0006714
+    - ID: 19
+      WorldPosition: {x: 1842.3877, y: 13.207842, z: -2363.0012}
+      Width: 4.4426928
+    - ID: 20
+      WorldPosition: {x: 1842.499, y: 13.46701, z: -2358.2642}
+      Width: 3.9362957
+    - ID: 21
+      WorldPosition: {x: 1842.9396, y: 12.970249, z: -2354.1882}
+      Width: 3.008058
+    - ID: 22
+      WorldPosition: {x: 1844.8695, y: 11.5563, z: -2349.992}
+      Width: 3.7627053
+    - ID: 23
+      WorldPosition: {x: 1847.2773, y: 10.968681, z: -2345.4292}
+      Width: 4.5941973
+    - ID: 24
+      WorldPosition: {x: 1848.8928, y: 10.803863, z: -2340.681}
+      Width: 4.117811
+    - ID: 25
+      WorldPosition: {x: 1853.3777, y: 9.152598, z: -2335.8562}
+      Width: 3.8992925
+    - ID: 26
+      WorldPosition: {x: 1857.388, y: 9.170305, z: -2332.356}
+      Width: 2.2048833
+    - ID: 27
+      WorldPosition: {x: 1861.9067, y: 9.046674, z: -2327.9092}
+      Width: 6.0864553
+    - ID: 28
+      WorldPosition: {x: 1865.5876, y: 8.68054, z: -2326.4604}
+      Width: 1.8088083
+    - ID: 29
+      WorldPosition: {x: 1869.259, y: 8.555984, z: -2324.338}
+      Width: 2.6825235
+    - ID: 30
+      WorldPosition: {x: 1874.378, y: 7.4657316, z: -2323.0366}
+      Width: 3.2464073
+    - ID: 31
+      WorldPosition: {x: 1881.1152, y: 6.9493227, z: -2321.664}
+      Width: 0.25
+    - ID: 32
+      WorldPosition: {x: 1885.9452, y: 6.349708, z: -2320.279}
+      Width: 3.829732
+    - ID: 33
+      WorldPosition: {x: 1890.7865, y: 5.672637, z: -2318.3293}
+      Width: 2.6375299
+    - ID: 34
+      WorldPosition: {x: 1896.8477, y: 4.7023106, z: -2316.9768}
+      Width: 3.5463624
+    - ID: 35
+      WorldPosition: {x: 1903.9752, y: 4.078562, z: -2312.5986}
+      Width: 4.0539236
+    - ID: 36
+      WorldPosition: {x: 1910.748, y: 2.6463315, z: -2306.8623}
+      Width: 3.2586632
+    VertexCountBetweenPoints: 20
+    Depth: 10
+--- !u!1 &6258138148885732592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 42064328716630537}
+  - component: {fileID: 2801301197432778920}
+  - component: {fileID: 8570144940593424204}
+  - component: {fileID: 2174513050130121028}
+  - component: {fileID: 1458554080407687737}
+  m_Layer: 0
+  m_Name: River
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &42064328716630537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258138148885732592}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 656.9457, y: 77.794395, z: 638.1052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8680671084865282809}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2801301197432778920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258138148885732592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93eb560ae5ebcd8459ef03cd3eccbd16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Profile: {fileID: 11400000, guid: c40116ccee05b18468206f8dbf5e36fd, type: 2}
+  Settings: {fileID: 0}
+  WaterRenderingActive: 1
+  WorldSpaceBounds:
+    m_Center: {x: 2547.4, y: 87.94296, z: -1830.7}
+    m_Extent: {x: 500, y: 500.00592, z: 500}
+  ShowColorSettings: 1
+  ShowExpertColorSettings: 0
+  ShowWaves: 1
+  ShowExpertWavesSettings: 0
+  ShowFoam: 1
+  ShowReflectionSettings: 0
+  ShowExpertReflectionSettings: 0
+  ShowRefractionSettings: 0
+  ShowExpertRefractionSettings: 0
+  ShowVolumetricLightSettings: 0
+  ShowExpertVolumetricLightSettings: 0
+  ShowFlowMap: 1
+  ShowExpertFlowmapSettings: 0
+  FlowMapInEditMode: 0
+  FlowMapBrushStrength: 0.75
+  ShowDynamicWaves: 0
+  ShowExpertDynamicWavesSettings: 0
+  ShowShorelineMap: 1
+  ShorelineInEditMode: 0
+  ShowExpertShorelineSettings: 0
+  ShowFoamSettings: 0
+  ShowCausticEffectSettings: 0
+  ShowExpertCausticEffectSettings: 0
+  CausticDepthScaleInEditMode: 0
+  ShowUnderwaterEffectSettings: 0
+  ShowExpertUnderwaterSettings: 0
+  ShowMeshSettings: 0
+  SplineMeshInEditMode: 0
+  ShowExpertMeshSettings: 0
+  WideAngleCameraRenderingMode: 0
+  ShowRendering: 1
+  ShowExpertRenderingSettings: 0
+  _waterGUID: XanderTestScene.R4W7W
+--- !u!114 &8570144940593424204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258138148885732592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f35b292598e844e873203fc708e8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShorelineWaves:
+  - WorldMatrix:
+      e00: 14.420722
+      e01: 0
+      e02: 0
+      e03: 2546.0122
+      e10: 0
+      e11: 4.635232
+      e12: 0
+      e13: 88.44
+      e20: 0
+      e21: 0
+      e22: 16.480825
+      e23: -1827.7242
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    WaveID: 0
+    Position: {x: 2546.0122, y: 88.44, z: -1827.7242}
+    EulerRotationY: 0
+    Size: {x: 14, y: 4.5, z: 16}
+    TimeOffset: 0.21254392
+    Scale: {x: 1.0300516, y: 1.0300516, z: 1.0300516}
+    Flip: 1
+    Pad: {x: 0, y: 0, z: 0}
+  Splines:
+  - InitialSplinePosition: {x: 2547.4, y: 88.44, z: -1830.7}
+    ID: 0
+    SplinePoints:
+    - ID: 0
+      WorldPosition: {x: 2545.6, y: 89.711426, z: -1832.9592}
+      Width: 0.25
+    - ID: 1
+      WorldPosition: {x: 2570.4944, y: 87.68356, z: -1832.9839}
+      Width: 10
+    - ID: 2
+      WorldPosition: {x: 2587.3005, y: 75.11633, z: -1831.9741}
+      Width: 10
+    - ID: 3
+      WorldPosition: {x: 2604.1138, y: 61.351807, z: -1830.4454}
+      Width: 10
+    - ID: 4
+      WorldPosition: {x: 2620.7014, y: 49.79703, z: -1830.1027}
+      Width: 10
+    - ID: 5
+      WorldPosition: {x: 2637.7458, y: 39.21135, z: -1833.2664}
+      Width: 10
+    - ID: 6
+      WorldPosition: {x: 2641.4575, y: 39.21135, z: -1834.6237}
+      Width: 10
+    - ID: 7
+      WorldPosition: {x: 2650.2534, y: 39.21135, z: -1849.0535}
+      Width: 10
+    - ID: 8
+      WorldPosition: {x: 2691.0786, y: 39.35111, z: -1866.5398}
+      Width: 10
+    - ID: 9
+      WorldPosition: {x: 2720.6318, y: 39.21135, z: -1888.9337}
+      Width: 10
+    - ID: 10
+      WorldPosition: {x: 2735.9207, y: 41.131725, z: -1904.826}
+      Width: 10
+    - ID: 11
+      WorldPosition: {x: 2776.941, y: 39.21135, z: -1966.8184}
+      Width: 10
+    - ID: 12
+      WorldPosition: {x: 2793.625, y: 39.21135, z: -1998.6537}
+      Width: 10
+    - ID: 13
+      WorldPosition: {x: 2813.0017, y: 4.474922, z: -2020.1161}
+      Width: 10
+    VertexCountBetweenPoints: 15
+    Depth: 6
+--- !u!114 &2174513050130121028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258138148885732592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f35b292598e844e873203fc708e8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShorelineWaves: []
+  Splines: []
+--- !u!114 &1458554080407687737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258138148885732592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f35b292598e844e873203fc708e8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShorelineWaves: []
+  Splines:
+  - InitialSplinePosition: {x: 2547.4, y: 88.44, z: -1830.7}
+    ID: 0
+    SplinePoints:
+    - ID: 0
+      WorldPosition: {x: 2546.834, y: 88.1609, z: -1830.4636}
+      Width: 10
+    - ID: 1
+      WorldPosition: {x: 2559.0415, y: 87.412704, z: -1826.7771}
+      Width: 10
+    - ID: 2
+      WorldPosition: {x: 2569.288, y: 83.12425, z: -1827.5468}
+      Width: 10
+    - ID: 3
+      WorldPosition: {x: 2581.4758, y: 78.07033, z: -1828.7198}
+      Width: 10
+    - ID: 4
+      WorldPosition: {x: 2601.1216, y: 63.61672, z: -1831.0515}
+      Width: 10
+    - ID: 5
+      WorldPosition: {x: 2616.6726, y: 51.942562, z: -1833.437}
+      Width: 10
+    - ID: 6
+      WorldPosition: {x: 2636.4338, y: 40.700146, z: -1835.8844}
+      Width: 10
+    - ID: 7
+      WorldPosition: {x: 2647.3489, y: 33.582367, z: -1844.6636}
+      Width: 10
+    - ID: 8
+      WorldPosition: {x: 2659.1553, y: 32.960438, z: -1852.6001}
+      Width: 10
+    - ID: 9
+      WorldPosition: {x: 2679.6982, y: 37.60427, z: -1860.9056}
+      Width: 10
+    - ID: 10
+      WorldPosition: {x: 2688.8352, y: 37.9779, z: -1866.0378}
+      Width: 10
+    - ID: 11
+      WorldPosition: {x: 2704.109, y: 35.988857, z: -1871.2544}
+      Width: 10
+    - ID: 12
+      WorldPosition: {x: 2721.998, y: 34.21754, z: -1862.9836}
+      Width: 10
+    - ID: 13
+      WorldPosition: {x: 2742.3992, y: 35.723114, z: -1855.9517}
+      Width: 10
+    - ID: 14
+      WorldPosition: {x: 2749.9365, y: 37.25518, z: -1846.9457}
+      Width: 10
+    - ID: 15
+      WorldPosition: {x: 2769.4536, y: 32.72387, z: -1825.2423}
+      Width: 10
+    - ID: 16
+      WorldPosition: {x: 2782.2666, y: 32.849037, z: -1822.0294}
+      Width: 10
+    - ID: 17
+      WorldPosition: {x: 2798.3865, y: 30.714865, z: -1817.6152}
+      Width: 10
+    - ID: 18
+      WorldPosition: {x: 2821.9504, y: 30.618427, z: -1814.0613}
+      Width: 10
+    - ID: 19
+      WorldPosition: {x: 2848.5347, y: 24.990496, z: -1803.181}
+      Width: 10
+    - ID: 20
+      WorldPosition: {x: 2885.7583, y: 19.388155, z: -1788.7291}
+      Width: 10
+    - ID: 21
+      WorldPosition: {x: 2920.583, y: 11.159971, z: -1766.9926}
+      Width: 10
+    - ID: 22
+      WorldPosition: {x: 2958.2954, y: 14.784562, z: -1746.4875}
+      Width: 10
+    - ID: 23
+      WorldPosition: {x: 2981.0688, y: 12.697493, z: -1719.4136}
+      Width: 10
+    - ID: 24
+      WorldPosition: {x: 2986.785, y: 6.27701, z: -1690.6179}
+      Width: 10
+    - ID: 25
+      WorldPosition: {x: 3000.6338, y: 6.9877815, z: -1670.1976}
+      Width: 10
+    - ID: 26
+      WorldPosition: {x: 3014.5334, y: 7.1378746, z: -1656.0245}
+      Width: 10
+    - ID: 27
+      WorldPosition: {x: 3026.7002, y: 6.147789, z: -1632.291}
+      Width: 10
+    - ID: 28
+      WorldPosition: {x: 3039.084, y: 5.575289, z: -1612.4164}
+      Width: 10
+    - ID: 29
+      WorldPosition: {x: 3053.7974, y: 4.5668907, z: -1593.9458}
+      Width: 10
+    - ID: 30
+      WorldPosition: {x: 3074.0542, y: 3.59, z: -1565.6512}
+      Width: 10
+    VertexCountBetweenPoints: 20
+    Depth: 10
+--- !u!1 &6955806276284331616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8680671084865282809}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8680671084865282809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955806276284331616}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1890.4542, y: 10.645604, z: -2468.8052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 42064328716630537}
+  - {fileID: 7443579072666162480}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

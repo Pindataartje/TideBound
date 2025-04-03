@@ -1195,11 +1195,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84776895}
   m_CullTransparentMesh: 1
---- !u!1 &96043625 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6455991149994415048, guid: 44042e8dcaf1b2542869af88fb14045a, type: 3}
-  m_PrefabInstance: {fileID: 1614989675}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &98161109
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,13 +4797,13 @@ AudioSource:
   m_GameObject: {fileID: 310189236}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 5327747854283564137, guid: 657a743a3d5b1d04a876fcfb193cabbc, type: 2}
+  OutputAudioMixerGroup: {fileID: 3240398322458445119, guid: 657a743a3d5b1d04a876fcfb193cabbc, type: 2}
   m_audioClip: {fileID: 8300000, guid: a09e3bde7b8a37340b1b5753f6b942a3, type: 3}
   m_Resource: {fileID: 8300000, guid: a09e3bde7b8a37340b1b5753f6b942a3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -8989,7 +8984,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1876743404}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 0
@@ -29339,9 +29334,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1876743399}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: SetAmbienceVolume
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -35663,113 +35658,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6455991149994415048, guid: 44042e8dcaf1b2542869af88fb14045a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1614989677}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44042e8dcaf1b2542869af88fb14045a, type: 3}
 --- !u!4 &1614989676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5968282235844675954, guid: 44042e8dcaf1b2542869af88fb14045a, type: 3}
   m_PrefabInstance: {fileID: 1614989675}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1614989677
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96043625}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a09e3bde7b8a37340b1b5753f6b942a3, type: 3}
-  m_Resource: {fileID: 8300000, guid: a09e3bde7b8a37340b1b5753f6b942a3, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &1617119244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36051,7 +35946,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1876743404}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 0

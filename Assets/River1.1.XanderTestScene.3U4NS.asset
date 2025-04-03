@@ -9,105 +9,143 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec75ce71e21e40849beed5184a1b355f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bf75699500d2c349aac22df3efb5415, type: 3}
   m_Name: River1.1.XanderTestScene.3U4NS
   m_EditorClassIdentifier: 
-  Splines:
-  - InitialSplinePosition: {x: 2547.4, y: 88.44, z: -1830.7}
-    ID: 0
-    SplinePoints:
-    - ID: 0
-      WorldPosition: {x: 2546.834, y: 88.1609, z: -1830.4636}
-      Width: 10
-    - ID: 1
-      WorldPosition: {x: 2559.0415, y: 87.412704, z: -1826.7771}
-      Width: 10
-    - ID: 2
-      WorldPosition: {x: 2569.288, y: 83.12425, z: -1827.5468}
-      Width: 10
-    - ID: 3
-      WorldPosition: {x: 2581.4758, y: 78.07033, z: -1828.7198}
-      Width: 10
-    - ID: 4
-      WorldPosition: {x: 2601.1216, y: 63.61672, z: -1831.0515}
-      Width: 10
-    - ID: 5
-      WorldPosition: {x: 2616.6726, y: 51.942562, z: -1833.437}
-      Width: 10
-    - ID: 6
-      WorldPosition: {x: 2636.4338, y: 40.700146, z: -1835.8844}
-      Width: 10
-    - ID: 7
-      WorldPosition: {x: 2647.3489, y: 33.582367, z: -1844.6636}
-      Width: 10
-    - ID: 8
-      WorldPosition: {x: 2659.1553, y: 32.960438, z: -1852.6001}
-      Width: 10
-    - ID: 9
-      WorldPosition: {x: 2679.6982, y: 37.60427, z: -1860.9056}
-      Width: 10
-    - ID: 10
-      WorldPosition: {x: 2688.8352, y: 37.9779, z: -1866.0378}
-      Width: 10
-    - ID: 11
-      WorldPosition: {x: 2704.109, y: 35.988857, z: -1871.2544}
-      Width: 10
-    - ID: 12
-      WorldPosition: {x: 2721.998, y: 34.21754, z: -1862.9836}
-      Width: 10
-    - ID: 13
-      WorldPosition: {x: 2742.3992, y: 35.723114, z: -1855.9517}
-      Width: 10
-    - ID: 14
-      WorldPosition: {x: 2749.9365, y: 37.25518, z: -1846.9457}
-      Width: 10
-    - ID: 15
-      WorldPosition: {x: 2769.4536, y: 32.72387, z: -1825.2423}
-      Width: 10
-    - ID: 16
-      WorldPosition: {x: 2782.2666, y: 32.849037, z: -1822.0294}
-      Width: 10
-    - ID: 17
-      WorldPosition: {x: 2798.3865, y: 30.714865, z: -1817.6152}
-      Width: 10
-    - ID: 18
-      WorldPosition: {x: 2821.9504, y: 30.618427, z: -1814.0613}
-      Width: 10
-    - ID: 19
-      WorldPosition: {x: 2848.5347, y: 24.990496, z: -1803.181}
-      Width: 10
-    - ID: 20
-      WorldPosition: {x: 2885.7583, y: 19.388155, z: -1788.7291}
-      Width: 10
-    - ID: 21
-      WorldPosition: {x: 2920.583, y: 11.159971, z: -1766.9926}
-      Width: 10
-    - ID: 22
-      WorldPosition: {x: 2958.2954, y: 14.784562, z: -1746.4875}
-      Width: 10
-    - ID: 23
-      WorldPosition: {x: 2981.0688, y: 12.697493, z: -1719.4136}
-      Width: 10
-    - ID: 24
-      WorldPosition: {x: 2986.785, y: 6.27701, z: -1690.6179}
-      Width: 10
-    - ID: 25
-      WorldPosition: {x: 3000.6338, y: 6.9877815, z: -1670.1976}
-      Width: 10
-    - ID: 26
-      WorldPosition: {x: 3014.5334, y: 7.1378746, z: -1656.0245}
-      Width: 10
-    - ID: 27
-      WorldPosition: {x: 3026.7002, y: 6.147789, z: -1632.291}
-      Width: 10
-    - ID: 28
-      WorldPosition: {x: 3039.084, y: 5.575289, z: -1612.4164}
-      Width: 10
-    - ID: 29
-      WorldPosition: {x: 3053.7974, y: 4.5668907, z: -1593.9458}
-      Width: 10
-    - ID: 30
-      WorldPosition: {x: 3074.0542, y: 3.59, z: -1565.6512}
-      Width: 10
-    VertexCountBetweenPoints: 20
-    Depth: 10
+  Transparent: 7
+  DyeColor: {r: 1, g: 1, b: 1, a: 1}
+  TurbidityColor: {r: 0.02745098, g: 0.25490198, b: 0.3137255, a: 1}
+  UseGlobalWind: 1
+  GlobalWindZone: {fileID: 0}
+  GlobalWindZoneSpeedMultiplier: 1.5
+  GlobalWindZoneTurbulenceMultiplier: 0.01
+  GlobalWindSpeed: 5
+  GlobalWindRotation: 0
+  GlobalWindTurbulence: 0.5
+  GlobalFftWavesQuality: 256
+  GlobalFftWavesCascades: 4
+  GlobalWavesAreaScale: 0.23
+  GlobalTimeScale: 1
+  LocalWindSpeed: 3.5
+  LocalWindRotation: 0
+  LocalWindTurbulence: 0.4
+  LocalFftWavesQuality: 128
+  LocalFftWavesCascades: 4
+  LocalWavesAreaScale: 1
+  LocalTimeScale: 1
+  FoamProfile: 2
+  UseOceanFoam: 1
+  OceanFoamColor: {r: 0.535, g: 0.649, b: 0.664, a: 0.86}
+  OceanFoamStrength: 0.2
+  OceanFoamTextureSize: 30
+  UseIntersectionFoam: 1
+  IntersectionFoamColor: {r: 0.64705884, g: 0.9019608, b: 1, a: 0.92156863}
+  IntersectionFoamFadeDistance: 0.32
+  IntersectionTextureFoamSize: 25
+  ReflectionProfile: 2
+  UseScreenSpaceReflection: 1
+  ScreenSpaceReflectionResolutionQuality: 50
+  UseScreenSpaceReflectionHolesFilling: 1
+  UseScreenSpaceReflectionSky: 1
+  ScreenSpaceBordersStretching: 0.025
+  UsePlanarReflection: 0
+  PlanarCullingMask: -1
+  PlanarReflectionResolutionQuality: 512
+  ReflectionClipPlaneOffset: 0.0005
+  RenderPlanarShadows: 0
+  RenderPlanarVolumetricsAndFog: 0
+  RenderPlanarClouds: 0
+  UseReflectionProbes: 0
+  OverrideSkyColor: 0
+  CustomSkyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  UseAnisotropicReflections: 1
+  AnisotropicReflectionsHighQuality: 0
+  AnisotropicReflectionsScale: 0.5
+  ReflectSun: 1
+  ReflectedSunCloudinessStrength: 0.04
+  ReflectedSunStrength: 1
+  RefractionProfile: 2
+  RefractionMode: 1
+  RefractionAproximatedDepth: 2
+  RefractionSimpleStrength: 0.25
+  UseRefractionDispersion: 1
+  RefractionDispersionStrength: 0.35
+  RefractionResolution: 50
+  VolumetricLightProfile: 2
+  UseVolumetricLight: 1
+  VolumetricLightResolutionQuality: 50
+  VolumetricLightIteration: 7
+  VolumetricLightTemporalReprojectionAccumulationFactor: 0.35
+  VolumetricLightUseBlur: 0
+  VolumetricLightBlurRadius: 2
+  VolumetricLightUseAdditionalLightsCaustic: 0
+  FlowmapProfile: 2
+  UseFlowMap: 1
+  FlowMapAreaPosition: {x: 0, y: 88.44, z: 0}
+  FlowMapAreaSize: 6615
+  FlowMapTextureResolution: 4096
+  FlowMapSpeed: 0.92
+  UseFluidsSimulation: 0
+  FluidsAreaSize: 35
+  FluidsSimulationIterrations: 2
+  FluidsTextureSize: 1536
+  FluidsSimulationFPS: 60
+  FluidsSpeed: 1
+  FluidsFoamStrength: 0.5
+  FlowingScriptableData: {fileID: 0}
+  DynamicWavesProfile: 2
+  UseDynamicWaves: 1
+  DynamicWavesAreaSize: 50
+  DynamicWavesResolutionPerMeter: 34
+  DynamicWavesGlobalForceScale: 0.2
+  DynamicWavesPropagationSpeed: 1
+  UseDynamicWavesRainEffect: 0
+  DynamicWavesRainStrength: 1
+  ShorelineProfile: 0
+  UseShorelineRendering: 1
+  ShorelineColor: {r: 1.1450981, g: 1.2156863, b: 1.2352941, a: 0.627451}
+  ShorelineFoamLodQuality: 0
+  UseShorelineFoamFastMode: 0
+  ShorelineFoamReceiveDirShadows: 0
+  ShorelineWavesScriptableData: {fileID: 0}
+  CausticProfile: 2
+  UseCausticEffect: 1
+  UseGlobalCausticHighQualityFiltering: 0
+  GlobalCausticTextureResolutionQuality: 1024
+  GlobalCausticDepth: 2
+  UseLocalCausticHighQualityFiltering: 0
+  LocalCausticTextureResolutionQuality: 1024
+  LocalCausticDepth: 2
+  UseCausticDispersion: 1
+  CausticStrength: 2
+  UnderwaterProfile: 2
+  UseUnderwaterEffect: 1
+  UnderwaterReflectionMode: 1
+  UseUnderwaterHalfLineTensionEffect: 1
+  UnderwaterHalfLineTensionScale: 1
+  OverrideUnderwaterTransparent: 0
+  UnderwaterTransparentOffset: 5
+  MeshProfile: 0
+  WaterMeshType: 2
+  UseAquariumMode: 0
+  OceanDetailingFarDistance: 1000
+  RiverSplineNormalOffset: 1
+  RiverSplineVertexCountBetweenPoints: 20
+  RiverSplineDepth: 10
+  CustomMesh: {fileID: 0}
+  WaterMeshQualityInfinite: 1
+  WaterMeshQualityFinite: 1
+  UseTesselation: 0
+  TesselationFactor_Infinite: 0.75
+  TesselationFactor_Finite: 200
+  TesselationFactor_Custom: 100
+  TesselationFactor_River: 100
+  TesselationMaxDistance_Infinite: 2000
+  TesselationMaxDistance_Finite: 100
+  TesselationMaxDistance_Custom: 100
+  TesselationMaxDistance_River: 100
+  SplineScriptableData: {fileID: 0}
+  RenderingProfile: 2
+  TransparentSortingPriority: -1
+  DrawToPosteffectsDepth: 0
+  WireframeMode: 0

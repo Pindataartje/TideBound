@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208a3c14a53357c49b24e31e635262dd, type: 3}
+  m_Name: EEQWEQ
+  m_EditorClassIdentifier: 
+  AreaSize: 591
+  AreaPosition: {x: 1900, y: 10.645604, z: -2350}
+  FlowmapResolution: 4096
+  FlowmapTexture: {fileID: 7385981622441505588, guid: c2eb3957622914b41a40707c836391d3, type: 3}
+  FluidsMaskTexture: {fileID: 7385981622441505588, guid: 60876489f0eeb494e8a1d97512ec8a7d, type: 3}
+  FluidsPrebakedTexture: {fileID: 7385981622441505588, guid: 9d0e2e0698cdbac45a5759bdb8585ed5, type: 3}
