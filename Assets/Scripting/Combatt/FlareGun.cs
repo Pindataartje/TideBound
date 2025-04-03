@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[ScriptTag("Item")]
 public class FlareGun : MonoBehaviour
 {
     public GameObject flarePrefab;  // The flare object to be shot
