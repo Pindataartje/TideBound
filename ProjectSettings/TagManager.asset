@@ -41,6 +41,7 @@ TagManager:
   - Scrap
   - Ground
   - SaltWater
+  - FlareGun
   layers:
   - Default
   - TransparentFX

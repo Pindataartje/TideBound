@@ -19,7 +19,17 @@ public class ColliderHandeling : MonoBehaviour
         // Get the WeaponHandler from the parent or another GameObject
         weaponHandler = GetComponentInParent<WeaponHandler>();
 
-        // Get the collider on the same GameObject as this script
+        // Automatically assign InventoryItemAdder if not assigned.
+        if (inventoryItemAdder == null)
+        {
+            inventoryItemAdder = FindObjectOfType<InventoryItemAdder>();
+            if (inventoryItemAdder == null)
+            {
+                Debug.LogWarning("No InventoryItemAdder found in the scene for " + gameObject.name);
+            }
+        }
+
+        // Get the collider on the same GameObject as this script.
         objectCollider = GetComponent<Collider>();
 
         if (objectCollider != null)
@@ -28,16 +38,16 @@ public class ColliderHandeling : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No Collider found on " + gameObject.name + ". ColliderHandling requires a Collider.");
+            Debug.LogWarning("No Collider found on " + gameObject.name + ". ColliderHandeling requires a Collider.");
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Debugging to check what collider is triggering the weapon
+        // Debugging to check what collider is triggering the weapon.
         Debug.Log("Collider Triggered by: " + other.gameObject.name);
 
-        // Check if the collider belongs to an enemy and it's not already in the hit list
+        // Check if the collider belongs to an enemy and it's not already in the hit list.
         if (other.CompareTag("Enemy") && !weaponHandler.IsEnemyHit(other))
         {
             AnimalAI animalAI = other.GetComponent<AnimalAI>();
@@ -46,13 +56,13 @@ public class ColliderHandeling : MonoBehaviour
                 animalAI.TakeDamage(10f);  // Example damage value
                 Debug.Log("Damage applied to " + animalAI.gameObject.name);
 
-                // Add the enemy to the hit list to prevent re-hitting until the cooldown
+                // Add the enemy to the hit list to prevent re-hitting until the cooldown.
                 weaponHandler.AddHitEnemy(other);
             }
         }
         else if (other.CompareTag("Material"))
         {
-            // Get the TagAssigner component from the collided object
+            // Get the TagAssigner component from the collided object.
             TagAssigner tagAssigner = other.GetComponent<TagAssigner>();
 
             if (tagAssigner != null)
@@ -60,19 +70,17 @@ public class ColliderHandeling : MonoBehaviour
                 Debug.Log("Material hit with assigned tag: " + tagAssigner.tagToAssign);
                 itemTag = tagAssigner.tagToAssign;
                 inventoryItemAdder.AddItemByTag(itemTag, 2);
-                AudioSource.PlayClipAtPoint(woodChop, gameObject.transform.position);
-
+                AudioSource.PlayClipAtPoint(woodChop, transform.position);
             }
             else
             {
                 Debug.Log("Material hit but has no TagAssigner component.");
             }
 
-
-            MaterialHealth Mathealth = other.GetComponent<MaterialHealth>();
-                if (Mathealth != null)
+            MaterialHealth matHealth = other.GetComponent<MaterialHealth>();
+            if (matHealth != null)
             {
-                Mathealth.TookDamage(1);
+                matHealth.TookDamage(1);
             }
         }
     }
@@ -92,5 +100,4 @@ public class ColliderHandeling : MonoBehaviour
             objectCollider.enabled = false;
         }
     }
-
 }
