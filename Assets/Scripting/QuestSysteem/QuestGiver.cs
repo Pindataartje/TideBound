@@ -36,6 +36,8 @@ public class QuestGiver : MonoBehaviour
         if (nextQuestIndex < availableQuests.Length)
         {
             GiveQuest(nextQuestIndex);
+            Cursor.lockState = CursorLockMode.Confined;
+            
         }
         else
         {

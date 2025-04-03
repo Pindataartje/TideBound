@@ -24,6 +24,7 @@ public class PickupSystem : MonoBehaviour
         if (canPickup && Input.GetKeyDown(pickupKey))
         {
             TryPickupItem();
+            Interact();
         }
 
         if (Input.GetKeyDown(unequipKey))
@@ -59,6 +60,26 @@ public class PickupSystem : MonoBehaviour
                         Debug.Log("Inventory Full!");
                     }
                     return;
+                }
+            }
+        }
+    }
+
+
+    void Interact()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hit, pickupRange))
+        {
+            if (hit.collider.CompareTag("Npc"))
+            {
+                // Get the QuestGiver component from the NPC
+                QuestGiver questGiver = hit.collider.GetComponent<QuestGiver>();
+
+                if (questGiver != null)
+                {
+                    // Call Interact instead of forcing a specific quest
+                    questGiver.Interact();
                 }
             }
         }
