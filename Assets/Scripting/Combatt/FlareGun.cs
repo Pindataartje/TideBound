@@ -8,24 +8,28 @@ public class FlareGun : MonoBehaviour
     public float shootForce = 10f;  // The force with which the flare will be shot
     public float flareLifeTime = 21f;  // Time before the flare is destroyed (21 seconds)
     public AudioClip shootSound;
+    public float shootCooldown = 30f; // Cooldown time before shooting again
+
+    private float lastShootTime = -30f; // Track last shoot time, initialized to allow first shot instantly
 
     void Update()
     {
-        // Check if the player presses the fire button (can be customized to any key or input)
-        if (Input.GetButtonDown("Fire1"))
+        // Check if LMB is pressed and cooldown has passed
+        if (Input.GetMouseButtonDown(0) && Time.time >= lastShootTime + shootCooldown)
         {
             ShootFlare();
+            lastShootTime = Time.time; // Update last shoot time
         }
     }
 
     void ShootFlare()
     {
         AudioSource.PlayClipAtPoint(shootSound, shootPoint.position, 0.25f);
+
         // Instantiate the flare at the shoot point
         GameObject flare = Instantiate(flarePrefab, shootPoint.position, shootPoint.rotation);
 
-        // Get the direction the flare should shoot in (straight ahead, regardless of gun's rotation)
-        // Since the gun is rotated -90 on the Y-axis, we need to shoot along the local forward direction (Z axis)
+        // Get the direction the flare should shoot in (straight ahead)
         Vector3 shootDirection = shootPoint.forward;
 
         // Apply force to the flare to shoot it
@@ -34,10 +38,8 @@ public class FlareGun : MonoBehaviour
         {
             flareRb.AddForce(shootDirection * shootForce, ForceMode.VelocityChange);
         }
-       
 
         // Destroy the flare after a set time (21 seconds)
-        
         Destroy(flare, flareLifeTime);
     }
 }
