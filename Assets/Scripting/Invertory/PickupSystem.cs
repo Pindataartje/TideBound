@@ -65,7 +65,6 @@ public class PickupSystem : MonoBehaviour
         }
     }
 
-
     void Interact()
     {
         RaycastHit hit;
@@ -73,12 +72,12 @@ public class PickupSystem : MonoBehaviour
         {
             if (hit.collider.CompareTag("Npc"))
             {
-                // Get the QuestGiver component from the NPC
+                // Get the QuestGiver component from the NPC.
                 QuestGiver questGiver = hit.collider.GetComponent<QuestGiver>();
 
                 if (questGiver != null)
                 {
-                    // Call Interact instead of forcing a specific quest
+                    // Call Interact instead of forcing a specific quest.
                     questGiver.Interact();
                 }
             }
@@ -169,6 +168,13 @@ public class PickupSystem : MonoBehaviour
                 Debug.Log("❌ Inventory full, dropping unequipped item.");
                 DropEquippedItem();
             }
+
+            // Reset player's walk speed to 5.
+            Movement movement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
+            if (movement != null)
+            {
+                movement.walkSpeed = 5f;
+            }
         }
     }
 
@@ -214,6 +220,13 @@ public class PickupSystem : MonoBehaviour
             }
 
             Debug.Log($"✅ Dropped: {item.name}");
+
+            // Reset player's walk speed to 5.
+            Movement movement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
+            if (movement != null)
+            {
+                movement.walkSpeed = 5f;
+            }
         }
     }
 
