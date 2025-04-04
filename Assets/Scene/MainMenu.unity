@@ -35991,10 +35991,10 @@ RectTransform:
   - {fileID: 1959686580}
   m_Father: {fileID: 473008383}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.24545288, y: 0.19600001}
-  m_AnchorMax: {x: 0.7555472, y: 0.381}
-  m_AnchoredPosition: {x: -1, y: 1}
-  m_SizeDelta: {x: -2, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -226.75998}
+  m_SizeDelta: {x: 1166.1047, y: 200.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1635913286
 MonoBehaviour:
@@ -36016,7 +36016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Corne Ter Water
+  m_text: Teunis Wolter Cornelus Ter Meer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 83185adc515cbba40a653848f3060df1, type: 2}
   m_sharedMaterial: {fileID: -3431350084384217839, guid: 83185adc515cbba40a653848f3060df1, type: 2}
